@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "cwe": {
+        "title": "Common Weakness Enumeration",
+        "description": "TODO",
+        "type": "integer",
+        "minimum": 11
+      },
+      "desc": {
+        "title": "Vulnerability Description",
+        "description": "TODO",
+        "type": "string",
+        "minLength": 3
+      },
+      "reports": {
+        "title": "Reports",
+        "description": "TODO",
+        "$ref": "#/$defs/reports"
+      }
+    },
+    "additionalProperties": false
+  },
+  "$defs": {
+    "reports": {
+      "$ref": "vulnerabilities.reports.vulnlog.schema.json"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/release-groups.vulnlog.schema.json",
+  "title": "Vulnlog Release Groups Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Release Group Identifier",
+        "description": "TODO",
+        "type": "string"
+      },
+      "name": {
+        "title": "Name of the Release Group",
+        "description": "TODO",
+        "type": "string"
+      },
+      "ref-ids": {
+        "title": "Release Identifier",
+        "description": "TODO",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

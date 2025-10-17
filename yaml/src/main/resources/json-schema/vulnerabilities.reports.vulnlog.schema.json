@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.reports.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Reports Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "on": {
+        "title": "Reported Release",
+        "description": "TODO",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "suppression": {
+        "title": "Suppress this Report",
+        "description": "TODO",
+        "$ref": "#/$defs/suppression"
+      },
+      "vuln-id": {
+        "title": "Vulnerability ID",
+        "description": "TODO",
+        "examples": [ "CVE-2021-44228" ],
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "suppression": {
+      "$ref": "vulnerabilities.reports.suppression.vulnlog.schema.json"
+    }
+  }
+}

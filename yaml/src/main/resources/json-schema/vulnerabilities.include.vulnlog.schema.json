@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.include.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Include Schema",
+  "type": "object",
+  "properties": {
+    "releases": {
+      "title": "Include Releases",
+      "description": "TODO",
+      "type": "object",
+      "properties": {
+        "file": {
+          "title": "File to include",
+          "description": "TODO",
+          "type": "string"
+        },
+        "ref-ids": {
+          "title": "Release IDs to Reference from",
+          "description": "TODO",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reporters": {
+      "title": "Include Reporters",
+      "description": "TODO",
+      "type": "object",
+      "properties": {
+        "file": {
+          "title": "File to include",
+          "description": "TODO",
+          "type": "string"
+        },
+        "pipeline-ref-ids": {
+          "title": "Reporter Pipeline References",
+          "description": "TODO",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reporter-ref-ids": {
+          "title": "Reporter References",
+          "description": "TODO",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

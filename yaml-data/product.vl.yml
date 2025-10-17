@@ -1,35 +1,46 @@
 ---
-imports:
-  - releases.vl4.yml
-  - reporters.vl4.yml
+include:
+  releases:
+    file: releases.vl.yml
+    ref-ids:
+      - &p803 product803
+      - &p804 product804
+  reporters:
+    file: reporters.vl.yml
+    pipeline-ref-ids:
+      - &trivy trivy-pipeline
+      - &owasp owasp-pipeline
 
 vulnerabilities:
-  - description: Information leak via uninitialized stack contents in the rsync daemon.
-    cvw: 908
+  - desc: Information leak via uninitialized stack contents in the rsync daemon.
+    cwe: 908
     reports:
-      - &rep1
-        vuln-id: CVE-2024-12085
-        reporter: trivy
-        at: 2024-12-18
-        onReleaseId: product803
-    analysis:
-      - verdict: not-affected
-        vex: Vulnerable code not in execute path
-        reasoning:
-          In a typical environment the ports necessary for rsync are not exposed to the internet.
-          Furthermore, the above vulnerability only occurs in the rsync daemon, which by default
-          does not run on the product Docker container. Therefore, product is not affected.
-          This vulnerability was reported in product 8.0.8, the latest publicly available version of
-          the product 8.0 branch. The newest version of this branch, product 8.0.10, was released on
-          2025-05-07, and no longer reports this vulnerability.
-    resolution:
-      - rebuild:
-          after: 2024-12-18
-          image: ubi-minimal
-          resolvedAt: &res1 2025-04-29
-      - update:
-          maven-dependency: foo:bar:123
-          to: 1.2.3
-    suppressions:
-      - report: *rep1
-        until: *res1
+      - vuln-id: CVE-2024-12085
+        #        reporter: trivy
+        #        at: 2024-12-18
+        on: [ *p803, *p804 ]
+        suppression:
+          - on: [ *p803, *p804 ]
+            until: 2026-01-01
+      - vuln-id: [ CVE-2024-12086, CVE-2024-12087 ]
+        #        reporter: owasp
+        #        at: 2024-12-18
+        on: *p804
+#    analysis:
+#      - verdict: not-affected
+#        vex: Inline mitigations already exist
+#        reasoning:
+#          In a typical environment the ports necessary for rsync are not exposed to the internet.
+#          Furthermore, the above vulnerability only occurs in the rsync daemon, which by default
+#          does not run on the product Docker container. Therefore, product is not affected.
+#          This vulnerability was reported in product 8.0.8, the latest publicly available version of
+#          the product 8.0 branch. The newest version of this branch, product 8.0.10, was released on
+#          2025-05-07, and no longer reports this vulnerability.
+#    resolution:
+#      - rebuild:
+#          after: 2024-12-18
+#          image: ubi-minimal
+#          resolvedAt: 2025-04-29
+#      - update:
+#          maven-dependency: foo:bar:123
+#          to: 1.2.3

@@ -1,14 +1,17 @@
 ---
 releases:
-  - id: product803
+  - id: &p803 product803
+    name: Product 8.0.3
     version: 8.0.3
-    releasedAt: 2024-10-05
-  - id: product804
-    version: 8.0.3
-    releasedAt: 2024-12-09
+    release-date: 2024-10-05
+  - id: &p804 product804
+    name: Product 8.0.4
+    version: 8.0.4
+    release-date: 2024-12-09
 
 release-groups:
   - id: product80
-    releases:
-      - product803
-      - product804
+    name: Product 8.0
+    ref-ids:
+      - *p803
+      - *p804

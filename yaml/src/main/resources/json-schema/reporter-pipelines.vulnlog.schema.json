@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/reporter-pipelines.vulnlog.schema.json",
+  "title": "Vulnlog Reporter Pipeline Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Reporter Pipeline Identifier",
+        "description": "TODO",
+        "type": "string"
+      },
+      "name": {
+        "title": "Reporter Pipeline Name",
+        "description": "TODO",
+        "type": "string"
+      },
+      "reporter-ref-id": {
+        "title": "Reporter",
+        "description": "TODO",
+        "type": "string"
+      },
+      "lifetime": {
+        "title": "Pipeline Lifetime",
+        "description": "TODO",
+        "type": "object",
+        "properties": {
+          "start": {
+            "title": "Start date of this pipeline",
+            "description": "TODO",
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "end": {
+            "title": "End date of this pipeline",
+            "description": "TODO",
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        }
+      }
+    }
+  }
+}

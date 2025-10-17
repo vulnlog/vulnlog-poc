@@ -1,13 +1,19 @@
 ---
-reporter:
-  - id: trivy
+reporters:
+  - id: &trivy trivy
+    name: Trivy
     product: aquasec/trivy
+  - id: &owasp owasp
+    name: OWASP Dependency Check
+    product: owasp/dependency-check
 
-scan-pipelines:
+reporter-pipelines:
   - id: trivy-pipeline
-    reporter: trivy
-    release-groups:
-      - product80
+    name: Trivy Pipeline
+    reporter: *trivy
+  - id: owasp-pipeline
+    name: OWASP Dependency Check Pipeline
+    reporter-ref-id: *owasp
     lifetime:
-      start: 2023-01-01
-      end: 2026-01-01
+      start: 2021-03-01
+      end: 2025-09-30
