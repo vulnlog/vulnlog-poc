@@ -1,0 +1,13 @@
+---
+reporter:
+  - id: trivy
+    product: aquasec/trivy
+
+scan-pipelines:
+  - id: trivy-pipeline
+    reporter: trivy
+    release-groups:
+      - product80
+    lifetime:
+      start: 2023-01-01
+      end: 2026-01-01

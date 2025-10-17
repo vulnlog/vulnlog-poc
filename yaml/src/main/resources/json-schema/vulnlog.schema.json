@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnlog.schema.json",
+  "title": "Vulnlog YAML schema",
+  "description": "Validates .vl.yml documents for reporters, releases, and vulnerability data.",
+  "type": "object",
+  "oneOf": [
+    {
+      "title": "Reporters document",
+      "description": "Defines reporters and scan pipelines.",
+      "type": "object",
+      "required": [ "reporter", "scan-pipelines" ],
+      "properties": {
+        "reporter": {},
+        "scan-pipelines": {}
+      }
+    },
+    {
+      "title": "Releases document",
+      "description": "Defines releases and release groups.",
+      "type": "object",
+      "required": [ "releases", "release-groups" ],
+      "properties": {
+        "release-groups": {},
+        "releases": {}
+      }
+    },
+    {
+      "title": "Vulnerability document",
+      "description": "Defines imports and vulnerabilities.",
+      "x-javaType": "dev.vulnlog.model.VulnerabilityDocument",
+      "type": "object",
+      "required": [ "vulnerabilities" ],
+      "properties": {
+        "imports": {
+          "title": "Imports",
+          "description": "List of file names to import.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "vulnerabilities": {
+          "title": "Vulnerabilities",
+          "description": "Vulnerability records and handling.",
+          "x-javaType": "dev.vulnlog.model.VulnerabilityList",
+          "type": "array",
+          "items": {
+            "title": "Vulnerability",
+            "x-javaType": "dev.vulnlog.model.Vulnerability",
+            "type": "object",
+            "properties": {
+              "description": {
+                "description": "Free-form description of the vulnerability.",
+                "type": [ "string", "null" ]
+              },
+              "analysis": {
+                "title": "Analysis",
+                "description": "Analysis/VEX information.",
+                "x-javaType": "dev.vulnlog.model.AnalysisList",
+                "type": "array",
+                "items": {
+                  "title": "Analysis item",
+                  "x-javaType": "dev.vulnlog.model.Analysis",
+                  "type": "object",
+                  "properties": {
+                    "reasoning": {
+                      "description": "Reasoning text.",
+                      "type": [ "string", "null" ]
+                    },
+                    "verdict": {
+                      "description": "Assessment state (free-form to stay permissive).",
+                      "type": [ "string", "null" ]
+                    },
+                    "vex": {
+                      "description": "VEX justification.",
+                      "enum": [
+                        "Component not present",
+                        "Vulnerable code not present",
+                        "Vulnerable code cannot be controlled by adversary",
+                        "Vulnerable code not in execute path",
+                        "Inline mitigations already exist"
+                      ]
+                    }
+                  }
+                }
+              },
+              "cvw": {
+                "description": "Internal numeric identifier; sometimes provided as string.",
+                "type": [ "integer", "string", "null" ]
+              },
+              "reports": {
+                "title": "Reports",
+                "description": "Scanner-originated vulnerability reports.",
+                "x-javaType": "dev.vulnlog.model.ReportList",
+                "type": "array",
+                "items": {
+                  "title": "Report",
+                  "x-javaType": "dev.vulnlog.model.Report",
+                  "type": "object",
+                  "properties": {
+                    "at": {
+                      "description": "Date string (free-form; kept loose for YAML inputs).",
+                      "type": [ "string", "null" ]
+                    },
+                    "onReleaseId": {
+                      "description": "Release identifier.",
+                      "type": [ "string", "null" ]
+                    },
+                    "reporter": {
+                      "description": "Reporter identifier.",
+                      "type": [ "string", "null" ]
+                    },
+                    "vuln-id": {
+                      "description": "Upstream vulnerability identifier (e.g., CVE-...).",
+                      "type": [ "string", "null" ]
+                    }
+                  }
+                }
+              },
+              "resolution": {
+                "title": "Resolution",
+                "description": "How the issue is addressed.",
+                "x-javaType": "dev.vulnlog.model.ResolutionList",
+                "type": "array",
+                "items": {
+                  "title": "Resolution item",
+                  "x-javaType": "dev.vulnlog.model.Resolution",
+                  "type": "object",
+                  "properties": {
+                    "rebuild": {
+                      "title": "Rebuild action",
+                      "x-javaType": "dev.vulnlog.model.Rebuild",
+                      "type": "object",
+                      "properties": {
+                        "after": {
+                          "description": "Date or tag when rebuild should happen.",
+                          "type": [ "string", "null" ]
+                        },
+                        "image": {
+                          "description": "Base image to rebuild from.",
+                          "type": [ "string", "null" ]
+                        },
+                        "resolvedAt": {
+                          "description": "Date when resolved.",
+                          "type": [ "string", "null" ]
+                        }
+                      }
+                    },
+                    "update": {
+                      "title": "Update dependency",
+                      "x-javaType": "dev.vulnlog.model.Update",
+                      "type": "object",
+                      "properties": {
+                        "maven-dependency": {
+                          "description": "Maven GAV coordinate.",
+                          "type": [ "string", "null" ]
+                        },
+                        "to": {
+                          "description": "Target version.",
+                          "type": [ "string", "null" ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "suppressions": {
+                "title": "Suppressions",
+                "description": "Links suppressing reports until a result.",
+                "x-javaType": "dev.vulnlog.model.SuppressionList",
+                "type": "array",
+                "items": {
+                  "title": "Suppression",
+                  "x-javaType": "dev.vulnlog.model.Suppression",
+                  "type": "object",
+                  "properties": {
+                    "report": {
+                      "description": "Report reference.",
+                      "type": [ "object", "string", "null" ]
+                    },
+                    "until": {
+                      "description": "Target milestone/result identifier.",
+                      "type": [ "string", "null" ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

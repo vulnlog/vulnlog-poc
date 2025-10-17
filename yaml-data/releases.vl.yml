@@ -1,0 +1,14 @@
+---
+releases:
+  - id: product803
+    version: 8.0.3
+    releasedAt: 2024-10-05
+  - id: product804
+    version: 8.0.3
+    releasedAt: 2024-12-09
+
+release-groups:
+  - id: product80
+    releases:
+      - product803
+      - product804
