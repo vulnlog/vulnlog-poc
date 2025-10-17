@@ -2,6 +2,7 @@ plugins {
     id("buildsrc.convention.kotlin-jvm")
     application
     id("org.jsonschema2pojo") version "1.2.2"
+    id("org.graalvm.buildtools.native") version "0.11.0"
 }
 
 dependencies {
@@ -19,7 +20,8 @@ jsonSchema2Pojo {
     targetDirectory = file("src/main/java")
     targetPackage = "dev.vulnlog.yaml.dto"
     setAnnotationStyle("jackson")
-    includeConstructors = false
+    includeConstructors = true
+    constructorsRequiredPropertiesOnly = false
     includeHashcodeAndEquals = false
     includeToString = false
     usePrimitives = true
@@ -34,4 +36,22 @@ jsonSchema2Pojo {
 
 tasks.compileKotlin {
     dependsOn(tasks.generateJsonSchema2Pojo)
+}
+
+graalvmNative {
+    binaries {
+        named("main") {
+            imageName.set("vl-yaml")
+            buildArgs.addAll(
+                listOf(
+                    "-Os",
+                    "--emit build-report"
+                )
+            )
+        }
+    }
+
+    metadataRepository {
+        enabled.set(true)
+    }
 }
