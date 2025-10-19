@@ -2,13 +2,15 @@ plugins {
     id("buildsrc.convention.kotlin-jvm")
     application
     id("org.jsonschema2pojo") version "1.2.2"
-    id("org.graalvm.buildtools.native") version "0.11.0"
+    id("org.graalvm.buildtools.native") version "0.11.1"
 }
 
+val jacksonVersion = "2.20.0"
+
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.19.2")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.19.2")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.19.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 }
 
 application {
