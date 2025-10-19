@@ -97,7 +97,8 @@ tasks.build {
 
 val validateVulnlogYaml = tasks.register<Exec>("validateVulnlogYaml") {
     val yamlFileToValidate = project.rootDir.resolve("yaml-data/product.vl.yml")
-    val schemaFile = project.projectDir.resolve("src/main/resources/json-schema/vulnlog.schema.json")
+    val schemaFile =
+        project.projectDir.resolve("src/main/resources/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/resources/json-schema")
 
     inputs.file(schemaFile)
@@ -116,7 +117,8 @@ val validateVulnlogYaml = tasks.register<Exec>("validateVulnlogYaml") {
 }
 
 val validateJsonSchema = tasks.register<Exec>("validateJsonSchema") {
-    val schemaFile = project.projectDir.resolve("src/main/resources/json-schema/vulnlog.schema.json")
+    val schemaFile =
+        project.projectDir.resolve("src/main/resources/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/resources/json-schema")
 
     inputs.file(schemaFile)
@@ -134,10 +136,8 @@ val validateJsonSchema = tasks.register<Exec>("validateJsonSchema") {
 }
 
 val lintJsonSchema = tasks.register<Exec>("lintJsonSchema") {
-    val schemaFile = project.projectDir.resolve("src/main/resources/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/resources/json-schema")
 
-    inputs.file(schemaFile)
     inputs.dir(schemaDir)
 
     workingDir(project.rootDir)
@@ -145,7 +145,7 @@ val lintJsonSchema = tasks.register<Exec>("lintJsonSchema") {
     commandLine(
         "jsonschema",
         "lint",
-        schemaFile.toString(),
+        schemaDir.toString(),
         "--resolve",
         schemaDir.toString(),
     )

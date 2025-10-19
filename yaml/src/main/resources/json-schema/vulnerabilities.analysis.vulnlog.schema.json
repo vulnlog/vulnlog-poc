@@ -17,7 +17,7 @@
         "title": "Reasoning",
         "description": "TODO",
         "type": "string",
-        "minimum": 2
+        "minLength": 2
       },
       "verdict": {
         "title": "Verdict",
