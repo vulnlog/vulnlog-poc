@@ -37,6 +37,7 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: gradle/actions/setup-gradle@v3
+      - uses: sourcemeta/jsonschema@v11.11.1
       - name: Clean build and zip distribution
         run: ./gradlew clean build distZip
       - name: Upload JVM build
@@ -54,6 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: gradle/actions/setup-gradle@v3
+      - uses: sourcemeta/jsonschema@v11.11.1
       - uses: graalvm/setup-graalvm@v1
         with:
           java-version: '24'
