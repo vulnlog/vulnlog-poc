@@ -20,20 +20,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "start",
-    "end"
+    "end",
+    "start"
 })
 public class Lifetime {
 
-    /**
-     * Start date of this pipeline
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("start")
-    @JsonPropertyDescription("TODO")
-    private String start;
     /**
      * End date of this pipeline
      * <p>
@@ -43,6 +34,15 @@ public class Lifetime {
     @JsonProperty("end")
     @JsonPropertyDescription("TODO")
     private String end;
+    /**
+     * Start date of this pipeline
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("start")
+    @JsonPropertyDescription("TODO")
+    private String start;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -60,31 +60,9 @@ public class Lifetime {
      * @param end
      *     End date of this pipeline. TODO.
      */
-    public Lifetime(String start, String end) {
+    public Lifetime(String end, String start) {
         super();
-        this.start = start;
         this.end = end;
-    }
-
-    /**
-     * Start date of this pipeline
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("start")
-    public String getStart() {
-        return start;
-    }
-
-    /**
-     * Start date of this pipeline
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("start")
-    public void setStart(String start) {
         this.start = start;
     }
 
@@ -108,6 +86,28 @@ public class Lifetime {
     @JsonProperty("end")
     public void setEnd(String end) {
         this.end = end;
+    }
+
+    /**
+     * Start date of this pipeline
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("start")
+    public String getStart() {
+        return start;
+    }
+
+    /**
+     * Start date of this pipeline
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("start")
+    public void setStart(String start) {
+        this.start = start;
     }
 
     @JsonAnyGetter

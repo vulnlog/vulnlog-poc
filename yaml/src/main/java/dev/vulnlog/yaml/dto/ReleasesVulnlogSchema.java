@@ -14,9 +14,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
+    "name",
     "release-date",
-    "version",
-    "name"
+    "version"
 })
 public class ReleasesVulnlogSchema {
 
@@ -29,6 +29,15 @@ public class ReleasesVulnlogSchema {
     @JsonProperty("id")
     @JsonPropertyDescription("TODO")
     private String id;
+    /**
+     * Release Name
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("name")
+    @JsonPropertyDescription("TODO")
+    private String name;
     /**
      * Release Date
      * <p>
@@ -47,15 +56,6 @@ public class ReleasesVulnlogSchema {
     @JsonProperty("version")
     @JsonPropertyDescription("TODO")
     private String version;
-    /**
-     * Release Name
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("name")
-    @JsonPropertyDescription("TODO")
-    private String name;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -77,12 +77,12 @@ public class ReleasesVulnlogSchema {
      * @param version
      *     Release Version. TODO.
      */
-    public ReleasesVulnlogSchema(String id, String releaseDate, String version, String name) {
+    public ReleasesVulnlogSchema(String id, String name, String releaseDate, String version) {
         super();
         this.id = id;
+        this.name = name;
         this.releaseDate = releaseDate;
         this.version = version;
-        this.name = name;
     }
 
     /**
@@ -105,6 +105,28 @@ public class ReleasesVulnlogSchema {
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Release Name
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Release Name
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -149,28 +171,6 @@ public class ReleasesVulnlogSchema {
     @JsonProperty("version")
     public void setVersion(String version) {
         this.version = version;
-    }
-
-    /**
-     * Release Name
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Release Name
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
     }
 
     @JsonAnyGetter

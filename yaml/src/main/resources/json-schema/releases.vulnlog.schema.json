@@ -11,28 +11,24 @@
         "description": "TODO",
         "type": "string"
       },
+      "name": {
+        "title": "Release Name",
+        "description": "TODO",
+        "examples": [ "Product 1.0.0" ],
+        "type": "string"
+      },
       "release-date": {
         "title": "Release Date",
         "description": "TODO",
         "type": "string",
-        "format": "date",
-        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "format": "date"
       },
       "version": {
         "title": "Release Version",
         "description": "TODO",
-        "type": "string",
-        "examples": [
-          "1.0.0"
-        ]
-      },
-      "name": {
-        "title": "Release Name",
-        "description": "TODO",
-        "type": "string",
-        "examples": [
-          "Product 1.0.0"
-        ]
+        "examples": [ "1.0.0" ],
+        "type": "string"
       }
     }
   }

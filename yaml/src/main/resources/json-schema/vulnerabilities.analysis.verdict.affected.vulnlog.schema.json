@@ -7,12 +7,7 @@
     "severity": {
       "title": "Severity",
       "description": "TODO",
-      "enum": [
-        "Critical",
-        "High",
-        "Medium",
-        "Low"
-      ]
+      "enum": [ "Critical", "High", "Medium", "Low" ]
     }
   }
 }

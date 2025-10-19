@@ -152,10 +152,8 @@ val lintJsonSchema = tasks.register<Exec>("lintJsonSchema") {
 }
 
 val formatJsonSchema = tasks.register<Exec>("formatJsonSchema") {
-    val schemaFile = project.projectDir.resolve("src/main/resources/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/resources/json-schema")
 
-    inputs.file(schemaFile)
     inputs.dir(schemaDir)
 
     workingDir(project.rootDir)
@@ -163,8 +161,6 @@ val formatJsonSchema = tasks.register<Exec>("formatJsonSchema") {
     commandLine(
         "jsonschema",
         "fmt",
-        schemaFile.toString(),
-        "--resolve",
         schemaDir.toString(),
     )
 }

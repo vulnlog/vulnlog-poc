@@ -14,9 +14,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
+    "lifetime",
     "name",
-    "reporter-ref-id",
-    "lifetime"
+    "reporter-ref-id"
 })
 public class ReporterPipelinesVulnlogSchema {
 
@@ -29,6 +29,15 @@ public class ReporterPipelinesVulnlogSchema {
     @JsonProperty("id")
     @JsonPropertyDescription("TODO")
     private String id;
+    /**
+     * Pipeline Lifetime
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("lifetime")
+    @JsonPropertyDescription("TODO")
+    private Lifetime lifetime;
     /**
      * Reporter Pipeline Name
      * <p>
@@ -47,15 +56,6 @@ public class ReporterPipelinesVulnlogSchema {
     @JsonProperty("reporter-ref-id")
     @JsonPropertyDescription("TODO")
     private String reporterRefId;
-    /**
-     * Pipeline Lifetime
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("lifetime")
-    @JsonPropertyDescription("TODO")
-    private Lifetime lifetime;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -68,21 +68,21 @@ public class ReporterPipelinesVulnlogSchema {
 
     /**
      * 
-     * @param name
-     *     Reporter Pipeline Name. TODO.
      * @param lifetime
      *     Pipeline Lifetime. TODO.
+     * @param name
+     *     Reporter Pipeline Name. TODO.
      * @param reporterRefId
      *     Reporter. TODO.
      * @param id
      *     Reporter Pipeline Identifier. TODO.
      */
-    public ReporterPipelinesVulnlogSchema(String id, String name, String reporterRefId, Lifetime lifetime) {
+    public ReporterPipelinesVulnlogSchema(String id, Lifetime lifetime, String name, String reporterRefId) {
         super();
         this.id = id;
+        this.lifetime = lifetime;
         this.name = name;
         this.reporterRefId = reporterRefId;
-        this.lifetime = lifetime;
     }
 
     /**
@@ -105,6 +105,28 @@ public class ReporterPipelinesVulnlogSchema {
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Pipeline Lifetime
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("lifetime")
+    public Lifetime getLifetime() {
+        return lifetime;
+    }
+
+    /**
+     * Pipeline Lifetime
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("lifetime")
+    public void setLifetime(Lifetime lifetime) {
+        this.lifetime = lifetime;
     }
 
     /**
@@ -149,28 +171,6 @@ public class ReporterPipelinesVulnlogSchema {
     @JsonProperty("reporter-ref-id")
     public void setReporterRefId(String reporterRefId) {
         this.reporterRefId = reporterRefId;
-    }
-
-    /**
-     * Pipeline Lifetime
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("lifetime")
-    public Lifetime getLifetime() {
-        return lifetime;
-    }
-
-    /**
-     * Pipeline Lifetime
-     * <p>
-     * TODO
-     * 
-     */
-    @JsonProperty("lifetime")
-    public void setLifetime(Lifetime lifetime) {
-        this.lifetime = lifetime;
     }
 
     @JsonAnyGetter

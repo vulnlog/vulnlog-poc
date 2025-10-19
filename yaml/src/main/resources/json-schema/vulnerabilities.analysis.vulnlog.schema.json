@@ -6,12 +6,6 @@
   "items": {
     "type": "object",
     "properties": {
-      "verdict": {
-        "type": "object",
-        "title": "Verdict",
-        "description": "TODO",
-        "$ref": "#/$defs/verdict"
-      },
       "at": {
         "title": "Analysis Date",
         "description": "Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD",
@@ -24,6 +18,12 @@
         "description": "TODO",
         "type": "string",
         "minimum": 2
+      },
+      "verdict": {
+        "title": "Verdict",
+        "description": "TODO",
+        "$ref": "#/$defs/verdict",
+        "type": "object"
       }
     }
   },

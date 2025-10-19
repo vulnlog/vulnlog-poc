@@ -10,13 +10,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "analysis",
     "cwe",
     "desc",
-    "reports",
-    "analysis"
+    "reports"
 })
 public class VulnerabilitiesVulnlogSchema {
 
+    /**
+     * Vulnlog Vulnerability Analysis Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("analysis")
+    private List<VulnerabilitiesAnalysisVulnlogSchema> analysis = new ArrayList<VulnerabilitiesAnalysisVulnlogSchema>();
     /**
      * Common Weakness Enumeration
      * <p>
@@ -43,14 +51,6 @@ public class VulnerabilitiesVulnlogSchema {
      */
     @JsonProperty("reports")
     private List<VulnerabilitiesReportsVulnlogSchema> reports = new ArrayList<VulnerabilitiesReportsVulnlogSchema>();
-    /**
-     * Vulnlog Vulnerability Analysis Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("analysis")
-    private List<VulnerabilitiesAnalysisVulnlogSchema> analysis = new ArrayList<VulnerabilitiesAnalysisVulnlogSchema>();
 
     /**
      * No args constructor for use in serialization
@@ -70,11 +70,33 @@ public class VulnerabilitiesVulnlogSchema {
      * @param desc
      *     Vulnerability Description. TODO.
      */
-    public VulnerabilitiesVulnlogSchema(int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports, List<VulnerabilitiesAnalysisVulnlogSchema> analysis) {
+    public VulnerabilitiesVulnlogSchema(List<VulnerabilitiesAnalysisVulnlogSchema> analysis, int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports) {
         super();
+        this.analysis = analysis;
         this.cwe = cwe;
         this.desc = desc;
         this.reports = reports;
+    }
+
+    /**
+     * Vulnlog Vulnerability Analysis Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("analysis")
+    public List<VulnerabilitiesAnalysisVulnlogSchema> getAnalysis() {
+        return analysis;
+    }
+
+    /**
+     * Vulnlog Vulnerability Analysis Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("analysis")
+    public void setAnalysis(List<VulnerabilitiesAnalysisVulnlogSchema> analysis) {
         this.analysis = analysis;
     }
 
@@ -142,28 +164,6 @@ public class VulnerabilitiesVulnlogSchema {
     @JsonProperty("reports")
     public void setReports(List<VulnerabilitiesReportsVulnlogSchema> reports) {
         this.reports = reports;
-    }
-
-    /**
-     * Vulnlog Vulnerability Analysis Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("analysis")
-    public List<VulnerabilitiesAnalysisVulnlogSchema> getAnalysis() {
-        return analysis;
-    }
-
-    /**
-     * Vulnlog Vulnerability Analysis Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("analysis")
-    public void setAnalysis(List<VulnerabilitiesAnalysisVulnlogSchema> analysis) {
-        this.analysis = analysis;
     }
 
 }

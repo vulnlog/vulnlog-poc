@@ -13,20 +13,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "verdict",
     "at",
-    "reasoning"
+    "reasoning",
+    "verdict"
 })
 public class VulnerabilitiesAnalysisVulnlogSchema {
 
-    /**
-     * Vulnlog Vulnerability Analysis Verdict Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("verdict")
-    private VulnerabilitiesAnalysisVerdictVulnlogSchema verdict;
     /**
      * Analysis Date
      * <p>
@@ -45,6 +37,14 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     @JsonProperty("reasoning")
     @JsonPropertyDescription("TODO")
     private String reasoning;
+    /**
+     * Vulnlog Vulnerability Analysis Verdict Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("verdict")
+    private VulnerabilitiesAnalysisVerdictVulnlogSchema verdict;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -59,37 +59,15 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
      * 
      * @param at
      *     Analysis Date. Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD.
-     * @param verdict
-     *     Verdict. TODO.
      * @param reasoning
      *     Reasoning. TODO.
+     * @param verdict
+     *     Verdict. TODO.
      */
-    public VulnerabilitiesAnalysisVulnlogSchema(VulnerabilitiesAnalysisVerdictVulnlogSchema verdict, String at, String reasoning) {
+    public VulnerabilitiesAnalysisVulnlogSchema(String at, String reasoning, VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
         super();
-        this.verdict = verdict;
         this.at = at;
         this.reasoning = reasoning;
-    }
-
-    /**
-     * Vulnlog Vulnerability Analysis Verdict Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("verdict")
-    public VulnerabilitiesAnalysisVerdictVulnlogSchema getVerdict() {
-        return verdict;
-    }
-
-    /**
-     * Vulnlog Vulnerability Analysis Verdict Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("verdict")
-    public void setVerdict(VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
         this.verdict = verdict;
     }
 
@@ -135,6 +113,28 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     @JsonProperty("reasoning")
     public void setReasoning(String reasoning) {
         this.reasoning = reasoning;
+    }
+
+    /**
+     * Vulnlog Vulnerability Analysis Verdict Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("verdict")
+    public VulnerabilitiesAnalysisVerdictVulnlogSchema getVerdict() {
+        return verdict;
+    }
+
+    /**
+     * Vulnlog Vulnerability Analysis Verdict Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("verdict")
+    public void setVerdict(VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
+        this.verdict = verdict;
     }
 
     @JsonAnyGetter

@@ -6,6 +6,11 @@
   "items": {
     "type": "object",
     "properties": {
+      "analysis": {
+        "title": "Analysis",
+        "description": "TODO",
+        "$ref": "#/$defs/analysis"
+      },
       "cwe": {
         "title": "Common Weakness Enumeration",
         "description": "TODO",
@@ -22,21 +27,16 @@
         "title": "Reports",
         "description": "TODO",
         "$ref": "#/$defs/reports"
-      },
-      "analysis": {
-        "title": "Analysis",
-        "description": "TODO",
-        "$ref": "#/$defs/analysis"
       }
     },
     "additionalProperties": false
   },
   "$defs": {
-    "reports": {
-      "$ref": "vulnerabilities.reports.vulnlog.schema.json"
-    },
     "analysis": {
       "$ref": "vulnerabilities.analysis.vulnlog.schema.json"
+    },
+    "reports": {
+      "$ref": "vulnerabilities.reports.vulnlog.schema.json"
     }
   }
 }
