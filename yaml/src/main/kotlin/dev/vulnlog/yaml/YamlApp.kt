@@ -106,11 +106,14 @@ private fun printVulnAnalysisEntry(vulnAnalysisEntry: VulnerabilitiesAnalysisVul
     vulnAnalysisEntry.at?.let { println("  at: $it") }
     print("  verdict ")
     if (vulnAnalysisEntry.verdict != null) {
-        println("not affected:")
         if (vulnAnalysisEntry.verdict.notAffected != null) {
+            println("not affected:")
             vulnAnalysisEntry.verdict.notAffected.vex?.let { println("    vex: $it") }
         } else if (vulnAnalysisEntry.verdict.affected != null) {
             println("affected:")
+            if (vulnAnalysisEntry.verdict.affected != null) {
+                vulnAnalysisEntry.verdict.affected.severity?.let { println("    severity: $it") }
+            }
         }
     }
     vulnAnalysisEntry.reasoning?.let { println("  reasoning: $it") }

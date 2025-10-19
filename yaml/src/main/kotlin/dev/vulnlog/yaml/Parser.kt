@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.yaml.YAMLAnchorReplayingFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
 import java.io.File
@@ -15,10 +16,15 @@ class Parser {
 
         // Register custom deserializer for Vex enum
         val module = SimpleModule()
-        module.addDeserializer(
-            VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema.Vex::class.java,
-            VexDeserializer()
-        )
+        module
+            .addDeserializer(
+                VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema.Vex::class.java,
+                VexDeserializer()
+            )
+            .addDeserializer(
+                VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema.Severity::class.java,
+                SeverityDeserializer()
+            )
         registerModule(module)
     }
 
