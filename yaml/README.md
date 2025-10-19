@@ -32,3 +32,15 @@ Test:
 ```console
 ./yaml/build/native/nativeCompile/vl-yaml yaml-data/product.vl.yml
 ```
+
+## Learnings
+
+- GraalVM native image compiled with JSON schema enums does not work out of the box. It works fine
+  when using the enum keys e.g. `COMPONENT_NOT_PRESENT`, but not with its value
+  `Component not present`. The latter ist way more convenient to use.
+    - The Problem: GraalVM native images don't properly handle the static initialization of the
+      CONSTANTS HashMap in the generated enum class, which Jackson's @JsonCreator method relies on
+      for deserializing enum values by their @JsonValue strings.
+    - The Solution: Bypass the problematic static initialization by creating a custom
+      JsonDeserializer that directly maps the string values to enum constants, and registered it
+      with Jackson's ObjectMapper.

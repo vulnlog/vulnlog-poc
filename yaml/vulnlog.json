@@ -190,13 +190,12 @@
         "vex": {
           "title": "VEX Justification",
           "description": "TODO",
-          "type": "string",
           "enum": [
-            "COMPONENT_NOT_PRESENT",
-            "INLINE_MITIGATIONS_ALREADY_EXIST",
-            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
-            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
-            "VULNERABLE_CODE_NOT_PRESENT"
+            "Component not present",
+            "Inline mitigations already exist",
+            "Vulnerable code cannot be controlled by adversary",
+            "Vulnerable code not in execute path",
+            "Vulnerable code not present"
           ]
         }
       }

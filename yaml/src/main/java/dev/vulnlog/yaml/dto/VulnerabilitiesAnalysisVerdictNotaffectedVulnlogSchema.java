@@ -97,11 +97,11 @@ public class VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema {
      */
     public enum Vex {
 
-        COMPONENT_NOT_PRESENT("COMPONENT_NOT_PRESENT"),
-        INLINE_MITIGATIONS_ALREADY_EXIST("INLINE_MITIGATIONS_ALREADY_EXIST"),
-        VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY("VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY"),
-        VULNERABLE_CODE_NOT_IN_EXECUTE_PATH("VULNERABLE_CODE_NOT_IN_EXECUTE_PATH"),
-        VULNERABLE_CODE_NOT_PRESENT("VULNERABLE_CODE_NOT_PRESENT");
+        COMPONENT_NOT_PRESENT("Component not present"),
+        INLINE_MITIGATIONS_ALREADY_EXIST("Inline mitigations already exist"),
+        VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY("Vulnerable code cannot be controlled by adversary"),
+        VULNERABLE_CODE_NOT_IN_EXECUTE_PATH("Vulnerable code not in execute path"),
+        VULNERABLE_CODE_NOT_PRESENT("Vulnerable code not present");
         private final String value;
         private final static Map<String, VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema.Vex> CONSTANTS = new HashMap<String, VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema.Vex>();
 
