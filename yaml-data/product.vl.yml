@@ -16,16 +16,16 @@ vulnerabilities:
     cwe: 908
     reports:
       - vuln-id: CVE-2024-12085
-        #        reporter: trivy
-        #        at: 2024-12-18
-        on: [ *p803, *p804 ]
+        reporter-id: *trivy
+        at: 2024-12-18
+        on-id: [ *p803, *p804 ]
         suppression:
-          - on: [ *p803, *p804 ]
+          - on-id: [ *p803, *p804 ]
             until: 2026-01-01
       - vuln-id: [ CVE-2024-12086, CVE-2024-12087 ]
-        #        reporter: owasp
-        #        at: 2024-12-18
-        on: *p804
+        reporter-id: *owasp
+        at: 2024-12-18
+        on-id: *p804
     analysis:
       - at: 2024-12-18
         verdict:

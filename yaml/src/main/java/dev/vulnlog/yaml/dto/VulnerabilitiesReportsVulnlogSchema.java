@@ -15,21 +15,41 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "on",
+    "at",
+    "on-id",
+    "reporter-id",
     "suppression",
     "vuln-id"
 })
 public class VulnerabilitiesReportsVulnlogSchema {
 
     /**
+     * Reported at Date
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("at")
+    @JsonPropertyDescription("TODO")
+    private String at;
+    /**
      * Reported Release
      * <p>
      * TODO
      * 
      */
-    @JsonProperty("on")
+    @JsonProperty("on-id")
     @JsonPropertyDescription("TODO")
-    private Object on;
+    private Object onId;
+    /**
+     * Reporter
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("reporter-id")
+    @JsonPropertyDescription("TODO")
+    private String reporterId;
     /**
      * Vulnlog Vulnerability Report Suppression Schema
      * <p>
@@ -59,29 +79,46 @@ public class VulnerabilitiesReportsVulnlogSchema {
 
     /**
      * 
+     * @param at
+     *     Reported at Date. TODO.
      * @param vulnId
      *     Vulnerability ID. TODO.
      * @param suppression
      *     Suppress this Report. TODO.
-     * @param on
+     * @param reporterId
+     *     Reporter. TODO.
+     * @param onId
      *     Reported Release. TODO.
      */
-    public VulnerabilitiesReportsVulnlogSchema(Object on, List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression, Object vulnId) {
+    public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, String reporterId, List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression, Object vulnId) {
         super();
-        this.on = on;
+        this.at = at;
+        this.onId = onId;
+        this.reporterId = reporterId;
         this.suppression = suppression;
         this.vulnId = vulnId;
     }
 
     /**
-     * Reported Release
+     * Reported at Date
      * <p>
      * TODO
      * 
      */
-    @JsonProperty("on")
-    public Object getOn() {
-        return on;
+    @JsonProperty("at")
+    public String getAt() {
+        return at;
+    }
+
+    /**
+     * Reported at Date
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("at")
+    public void setAt(String at) {
+        this.at = at;
     }
 
     /**
@@ -90,9 +127,42 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * TODO
      * 
      */
-    @JsonProperty("on")
-    public void setOn(Object on) {
-        this.on = on;
+    @JsonProperty("on-id")
+    public Object getOnId() {
+        return onId;
+    }
+
+    /**
+     * Reported Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    public void setOnId(Object onId) {
+        this.onId = onId;
+    }
+
+    /**
+     * Reporter
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("reporter-id")
+    public String getReporterId() {
+        return reporterId;
+    }
+
+    /**
+     * Reporter
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("reporter-id")
+    public void setReporterId(String reporterId) {
+        this.reporterId = reporterId;
     }
 
     /**

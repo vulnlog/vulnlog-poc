@@ -51,7 +51,7 @@ private fun printReleaseEntry(releaseEntry: ReleasesVulnlogSchema) {
 private fun printReleaseGroupEntry(releaseGroupEntry: ReleaseGroupsVulnlogSchema) {
     releaseGroupEntry.id?.let { println("id: $it") }
     releaseGroupEntry.name?.let { println("name: $it") }
-    releaseGroupEntry.refIds.forEach { println("refId: $it") }
+    println("refId: " + releaseGroupEntry.refIds.joinToString(", "))
 }
 
 private fun printReporterEntry(reporterEntry: ReportersVulnlogSchema) {
@@ -88,10 +88,21 @@ private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {
 }
 
 private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogSchema) {
-    vulnReportEntry.vulnId?.let { println("  vulnId: $it") }
-    when (vulnReportEntry.on) {
-        is String -> println("  on: ${vulnReportEntry.on}")
-        is Collection<*> -> (vulnReportEntry.on as Collection<*>).forEach { println("  on: $it") }
+    when (vulnReportEntry.vulnId) {
+        is String -> println("  vulnerability id: ${vulnReportEntry.vulnId}")
+        is Collection<*> -> println(
+            "  vulnerability id: " + (vulnReportEntry.vulnId as Collection<*>)
+                .joinToString(", ")
+        )
+    }
+    vulnReportEntry.reporterId?.let { println("  reporter id: $it") }
+    vulnReportEntry.at?.let { println("  at: $it") }
+    when (vulnReportEntry.onId) {
+        is String -> println("  on id: ${vulnReportEntry.onId}")
+        is Collection<*> -> println(
+            "  on-ids: " + (vulnReportEntry.onId as Collection<*>)
+                .joinToString(", ")
+        )
     }
     if (vulnReportEntry.suppression != null && vulnReportEntry.suppression.isNotEmpty()) {
         println("  suppression:")
