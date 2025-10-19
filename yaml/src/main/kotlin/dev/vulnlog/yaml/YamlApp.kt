@@ -7,6 +7,7 @@ import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsVulnlogSchema
+import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
 import kotlin.collections.filter
@@ -80,6 +81,10 @@ private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {
         println("analysis:")
         vulnEntry.analysis.filter { it != null }.forEach(::printVulnAnalysisEntry)
     }
+    if (vulnEntry.resolutions != null && vulnEntry.resolutions.isNotEmpty()) {
+        println("resolutions:")
+        vulnEntry.resolutions.filter { it != null }.forEach(::printVulnResolutionsEntry)
+    }
 }
 
 private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogSchema) {
@@ -117,4 +122,23 @@ private fun printVulnAnalysisEntry(vulnAnalysisEntry: VulnerabilitiesAnalysisVul
         }
     }
     vulnAnalysisEntry.reasoning?.let { println("  reasoning: $it") }
+}
+
+private fun printVulnResolutionsEntry(vulnResolutionEntry: VulnerabilitiesResolutionsVulnlogSchema) {
+    if (vulnResolutionEntry.accept != null) {
+        println("  accept")
+        vulnResolutionEntry.accept.note?.let { println("    note: $it") }
+    } else if (vulnResolutionEntry.fix != null) {
+        println("  fix")
+        vulnResolutionEntry.update.note?.let { println("    note: $it") }
+    } else if (vulnResolutionEntry.rebuild != null) {
+        println("  rebuild")
+        vulnResolutionEntry.update.note?.let { println("    note: $it") }
+    } else if (vulnResolutionEntry.update != null) {
+        println("  update")
+        vulnResolutionEntry.update.note?.let { println("    note: $it") }
+        vulnResolutionEntry.update.mavenDependency?.let { println("    maven dependency: $it") }
+        vulnResolutionEntry.update.to?.let { println("    to version: $it") }
+        vulnResolutionEntry.update.resolvedAt?.let { println("    resolved at: $it") }
+    }
 }

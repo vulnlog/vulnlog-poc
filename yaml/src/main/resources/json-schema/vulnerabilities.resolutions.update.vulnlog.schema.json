@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.resolutions.update.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Resolutions Update Schema",
+  "type": "object",
+  "properties": {
+    "maven-dependency": {
+      "title": "Maven Dependency",
+      "description": "TODO",
+      "type": "string",
+      "pattern": "^.*:.*:.*$"
+    },
+    "note": {
+      "title": "Note",
+      "description": "TODO",
+      "type": "string"
+    },
+    "resolved-at": {
+      "title": "Resolved at Date",
+      "description": "TODO",
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "format": "date"
+    },
+    "to": {
+      "title": "To Version",
+      "description": "TODO",
+      "type": "string"
+    }
+  }
+}

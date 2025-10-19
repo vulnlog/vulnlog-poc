@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.resolutions.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Resolutions Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "accept": {
+        "title": "Accept",
+        "description": "Accept a vulnerability.",
+        "$ref": "#/$defs/accept",
+        "type": "object"
+      },
+      "fix": {
+        "title": "Fix",
+        "description": "Fix code parts in the project.",
+        "$ref": "#/$defs/fix",
+        "type": "object"
+      },
+      "rebuild": {
+        "title": "Rebuild",
+        "description": "Rebuild a product component.",
+        "$ref": "#/$defs/rebuild",
+        "type": "object"
+      },
+      "update": {
+        "title": "Update",
+        "description": "Update a dependency to a specific version.",
+        "$ref": "#/$defs/update",
+        "type": "object"
+      }
+    }
+  },
+  "$defs": {
+    "accept": {
+      "$ref": "vulnerabilities.resolutions.accept.vulnlog.schema.json"
+    },
+    "fix": {
+      "$ref": "vulnerabilities.resolutions.fix.vulnlog.schema.json"
+    },
+    "rebuild": {
+      "$ref": "vulnerabilities.resolutions.rebuild.vulnlog.schema.json"
+    },
+    "update": {
+      "$ref": "vulnerabilities.resolutions.update.vulnlog.schema.json"
+    }
+  }
+}

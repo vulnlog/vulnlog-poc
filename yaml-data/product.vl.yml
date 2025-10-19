@@ -38,11 +38,11 @@ vulnerabilities:
           This vulnerability was reported in product 8.0.8, the latest publicly available version of
           the product 8.0 branch. The newest version of this branch, product 8.0.10, was released on
           2025-05-07, and no longer reports this vulnerability.
-#    resolution:
-#      - rebuild:
-#          after: 2024-12-18
-#          image: ubi-minimal
-#          resolvedAt: 2025-04-29
-#      - update:
-#          maven-dependency: foo:bar:123
-#          to: 1.2.3
+    resolutions:
+      - accept:
+          note: This is a test note.
+      - update:
+          note: This is another test note.
+          maven-dependency: foo:bar:1.2.3
+          to: 1.2.4
+          resolved-at: 2025-04-29

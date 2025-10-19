@@ -27,6 +27,11 @@
         "title": "Reports",
         "description": "TODO",
         "$ref": "#/$defs/reports"
+      },
+      "resolutions": {
+        "title": "Resolutions",
+        "description": "TODO",
+        "$ref": "#/$defs/resolutions"
       }
     },
     "additionalProperties": false
@@ -37,6 +42,9 @@
     },
     "reports": {
       "$ref": "vulnerabilities.reports.vulnlog.schema.json"
+    },
+    "resolutions": {
+      "$ref": "vulnerabilities.resolutions.vulnlog.schema.json"
     }
   }
 }

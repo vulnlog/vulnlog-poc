@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "analysis",
     "cwe",
     "desc",
-    "reports"
+    "reports",
+    "resolutions"
 })
 public class VulnerabilitiesVulnlogSchema {
 
@@ -51,6 +52,14 @@ public class VulnerabilitiesVulnlogSchema {
      */
     @JsonProperty("reports")
     private List<VulnerabilitiesReportsVulnlogSchema> reports = new ArrayList<VulnerabilitiesReportsVulnlogSchema>();
+    /**
+     * Vulnlog Vulnerability Resolutions Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("resolutions")
+    private List<VulnerabilitiesResolutionsVulnlogSchema> resolutions = new ArrayList<VulnerabilitiesResolutionsVulnlogSchema>();
 
     /**
      * No args constructor for use in serialization
@@ -65,17 +74,20 @@ public class VulnerabilitiesVulnlogSchema {
      *     Common Weakness Enumeration. TODO.
      * @param reports
      *     Reports. TODO.
+     * @param resolutions
+     *     Resolutions. TODO.
      * @param analysis
      *     Analysis. TODO.
      * @param desc
      *     Vulnerability Description. TODO.
      */
-    public VulnerabilitiesVulnlogSchema(List<VulnerabilitiesAnalysisVulnlogSchema> analysis, int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports) {
+    public VulnerabilitiesVulnlogSchema(List<VulnerabilitiesAnalysisVulnlogSchema> analysis, int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports, List<VulnerabilitiesResolutionsVulnlogSchema> resolutions) {
         super();
         this.analysis = analysis;
         this.cwe = cwe;
         this.desc = desc;
         this.reports = reports;
+        this.resolutions = resolutions;
     }
 
     /**
@@ -164,6 +176,28 @@ public class VulnerabilitiesVulnlogSchema {
     @JsonProperty("reports")
     public void setReports(List<VulnerabilitiesReportsVulnlogSchema> reports) {
         this.reports = reports;
+    }
+
+    /**
+     * Vulnlog Vulnerability Resolutions Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("resolutions")
+    public List<VulnerabilitiesResolutionsVulnlogSchema> getResolutions() {
+        return resolutions;
+    }
+
+    /**
+     * Vulnlog Vulnerability Resolutions Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("resolutions")
+    public void setResolutions(List<VulnerabilitiesResolutionsVulnlogSchema> resolutions) {
+        this.resolutions = resolutions;
     }
 
 }
