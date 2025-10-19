@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.analysis.verdict.notaffected.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Analysis Verdict Not Affected Schema",
+  "type": "object",
+  "properties": {
+    "vex": {
+      "title": "VEX Justification",
+      "description": "TODO",
+      "type": "string",
+      "enum": [
+        "COMPONENT_NOT_PRESENT",
+        "INLINE_MITIGATIONS_ALREADY_EXIST",
+        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+        "VULNERABLE_CODE_NOT_PRESENT"
+      ]
+    }
+  }
+}

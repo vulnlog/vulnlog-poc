@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.analysis.verdict.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Analysis Verdict Schema",
+  "type": "object",
+  "properties": {
+    "not-affected": {
+      "title": "Not Affected",
+      "description": "TODO",
+      "$ref": "#/$defs/not-affected"
+    },
+    "affected": {
+      "title": "Affected",
+      "description": "TODO",
+      "$ref": "#/$defs/affected"
+    }
+  },
+  "$defs": {
+    "not-affected": {
+      "$ref": "vulnerabilities.analysis.verdict.notaffected.vulnlog.schema.json"
+    },
+    "affected": {
+      "$ref": "vulnerabilities.analysis.verdict.affected.vulnlog.schema.json"
+    }
+  }
+}

@@ -170,6 +170,96 @@
         }
       }
     },
+    "https://vulnlog.dev/vulnerabilities.analysis.verdict.affected.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Analysis Verdict Affected Schema",
+      "type": "object",
+      "properties": {
+        "severity": {
+          "title": "Severity",
+          "description": "TODO",
+          "enum": [ "Critical", "High", "Medium", "Low" ]
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.analysis.verdict.notaffected.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Analysis Verdict Not Affected Schema",
+      "type": "object",
+      "properties": {
+        "vex": {
+          "title": "VEX Justification",
+          "description": "TODO",
+          "type": "string",
+          "enum": [
+            "COMPONENT_NOT_PRESENT",
+            "INLINE_MITIGATIONS_ALREADY_EXIST",
+            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+            "VULNERABLE_CODE_NOT_PRESENT"
+          ]
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.analysis.verdict.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Analysis Verdict Schema",
+      "type": "object",
+      "properties": {
+        "not-affected": {
+          "title": "Not Affected",
+          "description": "TODO",
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json/$defs/not-affected"
+        },
+        "affected": {
+          "title": "Affected",
+          "description": "TODO",
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json/$defs/affected"
+        }
+      },
+      "$defs": {
+        "not-affected": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.notaffected.vulnlog.schema.json"
+        },
+        "affected": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.affected.vulnlog.schema.json"
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.analysis.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Analysis Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "at": {
+            "title": "Analysis Date",
+            "description": "Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD",
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "format": "date"
+          },
+          "reasoning": {
+            "title": "Reasoning",
+            "description": "TODO",
+            "type": "string",
+            "minimum": 2
+          },
+          "verdict": {
+            "title": "Verdict",
+            "description": "TODO",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.vulnlog.schema.json/$defs/verdict",
+            "type": "object"
+          }
+        }
+      },
+      "$defs": {
+        "verdict": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json"
+        }
+      }
+    },
     "https://vulnlog.dev/vulnerabilities.include.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Vulnlog Vulnerability Include Schema",
@@ -316,6 +406,11 @@
       "items": {
         "type": "object",
         "properties": {
+          "analysis": {
+            "title": "Analysis",
+            "description": "TODO",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json/$defs/analysis"
+          },
           "cwe": {
             "title": "Common Weakness Enumeration",
             "description": "TODO",
@@ -337,6 +432,9 @@
         "additionalProperties": false
       },
       "$defs": {
+        "analysis": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.vulnlog.schema.json"
+        },
         "reports": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json"
         }

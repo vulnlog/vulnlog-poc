@@ -12,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "cwe",
     "desc",
-    "reports"
+    "reports",
+    "analysis"
 })
 public class VulnerabilitiesVulnlogSchema {
 
@@ -42,6 +43,14 @@ public class VulnerabilitiesVulnlogSchema {
      */
     @JsonProperty("reports")
     private List<VulnerabilitiesReportsVulnlogSchema> reports = new ArrayList<VulnerabilitiesReportsVulnlogSchema>();
+    /**
+     * Vulnlog Vulnerability Analysis Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("analysis")
+    private List<VulnerabilitiesAnalysisVulnlogSchema> analysis = new ArrayList<VulnerabilitiesAnalysisVulnlogSchema>();
 
     /**
      * No args constructor for use in serialization
@@ -56,14 +65,17 @@ public class VulnerabilitiesVulnlogSchema {
      *     Common Weakness Enumeration. TODO.
      * @param reports
      *     Reports. TODO.
+     * @param analysis
+     *     Analysis. TODO.
      * @param desc
      *     Vulnerability Description. TODO.
      */
-    public VulnerabilitiesVulnlogSchema(int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports) {
+    public VulnerabilitiesVulnlogSchema(int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports, List<VulnerabilitiesAnalysisVulnlogSchema> analysis) {
         super();
         this.cwe = cwe;
         this.desc = desc;
         this.reports = reports;
+        this.analysis = analysis;
     }
 
     /**
@@ -130,6 +142,28 @@ public class VulnerabilitiesVulnlogSchema {
     @JsonProperty("reports")
     public void setReports(List<VulnerabilitiesReportsVulnlogSchema> reports) {
         this.reports = reports;
+    }
+
+    /**
+     * Vulnlog Vulnerability Analysis Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("analysis")
+    public List<VulnerabilitiesAnalysisVulnlogSchema> getAnalysis() {
+        return analysis;
+    }
+
+    /**
+     * Vulnlog Vulnerability Analysis Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("analysis")
+    public void setAnalysis(List<VulnerabilitiesAnalysisVulnlogSchema> analysis) {
+        this.analysis = analysis;
     }
 
 }

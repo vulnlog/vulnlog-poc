@@ -4,6 +4,7 @@ import dev.vulnlog.yaml.dto.ReleaseGroupsVulnlogSchema
 import dev.vulnlog.yaml.dto.ReleasesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReporterPipelinesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
+import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesVulnlogSchema
@@ -75,6 +76,10 @@ private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {
         println("reports:")
         vulnEntry.reports.filter { it != null }.forEach(::printVulnReportEntry)
     }
+    if (vulnEntry.analysis != null && vulnEntry.analysis.isNotEmpty()) {
+        println("analysis:")
+        vulnEntry.analysis.filter { it != null }.forEach(::printVulnAnalysisEntry)
+    }
 }
 
 private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogSchema) {
@@ -95,4 +100,18 @@ private fun printVulnReportSuppressionEntry(vulnReportSuppressEntry: Vulnerabili
         is Collection<*> -> (vulnReportSuppressEntry.on as Collection<*>).forEach { println("    on: $it") }
     }
     vulnReportSuppressEntry.until?.let { println("    until: $it") }
+}
+
+private fun printVulnAnalysisEntry(vulnAnalysisEntry: VulnerabilitiesAnalysisVulnlogSchema) {
+    vulnAnalysisEntry.at?.let { println("  at: $it") }
+    print("  verdict ")
+    if (vulnAnalysisEntry.verdict != null) {
+        println("not affected:")
+        if (vulnAnalysisEntry.verdict.notAffected != null) {
+            vulnAnalysisEntry.verdict.notAffected.vex?.let { println("    vex: $it") }
+        } else if (vulnAnalysisEntry.verdict.affected != null) {
+            println("affected:")
+        }
+    }
+    vulnAnalysisEntry.reasoning?.let { println("  reasoning: $it") }
 }

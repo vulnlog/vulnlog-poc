@@ -22,6 +22,11 @@
         "title": "Reports",
         "description": "TODO",
         "$ref": "#/$defs/reports"
+      },
+      "analysis": {
+        "title": "Analysis",
+        "description": "TODO",
+        "$ref": "#/$defs/analysis"
       }
     },
     "additionalProperties": false
@@ -29,6 +34,9 @@
   "$defs": {
     "reports": {
       "$ref": "vulnerabilities.reports.vulnlog.schema.json"
+    },
+    "analysis": {
+      "$ref": "vulnerabilities.analysis.vulnlog.schema.json"
     }
   }
 }
