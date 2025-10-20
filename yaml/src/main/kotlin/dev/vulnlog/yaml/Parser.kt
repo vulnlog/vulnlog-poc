@@ -34,41 +34,36 @@ class Parser {
      */
     fun read(pathToFile: String): VulnlogSchema {
         val filePath: Path = Path(pathToFile).toAbsolutePath().normalize()
-        val rootFile = readYamlFile(filePath)
+        val rootSchema = readYamlFile(filePath)
 
-        if (rootFile.include != null) {
+        if (rootSchema.include != null) {
             val parentDir: Path = filePath.parent
 
-            if (rootFile.include.releases != null) {
-                val referencedFilename: String = rootFile.include.releases.file
-                val referencedFilePath = parentDir.resolve(referencedFilename)
-                if (!referencedFilePath.exists()) {
-                    error("Referenced file does not exist: $referencedFilePath")
-                }
+            rootSchema.include.releases?.file?.let { releaseFile ->
+                val schema: VulnlogSchema = parseYamlFile(parentDir.resolve(releaseFile))
 
-                val parsedInnerYamlFile = readYamlFile(referencedFilePath)
-
-                rootFile.releases = parsedInnerYamlFile.releases
-                rootFile.releaseGroups = parsedInnerYamlFile.releaseGroups
+                rootSchema.releases = schema.releases
+                rootSchema.releaseGroups = schema.releaseGroups
             }
 
-            if (rootFile.include.reporters != null) {
-                val referencedFilename: String = rootFile.include.reporters.file
-                val referencedFilePath = parentDir.resolve(referencedFilename)
-                if (!referencedFilePath.exists()) {
-                    error("Referenced file does not exist: $referencedFilePath")
-                }
+            rootSchema.include.reporters?.file?.let { reporterFile ->
+                val schema: VulnlogSchema = parseYamlFile(parentDir.resolve(reporterFile))
 
-                val parsedInnerYamlFile = readYamlFile(referencedFilePath)
-
-                rootFile.reporters = parsedInnerYamlFile.reporters
-                rootFile.reporterPipelines = parsedInnerYamlFile.reporterPipelines
+                rootSchema.reporters = schema.reporters
+                rootSchema.reporterPipelines = schema.reporterPipelines
             }
         }
-        return rootFile
+        return rootSchema
     }
 
     private fun readYamlFile(path: Path): VulnlogSchema {
         return mapper.readValue(path.toFile(), VulnlogSchema::class.java)
+    }
+
+    private fun parseYamlFile(referencedFilePath: Path): VulnlogSchema {
+        if (!referencedFilePath.exists()) {
+            error("Referenced file does not exist: $referencedFilePath")
+        }
+        return readYamlFile(referencedFilePath)
     }
 }
