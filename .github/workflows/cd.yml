@@ -1,12 +1,48 @@
 name: Continuous Deployment
 
 on:
+  push:
+    tags:
+      - "v*.*.*"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  discussions: write
 
 jobs:
+  generate-changelog:
+    name: Generate changelog
+    runs-on: ubuntu-latest
+    outputs:
+      release_notes_body: ${{ steps.release-notes.outputs.content }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: .github/changelog.toml
+          args: --tag ${{ github.ref }} --github-repo ${{ github.repository }}
+        env:
+          OUTPUT: CHANGELOG.md
+      - name: Commit CHANGELOG.md
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "docs(changelog): update for ${{ github.ref }}" || echo "No changes to commit"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Generate release notes
+        uses: orhun/git-cliff-action@v4
+        id: release-notes
+        with:
+          config: .github/release-notes.toml
+          args: --latest --github-repo ${{ github.repository }}
+
   build-schema:
     name: Build JSON Schema
     runs-on: ubuntu-latest
@@ -68,3 +104,69 @@ jobs:
         with:
           name: vulnlog-yaml-poc-binary-${{ matrix.os }}
           path: yaml/build/native/nativeCompile/vl-yaml
+
+  publish-release:
+    name: Publish release
+    needs: [ generate-changelog, build-schema, build-jvm, build-native ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          architecture: x64
+      - uses: gradle/actions/setup-gradle@v3
+      - name: Download JSON Schema
+        uses: actions/download-artifact@v4
+        with:
+          name: vulnlog-yaml-poc-json-schema
+          path: build/json-schema
+      - name: Download JVM build
+        uses: actions/download-artifact@v4
+        with:
+          name: vulnlog-yaml-poc-jvm
+          path: build/jvm
+      - name: Download Linux native binary
+        uses: actions/download-artifact@v4
+        with:
+          name: vulnlog-yaml-poc-binary-ubuntu-latest
+          path: build/native/linux
+      - name: Download macOS native binary
+        uses: actions/download-artifact@v4
+        with:
+          name: vulnlog-yaml-poc-binary-macos-latest
+          path: build/native/macos
+      - name: Rename binaries with platform identifiers
+        run: |
+          mv build/native/linux/vl-yaml build/native/linux/vl-yaml-linux-x64
+          mv build/native/macos/vl-yaml build/native/macos/vl-yaml-macos-x64
+          chmod +x build/native/linux/vl-yaml-linux-x64
+          chmod +x build/native/macos/vl-yaml-macos-x64
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "Vulnlog PoC ${{ github.ref_name }}"
+          prerelease: false
+          draft: false
+          body: |
+            ${{needs.generate-changelog.outputs.release_notes_body}}
+
+            👉 Full Changelog: https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md
+          files: |
+            build/json-schema/vulnlog.json
+            build/jvm/yaml.zip
+            build/native/linux/vl-yaml-linux-x64
+            build/native/macos/vl-yaml-macos-x64
+      - name: Create a new GitHub discussion
+        id: create-discussion
+        uses: abirismyname/create-discussion@main
+        with:
+          title: Vulnlog PoC ${{ github.ref_name }} is released
+          body: |
+            Vulnlog PoC ${{ github.ref_name }} is released!
+            
+            For a full description of changes, take a look at our [release notes](https://github.com/vulnlog/vulnlog/releases/tag/${{ github.ref_name }}).
+          category-name: Announcements
+          github-token: ${{ secrets.GITHUB_TOKEN }}
