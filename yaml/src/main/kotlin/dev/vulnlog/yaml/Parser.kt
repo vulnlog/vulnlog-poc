@@ -7,14 +7,15 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
-import java.io.File
+import java.nio.file.Path
+import kotlin.io.path.Path
+import kotlin.io.path.exists
 
 class Parser {
     private val yamlFactory = YAMLAnchorReplayingFactory()
     private val mapper = ObjectMapper(yamlFactory).apply {
         registerKotlinModule()
 
-        // Register custom deserializer for Vex enum
         val module = SimpleModule()
         module
             .addDeserializer(
@@ -29,18 +30,18 @@ class Parser {
     }
 
     /**
-     * Read yaml root file and resolve referenced files.
+     * Read the YAML root file and resolve direct referenced files.
      */
     fun read(pathToFile: String): VulnlogSchema {
-        val file = File(pathToFile)
-        val rootFile = readYamlFile(file)
+        val filePath: Path = Path(pathToFile).toAbsolutePath().normalize()
+        val rootFile = readYamlFile(filePath)
 
         if (rootFile.include != null) {
-            val rootDir = file.parentFile
+            val parentDir: Path = filePath.parent
 
             if (rootFile.include.releases != null) {
                 val referencedFilename: String = rootFile.include.releases.file
-                val referencedFilePath = rootDir.resolve(File(referencedFilename))
+                val referencedFilePath = parentDir.resolve(referencedFilename)
                 if (!referencedFilePath.exists()) {
                     error("Referenced file does not exist: $referencedFilePath")
                 }
@@ -53,7 +54,7 @@ class Parser {
 
             if (rootFile.include.reporters != null) {
                 val referencedFilename: String = rootFile.include.reporters.file
-                val referencedFilePath = rootDir.resolve(File(referencedFilename))
+                val referencedFilePath = parentDir.resolve(referencedFilename)
                 if (!referencedFilePath.exists()) {
                     error("Referenced file does not exist: $referencedFilePath")
                 }
@@ -67,7 +68,7 @@ class Parser {
         return rootFile
     }
 
-    private fun readYamlFile(file: File): VulnlogSchema {
-        return mapper.readValue(file, VulnlogSchema::class.java)
+    private fun readYamlFile(path: Path): VulnlogSchema {
+        return mapper.readValue(path.toFile(), VulnlogSchema::class.java)
     }
 }
