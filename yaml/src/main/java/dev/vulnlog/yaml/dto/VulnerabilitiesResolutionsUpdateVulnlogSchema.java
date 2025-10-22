@@ -20,8 +20,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "container-dependency",
+    "dependency",
     "maven-dependency",
     "note",
+    "npm-dependency",
     "on-id",
     "resolved-at",
     "to"
@@ -29,13 +32,31 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
 
     /**
+     * Container Dependency
+     * <p>
+     * The maven dependency in the form of groupId:artifactId:version that should be updated.
+     * 
+     */
+    @JsonProperty("container-dependency")
+    @JsonPropertyDescription("The maven dependency in the form of groupId:artifactId:version that should be updated.")
+    private String containerDependency;
+    /**
+     * Generic Dependency
+     * <p>
+     * Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.
+     * 
+     */
+    @JsonProperty("dependency")
+    @JsonPropertyDescription("Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.")
+    private String dependency;
+    /**
      * Maven Dependency
      * <p>
-     * TODO
+     * The maven dependency in the form of groupId:artifactId:version that should be updated.
      * 
      */
     @JsonProperty("maven-dependency")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The maven dependency in the form of groupId:artifactId:version that should be updated.")
     private String mavenDependency;
     /**
      * Note
@@ -46,6 +67,15 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     @JsonProperty("note")
     @JsonPropertyDescription("TODO")
     private String note;
+    /**
+     * NPM Dependency
+     * <p>
+     * The NPM dependency in the form of name@version that should be updated.
+     * 
+     */
+    @JsonProperty("npm-dependency")
+    @JsonPropertyDescription("The NPM dependency in the form of name@version that should be updated.")
+    private String npmDependency;
     /**
      * Update on Release
      * <p>
@@ -86,29 +116,82 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * 
      * @param mavenDependency
-     *     Maven Dependency. TODO.
+     *     Maven Dependency. The maven dependency in the form of groupId:artifactId:version that should be updated.
      * @param note
      *     Note. TODO.
+     * @param npmDependency
+     *     NPM Dependency. The NPM dependency in the form of name@version that should be updated.
      * @param resolvedAt
      *     Resolved at Date. TODO.
+     * @param dependency
+     *     Generic Dependency. Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.
      * @param to
      *     To Version. TODO.
+     * @param containerDependency
+     *     Container Dependency. The maven dependency in the form of groupId:artifactId:version that should be updated.
      * @param onId
      *     Update on Release. TODO.
      */
-    public VulnerabilitiesResolutionsUpdateVulnlogSchema(String mavenDependency, String note, Object onId, String resolvedAt, String to) {
+    public VulnerabilitiesResolutionsUpdateVulnlogSchema(String containerDependency, String dependency, String mavenDependency, String note, String npmDependency, Object onId, String resolvedAt, String to) {
         super();
+        this.containerDependency = containerDependency;
+        this.dependency = dependency;
         this.mavenDependency = mavenDependency;
         this.note = note;
+        this.npmDependency = npmDependency;
         this.onId = onId;
         this.resolvedAt = resolvedAt;
         this.to = to;
     }
 
     /**
+     * Container Dependency
+     * <p>
+     * The maven dependency in the form of groupId:artifactId:version that should be updated.
+     * 
+     */
+    @JsonProperty("container-dependency")
+    public String getContainerDependency() {
+        return containerDependency;
+    }
+
+    /**
+     * Container Dependency
+     * <p>
+     * The maven dependency in the form of groupId:artifactId:version that should be updated.
+     * 
+     */
+    @JsonProperty("container-dependency")
+    public void setContainerDependency(String containerDependency) {
+        this.containerDependency = containerDependency;
+    }
+
+    /**
+     * Generic Dependency
+     * <p>
+     * Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.
+     * 
+     */
+    @JsonProperty("dependency")
+    public String getDependency() {
+        return dependency;
+    }
+
+    /**
+     * Generic Dependency
+     * <p>
+     * Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.
+     * 
+     */
+    @JsonProperty("dependency")
+    public void setDependency(String dependency) {
+        this.dependency = dependency;
+    }
+
+    /**
      * Maven Dependency
      * <p>
-     * TODO
+     * The maven dependency in the form of groupId:artifactId:version that should be updated.
      * 
      */
     @JsonProperty("maven-dependency")
@@ -119,7 +202,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * Maven Dependency
      * <p>
-     * TODO
+     * The maven dependency in the form of groupId:artifactId:version that should be updated.
      * 
      */
     @JsonProperty("maven-dependency")
@@ -147,6 +230,28 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     @JsonProperty("note")
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * NPM Dependency
+     * <p>
+     * The NPM dependency in the form of name@version that should be updated.
+     * 
+     */
+    @JsonProperty("npm-dependency")
+    public String getNpmDependency() {
+        return npmDependency;
+    }
+
+    /**
+     * NPM Dependency
+     * <p>
+     * The NPM dependency in the form of name@version that should be updated.
+     * 
+     */
+    @JsonProperty("npm-dependency")
+    public void setNpmDependency(String npmDependency) {
+        this.npmDependency = npmDependency;
     }
 
     /**

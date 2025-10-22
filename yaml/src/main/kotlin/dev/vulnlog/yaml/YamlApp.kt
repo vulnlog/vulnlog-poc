@@ -7,6 +7,7 @@ import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsVulnlogSchema
+import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsUpdateVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
@@ -151,7 +152,7 @@ private fun printVulnResolutionsEntry(vulnResolutionEntry: VulnerabilitiesResolu
     } else if (vulnResolutionEntry.update != null) {
         println("  update")
         vulnResolutionEntry.update.note?.let { println("    note: $it") }
-        vulnResolutionEntry.update.mavenDependency?.let { println("    maven dependency: $it") }
+        printVulnResolutionDependencyEntry(vulnResolutionEntry.update)
         vulnResolutionEntry.update.to?.let { println("    to version: $it") }
         printVulnResolutionOnEntry(vulnResolutionEntry.update.onId)
         vulnResolutionEntry.update.resolvedAt?.let { println("    resolved at: $it") }
@@ -163,5 +164,19 @@ private fun printVulnResolutionOnEntry(onId: Any?) {
     when (onId) {
         is String -> println("    on id: $onId")
         is Collection<*> -> println("    on-ids: " + onId.joinToString(", "))
+    }
+}
+
+private fun printVulnResolutionDependencyEntry(update: VulnerabilitiesResolutionsUpdateVulnlogSchema) {
+    if (update.mavenDependency != null) {
+        update.mavenDependency?.let { println("    maven dependency: $it") }
+    } else if (update.npmDependency != null) {
+        update.npmDependency?.let { println("    npm dependency: $it") }
+    } else if (update.dependency != null) {
+        update.dependency?.let { println("    generic dependency: $it") }
+    } else if (update.containerDependency != null) {
+        update.containerDependency?.let { println("    container dependency: $it") }
+    } else {
+        error("Unknown dependency type")
     }
 }

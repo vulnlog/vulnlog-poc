@@ -3,10 +3,37 @@
   "$id": "https://vulnlog.dev/vulnerabilities.resolutions.update.vulnlog.schema.json",
   "title": "Vulnlog Vulnerability Resolutions Update Schema",
   "type": "object",
+  "oneOf": [
+    {
+      "required": [ "container-dependency" ]
+    },
+    {
+      "required": [ "dependency" ]
+    },
+    {
+      "required": [ "maven-dependency" ]
+    },
+    {
+      "required": [ "npm-dependency" ]
+    }
+  ],
   "properties": {
+    "container-dependency": {
+      "title": "Container Dependency",
+      "description": "The maven dependency in the form of groupId:artifactId:version that should be updated.",
+      "examples": [ "ubi-minimal:9.6-1755695350", "alpine:3.22.2" ],
+      "type": "string",
+      "pattern": "^.*:.*$"
+    },
+    "dependency": {
+      "title": "Generic Dependency",
+      "description": "Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.",
+      "type": "string"
+    },
     "maven-dependency": {
       "title": "Maven Dependency",
-      "description": "TODO",
+      "description": "The maven dependency in the form of groupId:artifactId:version that should be updated.",
+      "examples": [ "org.apache.commons:commons-lang3:3.19.0" ],
       "type": "string",
       "pattern": "^.*:.*:.*$"
     },
@@ -14,6 +41,13 @@
       "title": "Note",
       "description": "TODO",
       "type": "string"
+    },
+    "npm-dependency": {
+      "title": "NPM Dependency",
+      "description": "The NPM dependency in the form of name@version that should be updated.",
+      "examples": [ "vite@5.4.21" ],
+      "type": "string",
+      "pattern": "^.*@.*$"
     },
     "on-id": {
       "title": "Update on Release",
