@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "maven-dependency",
     "note",
+    "on-id",
     "resolved-at",
     "to"
 })
@@ -45,6 +46,15 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     @JsonProperty("note")
     @JsonPropertyDescription("TODO")
     private String note;
+    /**
+     * Update on Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    @JsonPropertyDescription("TODO")
+    private Object onId;
     /**
      * Resolved at Date
      * <p>
@@ -83,11 +93,14 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
      *     Resolved at Date. TODO.
      * @param to
      *     To Version. TODO.
+     * @param onId
+     *     Update on Release. TODO.
      */
-    public VulnerabilitiesResolutionsUpdateVulnlogSchema(String mavenDependency, String note, String resolvedAt, String to) {
+    public VulnerabilitiesResolutionsUpdateVulnlogSchema(String mavenDependency, String note, Object onId, String resolvedAt, String to) {
         super();
         this.mavenDependency = mavenDependency;
         this.note = note;
+        this.onId = onId;
         this.resolvedAt = resolvedAt;
         this.to = to;
     }
@@ -134,6 +147,28 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     @JsonProperty("note")
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * Update on Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    public Object getOnId() {
+        return onId;
+    }
+
+    /**
+     * Update on Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    public void setOnId(Object onId) {
+        this.onId = onId;
     }
 
     /**

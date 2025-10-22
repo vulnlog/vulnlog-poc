@@ -20,7 +20,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "note"
+    "note",
+    "on-id"
 })
 public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
 
@@ -33,6 +34,15 @@ public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
     @JsonProperty("note")
     @JsonPropertyDescription("TODO")
     private String note;
+    /**
+     * Rebuild on Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    @JsonPropertyDescription("TODO")
+    private Object onId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -47,10 +57,13 @@ public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
      * 
      * @param note
      *     Note. TODO.
+     * @param onId
+     *     Rebuild on Release. TODO.
      */
-    public VulnerabilitiesResolutionsRebuildVulnlogSchema(String note) {
+    public VulnerabilitiesResolutionsRebuildVulnlogSchema(String note, Object onId) {
         super();
         this.note = note;
+        this.onId = onId;
     }
 
     /**
@@ -73,6 +86,28 @@ public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
     @JsonProperty("note")
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * Rebuild on Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    public Object getOnId() {
+        return onId;
+    }
+
+    /**
+     * Rebuild on Release
+     * <p>
+     * TODO
+     * 
+     */
+    @JsonProperty("on-id")
+    public void setOnId(Object onId) {
+        this.onId = onId;
     }
 
     @JsonAnyGetter

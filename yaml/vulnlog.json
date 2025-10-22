@@ -419,6 +419,21 @@
           "title": "Note",
           "description": "TODO",
           "type": "string"
+        },
+        "on-id": {
+          "title": "Accept on Release",
+          "description": "TODO",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
         }
       }
     },
@@ -431,6 +446,21 @@
           "title": "Note",
           "description": "TODO",
           "type": "string"
+        },
+        "on-id": {
+          "title": "Fix on Release",
+          "description": "TODO",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
         }
       }
     },
@@ -441,6 +471,38 @@
       "properties": {
         "note": {
           "title": "Note",
+          "description": "TODO",
+          "type": "string"
+        },
+        "on-id": {
+          "title": "Rebuild on Release",
+          "description": "TODO",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.resolutions.remove.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Resolutions Remove Schema",
+      "type": "object",
+      "properties": {
+        "note": {
+          "title": "Note",
+          "description": "TODO",
+          "type": "string"
+        },
+        "on": {
+          "title": "Remove on Release",
           "description": "TODO",
           "type": "string"
         }
@@ -461,6 +523,21 @@
           "title": "Note",
           "description": "TODO",
           "type": "string"
+        },
+        "on-id": {
+          "title": "Update on Release",
+          "description": "TODO",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
         },
         "resolved-at": {
           "title": "Resolved at Date",
@@ -501,6 +578,12 @@
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.vulnlog.schema.json/$defs/rebuild",
             "type": "object"
           },
+          "remove": {
+            "title": "Remove",
+            "description": "Remove a dependency or functionality.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.vulnlog.schema.json/$defs/accept",
+            "type": "object"
+          },
           "update": {
             "title": "Update",
             "description": "Update a dependency to a specific version.",
@@ -518,6 +601,9 @@
         },
         "rebuild": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.rebuild.vulnlog.schema.json"
+        },
+        "remove": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.remove.vulnlog.schema.json"
         },
         "update": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.update.vulnlog.schema.json"

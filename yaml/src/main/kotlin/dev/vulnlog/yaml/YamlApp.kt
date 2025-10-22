@@ -139,17 +139,29 @@ private fun printVulnResolutionsEntry(vulnResolutionEntry: VulnerabilitiesResolu
     if (vulnResolutionEntry.accept != null) {
         println("  accept")
         vulnResolutionEntry.accept.note?.let { println("    note: $it") }
+        printVulnResolutionOnEntry(vulnResolutionEntry.accept.onId)
     } else if (vulnResolutionEntry.fix != null) {
         println("  fix")
-        vulnResolutionEntry.update.note?.let { println("    note: $it") }
+        vulnResolutionEntry.fix.note?.let { println("    note: $it") }
+        printVulnResolutionOnEntry(vulnResolutionEntry.fix.onId)
     } else if (vulnResolutionEntry.rebuild != null) {
         println("  rebuild")
-        vulnResolutionEntry.update.note?.let { println("    note: $it") }
+        vulnResolutionEntry.rebuild.note?.let { println("    note: $it") }
+        printVulnResolutionOnEntry(vulnResolutionEntry.rebuild.onId)
     } else if (vulnResolutionEntry.update != null) {
         println("  update")
         vulnResolutionEntry.update.note?.let { println("    note: $it") }
         vulnResolutionEntry.update.mavenDependency?.let { println("    maven dependency: $it") }
         vulnResolutionEntry.update.to?.let { println("    to version: $it") }
+        printVulnResolutionOnEntry(vulnResolutionEntry.update.onId)
         vulnResolutionEntry.update.resolvedAt?.let { println("    resolved at: $it") }
+    }
+}
+
+private fun printVulnResolutionOnEntry(onId: Any?) {
+    if (onId == null) return
+    when (onId) {
+        is String -> println("    on id: $onId")
+        is Collection<*> -> println("    on-ids: " + onId.joinToString(", "))
     }
 }

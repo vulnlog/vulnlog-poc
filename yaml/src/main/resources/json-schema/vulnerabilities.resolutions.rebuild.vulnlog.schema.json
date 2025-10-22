@@ -8,6 +8,21 @@
       "title": "Note",
       "description": "TODO",
       "type": "string"
+    },
+    "on-id": {
+      "title": "Rebuild on Release",
+      "description": "TODO",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
     }
   }
 }

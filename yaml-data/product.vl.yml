@@ -45,4 +45,5 @@ vulnerabilities:
           note: This is another test note.
           maven-dependency: foo:bar:1.2.3
           to: 1.2.4
+          on-id: *p804
           resolved-at: 2025-04-29

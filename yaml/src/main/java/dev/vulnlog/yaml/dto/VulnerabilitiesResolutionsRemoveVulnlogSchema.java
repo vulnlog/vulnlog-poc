@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * Vulnlog Vulnerability Resolutions Accept Schema
+ * Vulnlog Vulnerability Resolutions Remove Schema
  * <p>
  * 
  * 
@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "note",
-    "on-id"
+    "on"
 })
-public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
+public class VulnerabilitiesResolutionsRemoveVulnlogSchema {
 
     /**
      * Note
@@ -35,14 +35,14 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     @JsonPropertyDescription("TODO")
     private String note;
     /**
-     * Accept on Release
+     * Remove on Release
      * <p>
      * TODO
      * 
      */
-    @JsonProperty("on-id")
+    @JsonProperty("on")
     @JsonPropertyDescription("TODO")
-    private Object onId;
+    private String on;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -50,20 +50,20 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
      * No args constructor for use in serialization
      * 
      */
-    public VulnerabilitiesResolutionsAcceptVulnlogSchema() {
+    public VulnerabilitiesResolutionsRemoveVulnlogSchema() {
     }
 
     /**
      * 
      * @param note
      *     Note. TODO.
-     * @param onId
-     *     Accept on Release. TODO.
+     * @param on
+     *     Remove on Release. TODO.
      */
-    public VulnerabilitiesResolutionsAcceptVulnlogSchema(String note, Object onId) {
+    public VulnerabilitiesResolutionsRemoveVulnlogSchema(String note, String on) {
         super();
         this.note = note;
-        this.onId = onId;
+        this.on = on;
     }
 
     /**
@@ -89,25 +89,25 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     }
 
     /**
-     * Accept on Release
+     * Remove on Release
      * <p>
      * TODO
      * 
      */
-    @JsonProperty("on-id")
-    public Object getOnId() {
-        return onId;
+    @JsonProperty("on")
+    public String getOn() {
+        return on;
     }
 
     /**
-     * Accept on Release
+     * Remove on Release
      * <p>
      * TODO
      * 
      */
-    @JsonProperty("on-id")
-    public void setOnId(Object onId) {
-        this.onId = onId;
+    @JsonProperty("on")
+    public void setOn(String on) {
+        this.on = on;
     }
 
     @JsonAnyGetter

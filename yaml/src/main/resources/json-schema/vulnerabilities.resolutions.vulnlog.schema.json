@@ -24,6 +24,12 @@
         "$ref": "#/$defs/rebuild",
         "type": "object"
       },
+      "remove": {
+        "title": "Remove",
+        "description": "Remove a dependency or functionality.",
+        "$ref": "#/$defs/accept",
+        "type": "object"
+      },
       "update": {
         "title": "Update",
         "description": "Update a dependency to a specific version.",
@@ -41,6 +47,9 @@
     },
     "rebuild": {
       "$ref": "vulnerabilities.resolutions.rebuild.vulnlog.schema.json"
+    },
+    "remove": {
+      "$ref": "vulnerabilities.resolutions.remove.vulnlog.schema.json"
     },
     "update": {
       "$ref": "vulnerabilities.resolutions.update.vulnlog.schema.json"

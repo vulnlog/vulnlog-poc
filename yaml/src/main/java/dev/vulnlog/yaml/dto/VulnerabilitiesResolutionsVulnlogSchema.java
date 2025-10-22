@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "accept",
     "fix",
     "rebuild",
+    "remove",
     "update"
 })
 public class VulnerabilitiesResolutionsVulnlogSchema {
@@ -44,6 +45,14 @@ public class VulnerabilitiesResolutionsVulnlogSchema {
     @JsonProperty("rebuild")
     private VulnerabilitiesResolutionsRebuildVulnlogSchema rebuild;
     /**
+     * Vulnlog Vulnerability Resolutions Accept Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("remove")
+    private VulnerabilitiesResolutionsAcceptVulnlogSchema remove;
+    /**
      * Vulnlog Vulnerability Resolutions Update Schema
      * <p>
      * 
@@ -69,14 +78,17 @@ public class VulnerabilitiesResolutionsVulnlogSchema {
      *     Fix. Fix code parts in the project.
      * @param update
      *     Update. Update a dependency to a specific version.
+     * @param remove
+     *     Remove. Remove a dependency or functionality.
      * @param accept
      *     Accept. Accept a vulnerability.
      */
-    public VulnerabilitiesResolutionsVulnlogSchema(VulnerabilitiesResolutionsAcceptVulnlogSchema accept, VulnerabilitiesResolutionsFixVulnlogSchema fix, VulnerabilitiesResolutionsRebuildVulnlogSchema rebuild, VulnerabilitiesResolutionsUpdateVulnlogSchema update) {
+    public VulnerabilitiesResolutionsVulnlogSchema(VulnerabilitiesResolutionsAcceptVulnlogSchema accept, VulnerabilitiesResolutionsFixVulnlogSchema fix, VulnerabilitiesResolutionsRebuildVulnlogSchema rebuild, VulnerabilitiesResolutionsAcceptVulnlogSchema remove, VulnerabilitiesResolutionsUpdateVulnlogSchema update) {
         super();
         this.accept = accept;
         this.fix = fix;
         this.rebuild = rebuild;
+        this.remove = remove;
         this.update = update;
     }
 
@@ -144,6 +156,28 @@ public class VulnerabilitiesResolutionsVulnlogSchema {
     @JsonProperty("rebuild")
     public void setRebuild(VulnerabilitiesResolutionsRebuildVulnlogSchema rebuild) {
         this.rebuild = rebuild;
+    }
+
+    /**
+     * Vulnlog Vulnerability Resolutions Accept Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("remove")
+    public VulnerabilitiesResolutionsAcceptVulnlogSchema getRemove() {
+        return remove;
+    }
+
+    /**
+     * Vulnlog Vulnerability Resolutions Accept Schema
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("remove")
+    public void setRemove(VulnerabilitiesResolutionsAcceptVulnlogSchema remove) {
+        this.remove = remove;
     }
 
     /**
