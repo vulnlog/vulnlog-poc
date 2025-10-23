@@ -8,7 +8,7 @@
     "properties": {
       "accept": {
         "title": "Accept",
-        "description": "Accept a vulnerability.",
+        "description": "The potential risk the vulnerability poses to the product is considered acceptable. No further actions are planned. However, the vulnerability might be resolved through another or a future resolution.",
         "$ref": "#/$defs/accept",
         "type": "object"
       },

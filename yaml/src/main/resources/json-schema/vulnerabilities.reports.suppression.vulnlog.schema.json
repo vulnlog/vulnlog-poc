@@ -8,7 +8,7 @@
     "properties": {
       "on": {
         "title": "Suppress on Releases",
-        "description": "TODO",
+        "description": "Releases on which this suppression should be applied.",
         "oneOf": [
           {
             "type": "string"
@@ -23,7 +23,7 @@
       },
       "until": {
         "title": "Suppress Until",
-        "description": "TODO",
+        "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
         "examples": [ "1970-01-01" ],
         "type": "string",
         "pattern": "^\\d{4}-\\d{2}-\\d{2}$",

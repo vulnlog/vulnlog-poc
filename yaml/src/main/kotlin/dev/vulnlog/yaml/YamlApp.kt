@@ -24,17 +24,21 @@ fun main(args: Array<String>) {
         println("Releases")
         result.releases.filter { it != null }.forEach(::printReleaseEntry)
         println()
+        println()
 
         println("Release Groups")
         result.releaseGroups.filter { it != null }.forEach(::printReleaseGroupEntry)
+        println()
         println()
 
         println("Reporters")
         result.reporters.filter { it != null }.forEach(::printReporterEntry)
         println()
+        println()
 
         println("Reporter Pipelines")
         result.reporterPipelines.filter { it != null }.forEach(::printReporterPipelineEntry)
+        println()
         println()
 
         println("Vulnerabilities")
@@ -73,7 +77,7 @@ private fun printReporterPipelineEntry(reporterPipelineEntry: ReporterPipelinesV
 
 private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {
     vulnEntry.desc?.let { println("desc: $it") }
-    println("cwe: ${vulnEntry.cwe}")
+    if (vulnEntry.cwe != 0) println("cwe: ${vulnEntry.cwe}")
     if (vulnEntry.reports != null && vulnEntry.reports.isNotEmpty()) {
         println("reports:")
         vulnEntry.reports.filter { it != null }.forEach(::printVulnReportEntry)
@@ -86,6 +90,7 @@ private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {
         println("resolutions:")
         vulnEntry.resolutions.filter { it != null }.forEach(::printVulnResolutionsEntry)
     }
+    println()
 }
 
 private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogSchema) {
@@ -134,36 +139,41 @@ private fun printVulnAnalysisEntry(vulnAnalysisEntry: VulnerabilitiesAnalysisVul
         }
     }
     vulnAnalysisEntry.reasoning?.let { println("  reasoning: $it") }
+    printVulnResolutionOnEntry(vulnAnalysisEntry.onId, 2)
 }
 
 private fun printVulnResolutionsEntry(vulnResolutionEntry: VulnerabilitiesResolutionsVulnlogSchema) {
     if (vulnResolutionEntry.accept != null) {
         println("  accept")
         vulnResolutionEntry.accept.note?.let { println("    note: $it") }
-        printVulnResolutionOnEntry(vulnResolutionEntry.accept.onId)
+        printVulnResolutionOnEntry(vulnResolutionEntry.accept.onId, 4)
     } else if (vulnResolutionEntry.fix != null) {
         println("  fix")
         vulnResolutionEntry.fix.note?.let { println("    note: $it") }
-        printVulnResolutionOnEntry(vulnResolutionEntry.fix.onId)
+        printVulnResolutionOnEntry(vulnResolutionEntry.fix.onId, 4)
     } else if (vulnResolutionEntry.rebuild != null) {
         println("  rebuild")
         vulnResolutionEntry.rebuild.note?.let { println("    note: $it") }
-        printVulnResolutionOnEntry(vulnResolutionEntry.rebuild.onId)
+        printVulnResolutionOnEntry(vulnResolutionEntry.rebuild.onId, 4)
+    } else if (vulnResolutionEntry.remove != null) {
+        println("  remove")
+        vulnResolutionEntry.remove.note?.let { println("    note: $it") }
+        printVulnResolutionOnEntry(vulnResolutionEntry.remove.onId, 4)
     } else if (vulnResolutionEntry.update != null) {
         println("  update")
         vulnResolutionEntry.update.note?.let { println("    note: $it") }
         printVulnResolutionDependencyEntry(vulnResolutionEntry.update)
         vulnResolutionEntry.update.to?.let { println("    to version: $it") }
-        printVulnResolutionOnEntry(vulnResolutionEntry.update.onId)
+        printVulnResolutionOnEntry(vulnResolutionEntry.update.onId, 4)
         vulnResolutionEntry.update.resolvedAt?.let { println("    resolved at: $it") }
     }
 }
 
-private fun printVulnResolutionOnEntry(onId: Any?) {
+private fun printVulnResolutionOnEntry(onId: Any?, indent: Int) {
     if (onId == null) return
     when (onId) {
-        is String -> println("    on id: $onId")
-        is Collection<*> -> println("    on-ids: " + onId.joinToString(", "))
+        is String -> println("on id: $onId".prependIndent(" ".repeat(indent)))
+        is Collection<*> -> println("on-ids: ${onId.joinToString(", ")}".prependIndent(" ".repeat(indent)) )
     }
 }
 

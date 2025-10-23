@@ -26,22 +26,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Gives additional insight why this resolution was chosen.")
     private String note;
     /**
      * Accept on Release
      * <p>
-     * TODO
+     * Accept the potential risk of the vulnerability on the given release.
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Accept the potential risk of the vulnerability on the given release.")
     private Object onId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -56,9 +56,9 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     /**
      * 
      * @param note
-     *     Note. TODO.
+     *     Note on this Resolution. Gives additional insight why this resolution was chosen.
      * @param onId
-     *     Accept on Release. TODO.
+     *     Accept on Release. Accept the potential risk of the vulnerability on the given release.
      */
     public VulnerabilitiesResolutionsAcceptVulnlogSchema(String note, Object onId) {
         super();
@@ -67,9 +67,9 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     }
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
@@ -78,9 +78,9 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     }
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
@@ -91,7 +91,7 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     /**
      * Accept on Release
      * <p>
-     * TODO
+     * Accept the potential risk of the vulnerability on the given release.
      * 
      */
     @JsonProperty("on-id")
@@ -102,7 +102,7 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     /**
      * Accept on Release
      * <p>
-     * TODO
+     * Accept the potential risk of the vulnerability on the given release.
      * 
      */
     @JsonProperty("on-id")

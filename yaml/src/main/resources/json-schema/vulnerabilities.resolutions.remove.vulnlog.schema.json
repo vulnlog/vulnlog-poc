@@ -5,14 +5,21 @@
   "type": "object",
   "properties": {
     "note": {
-      "title": "Note",
-      "description": "TODO",
+      "title": "Note on this Resolution",
+      "description": "Gives additional insight why this resolution was chosen.",
       "type": "string"
     },
     "on": {
       "title": "Remove on Release",
-      "description": "TODO",
+      "description": "The release on which a dependency should be removed.",
       "type": "string"
+    },
+    "resolved-at": {
+      "title": "Resolved at Date",
+      "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "format": "date"
     }
   }
 }

@@ -23,38 +23,38 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Identifier
      * <p>
-     * TODO
+     * Identifier of the release. Must be unique.
      * 
      */
     @JsonProperty("id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Identifier of the release. Must be unique.")
     private String id;
     /**
      * Release Name
      * <p>
-     * TODO
+     * Printable name of the release.
      * 
      */
     @JsonProperty("name")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Printable name of the release.")
     private String name;
     /**
      * Release Date
      * <p>
-     * TODO
+     * Date of the release. Format: YYYY-MM-DD.
      * 
      */
     @JsonProperty("release-date")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Date of the release. Format: YYYY-MM-DD.")
     private String releaseDate;
     /**
      * Release Version
      * <p>
-     * TODO
+     * Version of the release. For example in the semantic version format: X.Y.Z.
      * 
      */
     @JsonProperty("version")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Version of the release. For example in the semantic version format: X.Y.Z.")
     private String version;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -69,13 +69,13 @@ public class ReleasesVulnlogSchema {
     /**
      * 
      * @param releaseDate
-     *     Release Date. TODO.
+     *     Release Date. Date of the release. Format: YYYY-MM-DD.
      * @param name
-     *     Release Name. TODO.
+     *     Release Name. Printable name of the release.
      * @param id
-     *     Release Identifier. TODO.
+     *     Release Identifier. Identifier of the release. Must be unique.
      * @param version
-     *     Release Version. TODO.
+     *     Release Version. Version of the release. For example in the semantic version format: X.Y.Z.
      */
     public ReleasesVulnlogSchema(String id, String name, String releaseDate, String version) {
         super();
@@ -88,7 +88,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Identifier
      * <p>
-     * TODO
+     * Identifier of the release. Must be unique.
      * 
      */
     @JsonProperty("id")
@@ -99,7 +99,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Identifier
      * <p>
-     * TODO
+     * Identifier of the release. Must be unique.
      * 
      */
     @JsonProperty("id")
@@ -110,7 +110,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Name
      * <p>
-     * TODO
+     * Printable name of the release.
      * 
      */
     @JsonProperty("name")
@@ -121,7 +121,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Name
      * <p>
-     * TODO
+     * Printable name of the release.
      * 
      */
     @JsonProperty("name")
@@ -132,7 +132,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Date
      * <p>
-     * TODO
+     * Date of the release. Format: YYYY-MM-DD.
      * 
      */
     @JsonProperty("release-date")
@@ -143,7 +143,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Date
      * <p>
-     * TODO
+     * Date of the release. Format: YYYY-MM-DD.
      * 
      */
     @JsonProperty("release-date")
@@ -154,7 +154,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Version
      * <p>
-     * TODO
+     * Version of the release. For example in the semantic version format: X.Y.Z.
      * 
      */
     @JsonProperty("version")
@@ -165,7 +165,7 @@ public class ReleasesVulnlogSchema {
     /**
      * Release Version
      * <p>
-     * TODO
+     * Version of the release. For example in the semantic version format: X.Y.Z.
      * 
      */
     @JsonProperty("version")

@@ -29,20 +29,20 @@ public class VulnerabilitiesVulnlogSchema {
     /**
      * Common Weakness Enumeration
      * <p>
-     * TODO
+     * The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.
      * 
      */
     @JsonProperty("cwe")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.")
     private int cwe;
     /**
      * Vulnerability Description
      * <p>
-     * TODO
+     * A short summary of the vulnerability and its impact on the product.
      * 
      */
     @JsonProperty("desc")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("A short summary of the vulnerability and its impact on the product.")
     private String desc;
     /**
      * Vulnlog Vulnerability Reports Schema
@@ -71,15 +71,15 @@ public class VulnerabilitiesVulnlogSchema {
     /**
      * 
      * @param cwe
-     *     Common Weakness Enumeration. TODO.
+     *     Common Weakness Enumeration. The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.
      * @param reports
-     *     Reports. TODO.
+     *     Vulnerability Reports. A list of vulnerability reports, each issues by a reporter.
      * @param resolutions
-     *     Resolutions. TODO.
+     *     Vulnerability Resolutions. A list of resolutions describing how the vulnerability may be resolved.
      * @param analysis
-     *     Analysis. TODO.
+     *     Vulnerability Analysis. Analysis of the vulnerability and assessment of whether and, if so, how problematic the vulnerability is for the product.
      * @param desc
-     *     Vulnerability Description. TODO.
+     *     Vulnerability Description. A short summary of the vulnerability and its impact on the product.
      */
     public VulnerabilitiesVulnlogSchema(List<VulnerabilitiesAnalysisVulnlogSchema> analysis, int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports, List<VulnerabilitiesResolutionsVulnlogSchema> resolutions) {
         super();
@@ -115,7 +115,7 @@ public class VulnerabilitiesVulnlogSchema {
     /**
      * Common Weakness Enumeration
      * <p>
-     * TODO
+     * The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.
      * 
      */
     @JsonProperty("cwe")
@@ -126,7 +126,7 @@ public class VulnerabilitiesVulnlogSchema {
     /**
      * Common Weakness Enumeration
      * <p>
-     * TODO
+     * The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.
      * 
      */
     @JsonProperty("cwe")
@@ -137,7 +137,7 @@ public class VulnerabilitiesVulnlogSchema {
     /**
      * Vulnerability Description
      * <p>
-     * TODO
+     * A short summary of the vulnerability and its impact on the product.
      * 
      */
     @JsonProperty("desc")
@@ -148,7 +148,7 @@ public class VulnerabilitiesVulnlogSchema {
     /**
      * Vulnerability Description
      * <p>
-     * TODO
+     * A short summary of the vulnerability and its impact on the product.
      * 
      */
     @JsonProperty("desc")

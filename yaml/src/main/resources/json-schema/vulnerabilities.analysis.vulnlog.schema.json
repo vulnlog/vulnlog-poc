@@ -13,15 +13,30 @@
         "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
         "format": "date"
       },
+      "on-id": {
+        "title": "Analysis for Release",
+        "description": "This analysis applies for these releases. If left empty, the analysis applies for all releases.",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      },
       "reasoning": {
         "title": "Reasoning",
-        "description": "TODO",
+        "description": "Description of the reasoning behind this analysis.",
         "type": "string",
         "minLength": 2
       },
       "verdict": {
         "title": "Verdict",
-        "description": "TODO",
+        "description": "Either affected or not affected.",
         "$ref": "#/$defs/verdict",
         "type": "object"
       }

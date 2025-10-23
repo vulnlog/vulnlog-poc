@@ -6,12 +6,12 @@
   "properties": {
     "not-affected": {
       "title": "Not Affected",
-      "description": "TODO",
+      "description": "The reported vulnerability does not affects the product.",
       "$ref": "#/$defs/not-affected"
     },
     "affected": {
       "title": "Affected",
-      "description": "TODO",
+      "description": "The reported vulnerability affects the product.",
       "$ref": "#/$defs/affected"
     }
   },

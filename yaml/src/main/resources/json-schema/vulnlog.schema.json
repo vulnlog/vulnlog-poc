@@ -7,32 +7,32 @@
   "properties": {
     "include": {
       "title": "Include Files",
-      "description": "TODO",
+      "description": "Include other Vulnlog files in this Vulnlog file.",
       "$ref": "#/$defs/include"
     },
     "release-groups": {
       "title": "Release Groups",
-      "description": "TODO",
+      "description": "Defines the release groups of the product.",
       "$ref": "#/$defs/release-groups"
     },
     "releases": {
       "title": "Releases",
-      "description": "TODO",
+      "description": "Defines the releases of the product.",
       "$ref": "#/$defs/releases"
     },
     "reporter-pipelines": {
       "title": "Reporter Pipelines",
-      "description": "TODO",
+      "description": "Defines the reporter pipelines scanning this product.",
       "$ref": "#/$defs/reporter-pipelines"
     },
     "reporters": {
       "title": "Reporters",
-      "description": "TODO",
+      "description": "Defines the reporters of vulnerabilities on the product.",
       "$ref": "#/$defs/reporters"
     },
     "vulnerabilities": {
       "title": "Vulnerabilities",
-      "description": "TODO",
+      "description": "Defines the vulnerabilities of the product.",
       "$ref": "#/$defs/vulnerabilities"
     }
   },

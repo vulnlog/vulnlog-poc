@@ -22,29 +22,29 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Identifier
      * <p>
-     * TODO
+     * Identifier of the reporter. Must be unique. Example: "trivy".
      * 
      */
     @JsonProperty("id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Identifier of the reporter. Must be unique. Example: \"trivy\".")
     private String id;
     /**
      * Reporter Name
      * <p>
-     * TODO
+     * Printable name of the reporter. Example: "OWASP Dependency Check".
      * 
      */
     @JsonProperty("name")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Printable name of the reporter. Example: \"OWASP Dependency Check\".")
     private String name;
     /**
      * Reporter Product
      * <p>
-     * TODO
+     * WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.
      * 
      */
     @JsonProperty("product")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.")
     private String product;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -59,11 +59,11 @@ public class ReportersVulnlogSchema {
     /**
      * 
      * @param product
-     *     Reporter Product. TODO.
+     *     Reporter Product. WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.
      * @param name
-     *     Reporter Name. TODO.
+     *     Reporter Name. Printable name of the reporter. Example: "OWASP Dependency Check".
      * @param id
-     *     Reporter Identifier. TODO.
+     *     Reporter Identifier. Identifier of the reporter. Must be unique. Example: "trivy".
      */
     public ReportersVulnlogSchema(String id, String name, String product) {
         super();
@@ -75,7 +75,7 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Identifier
      * <p>
-     * TODO
+     * Identifier of the reporter. Must be unique. Example: "trivy".
      * 
      */
     @JsonProperty("id")
@@ -86,7 +86,7 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Identifier
      * <p>
-     * TODO
+     * Identifier of the reporter. Must be unique. Example: "trivy".
      * 
      */
     @JsonProperty("id")
@@ -97,7 +97,7 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Name
      * <p>
-     * TODO
+     * Printable name of the reporter. Example: "OWASP Dependency Check".
      * 
      */
     @JsonProperty("name")
@@ -108,7 +108,7 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Name
      * <p>
-     * TODO
+     * Printable name of the reporter. Example: "OWASP Dependency Check".
      * 
      */
     @JsonProperty("name")
@@ -119,7 +119,7 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Product
      * <p>
-     * TODO
+     * WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.
      * 
      */
     @JsonProperty("product")
@@ -130,7 +130,7 @@ public class ReportersVulnlogSchema {
     /**
      * Reporter Product
      * <p>
-     * TODO
+     * WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.
      * 
      */
     @JsonProperty("product")

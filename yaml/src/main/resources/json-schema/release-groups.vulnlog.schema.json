@@ -8,17 +8,17 @@
     "properties": {
       "id": {
         "title": "Release Group Identifier",
-        "description": "TODO",
+        "description": "Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.",
         "type": "string"
       },
       "name": {
         "title": "Name of the Release Group",
-        "description": "TODO",
+        "description": "Name of the release group.",
         "type": "string"
       },
       "ref-ids": {
         "title": "Release Identifier",
-        "description": "TODO",
+        "description": "Release identifiers that belong to this release group.",
         "type": "array",
         "items": {
           "type": "string"

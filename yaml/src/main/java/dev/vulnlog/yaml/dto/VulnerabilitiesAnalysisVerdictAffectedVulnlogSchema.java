@@ -30,11 +30,11 @@ public class VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema {
     /**
      * Severity
      * <p>
-     * TODO
+     * The severity of the impact of this vulnerability on the product.
      * 
      */
     @JsonProperty("severity")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The severity of the impact of this vulnerability on the product.")
     private VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema.Severity severity;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -49,7 +49,7 @@ public class VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema {
     /**
      * 
      * @param severity
-     *     Severity. TODO.
+     *     Severity. The severity of the impact of this vulnerability on the product.
      */
     public VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema(VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema.Severity severity) {
         super();
@@ -59,7 +59,7 @@ public class VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema {
     /**
      * Severity
      * <p>
-     * TODO
+     * The severity of the impact of this vulnerability on the product.
      * 
      */
     @JsonProperty("severity")
@@ -70,7 +70,7 @@ public class VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema {
     /**
      * Severity
      * <p>
-     * TODO
+     * The severity of the impact of this vulnerability on the product.
      * 
      */
     @JsonProperty("severity")
@@ -92,7 +92,7 @@ public class VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema {
     /**
      * Severity
      * <p>
-     * TODO
+     * The severity of the impact of this vulnerability on the product.
      * 
      */
     public enum Severity {

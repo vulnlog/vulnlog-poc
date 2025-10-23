@@ -6,7 +6,7 @@
   "properties": {
     "severity": {
       "title": "Severity",
-      "description": "TODO",
+      "description": "The severity of the impact of this vulnerability on the product.",
       "enum": [ "Critical", "High", "Medium", "Low" ]
     }
   }

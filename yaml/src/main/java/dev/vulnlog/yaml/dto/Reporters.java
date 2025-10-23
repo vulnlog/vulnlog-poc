@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * Include Reporters
  * <p>
- * TODO
+ * When reporters are defined in another file, they can be included here.
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -31,29 +31,29 @@ public class Reporters {
     /**
      * File to include
      * <p>
-     * TODO
+     * File containing the reporter to be included.
      * 
      */
     @JsonProperty("file")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("File containing the reporter to be included.")
     private String file;
     /**
      * Reporter Pipeline References
      * <p>
-     * TODO
+     * Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("pipeline-ref-ids")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.")
     private List<String> pipelineRefIds = new ArrayList<String>();
     /**
      * Reporter References
      * <p>
-     * TODO
+     * Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("reporter-ref-ids")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.")
     private List<String> reporterRefIds = new ArrayList<String>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -68,11 +68,11 @@ public class Reporters {
     /**
      * 
      * @param reporterRefIds
-     *     Reporter References. TODO.
+     *     Reporter References. Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.
      * @param file
-     *     File to include. TODO.
+     *     File to include. File containing the reporter to be included.
      * @param pipelineRefIds
-     *     Reporter Pipeline References. TODO.
+     *     Reporter Pipeline References. Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.
      */
     public Reporters(String file, List<String> pipelineRefIds, List<String> reporterRefIds) {
         super();
@@ -84,7 +84,7 @@ public class Reporters {
     /**
      * File to include
      * <p>
-     * TODO
+     * File containing the reporter to be included.
      * 
      */
     @JsonProperty("file")
@@ -95,7 +95,7 @@ public class Reporters {
     /**
      * File to include
      * <p>
-     * TODO
+     * File containing the reporter to be included.
      * 
      */
     @JsonProperty("file")
@@ -106,7 +106,7 @@ public class Reporters {
     /**
      * Reporter Pipeline References
      * <p>
-     * TODO
+     * Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("pipeline-ref-ids")
@@ -117,7 +117,7 @@ public class Reporters {
     /**
      * Reporter Pipeline References
      * <p>
-     * TODO
+     * Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("pipeline-ref-ids")
@@ -128,7 +128,7 @@ public class Reporters {
     /**
      * Reporter References
      * <p>
-     * TODO
+     * Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("reporter-ref-ids")
@@ -139,7 +139,7 @@ public class Reporters {
     /**
      * Reporter References
      * <p>
-     * TODO
+     * Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("reporter-ref-ids")

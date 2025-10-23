@@ -21,20 +21,20 @@ public class VulnerabilitiesReportsSuppressionVulnlogSchema {
     /**
      * Suppress on Releases
      * <p>
-     * TODO
+     * Releases on which this suppression should be applied.
      * 
      */
     @JsonProperty("on")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Releases on which this suppression should be applied.")
     private Object on;
     /**
      * Suppress Until
      * <p>
-     * TODO
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("until")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Date until this suppression should be active to. Format: YYYY-MM-DD")
     private String until;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -49,9 +49,9 @@ public class VulnerabilitiesReportsSuppressionVulnlogSchema {
     /**
      * 
      * @param until
-     *     Suppress Until. TODO.
+     *     Suppress Until. Date until this suppression should be active to. Format: YYYY-MM-DD.
      * @param on
-     *     Suppress on Releases. TODO.
+     *     Suppress on Releases. Releases on which this suppression should be applied.
      */
     public VulnerabilitiesReportsSuppressionVulnlogSchema(Object on, String until) {
         super();
@@ -62,7 +62,7 @@ public class VulnerabilitiesReportsSuppressionVulnlogSchema {
     /**
      * Suppress on Releases
      * <p>
-     * TODO
+     * Releases on which this suppression should be applied.
      * 
      */
     @JsonProperty("on")
@@ -73,7 +73,7 @@ public class VulnerabilitiesReportsSuppressionVulnlogSchema {
     /**
      * Suppress on Releases
      * <p>
-     * TODO
+     * Releases on which this suppression should be applied.
      * 
      */
     @JsonProperty("on")
@@ -84,7 +84,7 @@ public class VulnerabilitiesReportsSuppressionVulnlogSchema {
     /**
      * Suppress Until
      * <p>
-     * TODO
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("until")
@@ -95,7 +95,7 @@ public class VulnerabilitiesReportsSuppressionVulnlogSchema {
     /**
      * Suppress Until
      * <p>
-     * TODO
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("until")

@@ -84,17 +84,17 @@ public class VulnlogSchema {
     /**
      * 
      * @param include
-     *     Include Files. TODO.
+     *     Include Files. Include other Vulnlog files in this Vulnlog file.
      * @param reporters
-     *     Reporters. TODO.
+     *     Reporters. Defines the reporters of vulnerabilities on the product.
      * @param reporterPipelines
-     *     Reporter Pipelines. TODO.
+     *     Reporter Pipelines. Defines the reporter pipelines scanning this product.
      * @param vulnerabilities
-     *     Vulnerabilities. TODO.
+     *     Vulnerabilities. Defines the vulnerabilities of the product.
      * @param releaseGroups
-     *     Release Groups. TODO.
+     *     Release Groups. Defines the release groups of the product.
      * @param releases
-     *     Releases. TODO.
+     *     Releases. Defines the releases of the product.
      */
     public VulnlogSchema(VulnerabilitiesIncludeVulnlogSchema include, List<ReleaseGroupsVulnlogSchema> releaseGroups, List<ReleasesVulnlogSchema> releases, List<ReporterPipelinesVulnlogSchema> reporterPipelines, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
         super();

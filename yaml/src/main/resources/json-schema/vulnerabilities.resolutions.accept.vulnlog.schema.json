@@ -5,13 +5,13 @@
   "type": "object",
   "properties": {
     "note": {
-      "title": "Note",
-      "description": "TODO",
+      "title": "Note on this Resolution",
+      "description": "Gives additional insight why this resolution was chosen.",
       "type": "string"
     },
     "on-id": {
       "title": "Accept on Release",
-      "description": "TODO",
+      "description": "Accept the potential risk of the vulnerability on the given release.",
       "oneOf": [
         {
           "type": "string"

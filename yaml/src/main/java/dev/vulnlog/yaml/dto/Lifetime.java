@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * Pipeline Lifetime
  * <p>
- * TODO
+ * From when until when this pipeline is active.
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -28,20 +28,20 @@ public class Lifetime {
     /**
      * End date of this pipeline
      * <p>
-     * TODO
+     * Date when this pipeline is no longer active. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("end")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Date when this pipeline is no longer active. Format: YYYY-MM-DD")
     private String end;
     /**
      * Start date of this pipeline
      * <p>
-     * TODO
+     * Date from when this pipeline is active. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("start")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Date from when this pipeline is active. Format: YYYY-MM-DD")
     private String start;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -56,9 +56,9 @@ public class Lifetime {
     /**
      * 
      * @param start
-     *     Start date of this pipeline. TODO.
+     *     Start date of this pipeline. Date from when this pipeline is active. Format: YYYY-MM-DD.
      * @param end
-     *     End date of this pipeline. TODO.
+     *     End date of this pipeline. Date when this pipeline is no longer active. Format: YYYY-MM-DD.
      */
     public Lifetime(String end, String start) {
         super();
@@ -69,7 +69,7 @@ public class Lifetime {
     /**
      * End date of this pipeline
      * <p>
-     * TODO
+     * Date when this pipeline is no longer active. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("end")
@@ -80,7 +80,7 @@ public class Lifetime {
     /**
      * End date of this pipeline
      * <p>
-     * TODO
+     * Date when this pipeline is no longer active. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("end")
@@ -91,7 +91,7 @@ public class Lifetime {
     /**
      * Start date of this pipeline
      * <p>
-     * TODO
+     * Date from when this pipeline is active. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("start")
@@ -102,7 +102,7 @@ public class Lifetime {
     /**
      * Start date of this pipeline
      * <p>
-     * TODO
+     * Date from when this pipeline is active. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("start")

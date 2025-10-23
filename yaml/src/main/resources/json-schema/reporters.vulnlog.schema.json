@@ -8,17 +8,17 @@
     "properties": {
       "id": {
         "title": "Reporter Identifier",
-        "description": "TODO",
+        "description": "Identifier of the reporter. Must be unique. Example: \"trivy\".",
         "type": "string"
       },
       "name": {
         "title": "Reporter Name",
-        "description": "TODO",
+        "description": "Printable name of the reporter. Example: \"OWASP Dependency Check\".",
         "type": "string"
       },
       "product": {
         "title": "Reporter Product",
-        "description": "TODO",
+        "description": "WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.",
         "type": "string"
       }
     }

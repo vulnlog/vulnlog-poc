@@ -8,14 +8,14 @@
     "properties": {
       "at": {
         "title": "Reported at Date",
-        "description": "TODO",
+        "description": "Date on which this report was created. Format: YYYY-MM-DD",
         "type": "string",
         "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
         "format": "date"
       },
       "on-id": {
         "title": "Reported Release",
-        "description": "TODO",
+        "description": "Releases on which this vulnerability report applies to.",
         "oneOf": [
           {
             "type": "string"
@@ -30,17 +30,17 @@
       },
       "reporter-id": {
         "title": "Reporter",
-        "description": "TODO",
+        "description": "Reporter of this vulnerability report.",
         "type": "string"
       },
       "suppression": {
-        "title": "Suppress this Report",
-        "description": "TODO",
+        "title": "Suppress Report",
+        "description": "Whether this report should be suppressed.",
         "$ref": "#/$defs/suppression"
       },
       "vuln-id": {
         "title": "Vulnerability ID",
-        "description": "TODO",
+        "description": "Identifier of the vulnerability. Can be a CVE or a Snyk ID.",
         "examples": [ "CVE-2021-44228" ],
         "oneOf": [
           {

@@ -81,7 +81,7 @@ public class VulnerabilitiesResolutionsVulnlogSchema {
      * @param remove
      *     Remove. Remove a dependency or functionality.
      * @param accept
-     *     Accept. Accept a vulnerability.
+     *     Accept. The potential risk the vulnerability poses to the product is considered acceptable. No further actions are planned. However, the vulnerability might be resolved through another or a future resolution.
      */
     public VulnerabilitiesResolutionsVulnlogSchema(VulnerabilitiesResolutionsAcceptVulnlogSchema accept, VulnerabilitiesResolutionsFixVulnlogSchema fix, VulnerabilitiesResolutionsRebuildVulnlogSchema rebuild, VulnerabilitiesResolutionsAcceptVulnlogSchema remove, VulnerabilitiesResolutionsUpdateVulnlogSchema update) {
         super();

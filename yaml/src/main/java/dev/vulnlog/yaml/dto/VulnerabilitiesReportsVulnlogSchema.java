@@ -26,29 +26,29 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reported at Date
      * <p>
-     * TODO
+     * Date on which this report was created. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("at")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Date on which this report was created. Format: YYYY-MM-DD")
     private String at;
     /**
      * Reported Release
      * <p>
-     * TODO
+     * Releases on which this vulnerability report applies to.
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Releases on which this vulnerability report applies to.")
     private Object onId;
     /**
      * Reporter
      * <p>
-     * TODO
+     * Reporter of this vulnerability report.
      * 
      */
     @JsonProperty("reporter-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Reporter of this vulnerability report.")
     private String reporterId;
     /**
      * Vulnlog Vulnerability Report Suppression Schema
@@ -61,11 +61,11 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Vulnerability ID
      * <p>
-     * TODO
+     * Identifier of the vulnerability. Can be a CVE or a Snyk ID.
      * 
      */
     @JsonProperty("vuln-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Identifier of the vulnerability. Can be a CVE or a Snyk ID.")
     private Object vulnId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -80,15 +80,15 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * 
      * @param at
-     *     Reported at Date. TODO.
+     *     Reported at Date. Date on which this report was created. Format: YYYY-MM-DD.
      * @param vulnId
-     *     Vulnerability ID. TODO.
+     *     Vulnerability ID. Identifier of the vulnerability. Can be a CVE or a Snyk ID.
      * @param suppression
-     *     Suppress this Report. TODO.
+     *     Suppress Report. Whether this report should be suppressed.
      * @param reporterId
-     *     Reporter. TODO.
+     *     Reporter. Reporter of this vulnerability report.
      * @param onId
-     *     Reported Release. TODO.
+     *     Reported Release. Releases on which this vulnerability report applies to.
      */
     public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, String reporterId, List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression, Object vulnId) {
         super();
@@ -102,7 +102,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reported at Date
      * <p>
-     * TODO
+     * Date on which this report was created. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("at")
@@ -113,7 +113,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reported at Date
      * <p>
-     * TODO
+     * Date on which this report was created. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("at")
@@ -124,7 +124,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reported Release
      * <p>
-     * TODO
+     * Releases on which this vulnerability report applies to.
      * 
      */
     @JsonProperty("on-id")
@@ -135,7 +135,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reported Release
      * <p>
-     * TODO
+     * Releases on which this vulnerability report applies to.
      * 
      */
     @JsonProperty("on-id")
@@ -146,7 +146,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reporter
      * <p>
-     * TODO
+     * Reporter of this vulnerability report.
      * 
      */
     @JsonProperty("reporter-id")
@@ -157,7 +157,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Reporter
      * <p>
-     * TODO
+     * Reporter of this vulnerability report.
      * 
      */
     @JsonProperty("reporter-id")
@@ -190,7 +190,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Vulnerability ID
      * <p>
-     * TODO
+     * Identifier of the vulnerability. Can be a CVE or a Snyk ID.
      * 
      */
     @JsonProperty("vuln-id")
@@ -201,7 +201,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * Vulnerability ID
      * <p>
-     * TODO
+     * Identifier of the vulnerability. Can be a CVE or a Snyk ID.
      * 
      */
     @JsonProperty("vuln-id")

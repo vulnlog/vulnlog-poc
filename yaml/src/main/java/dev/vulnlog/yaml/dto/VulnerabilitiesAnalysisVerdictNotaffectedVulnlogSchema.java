@@ -30,11 +30,11 @@ public class VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema {
     /**
      * VEX Justification
      * <p>
-     * TODO
+     * The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.
      * 
      */
     @JsonProperty("vex")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.")
     private VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema.Vex vex;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -49,7 +49,7 @@ public class VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema {
     /**
      * 
      * @param vex
-     *     VEX Justification. TODO.
+     *     VEX Justification. The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.
      */
     public VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema(VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema.Vex vex) {
         super();
@@ -59,7 +59,7 @@ public class VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema {
     /**
      * VEX Justification
      * <p>
-     * TODO
+     * The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.
      * 
      */
     @JsonProperty("vex")
@@ -70,7 +70,7 @@ public class VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema {
     /**
      * VEX Justification
      * <p>
-     * TODO
+     * The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.
      * 
      */
     @JsonProperty("vex")
@@ -92,7 +92,7 @@ public class VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema {
     /**
      * VEX Justification
      * <p>
-     * TODO
+     * The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.
      * 
      */
     public enum Vex {

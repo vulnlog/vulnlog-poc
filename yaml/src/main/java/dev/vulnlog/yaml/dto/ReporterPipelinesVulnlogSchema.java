@@ -23,38 +23,38 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter Pipeline Identifier
      * <p>
-     * TODO
+     * Identifier of this reporter pipeline. Must be unique.
      * 
      */
     @JsonProperty("id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Identifier of this reporter pipeline. Must be unique.")
     private String id;
     /**
      * Pipeline Lifetime
      * <p>
-     * TODO
+     * From when until when this pipeline is active.
      * 
      */
     @JsonProperty("lifetime")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("From when until when this pipeline is active.")
     private Lifetime lifetime;
     /**
      * Reporter Pipeline Name
      * <p>
-     * TODO
+     * Name of this reporter pipeline.
      * 
      */
     @JsonProperty("name")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Name of this reporter pipeline.")
     private String name;
     /**
      * Reporter
      * <p>
-     * TODO
+     * Reporter which is used by this pipeline. The reporter's unique identifier is required.
      * 
      */
     @JsonProperty("reporter-ref-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Reporter which is used by this pipeline. The reporter's unique identifier is required.")
     private String reporterRefId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -69,13 +69,13 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * 
      * @param lifetime
-     *     Pipeline Lifetime. TODO.
+     *     Pipeline Lifetime. From when until when this pipeline is active.
      * @param name
-     *     Reporter Pipeline Name. TODO.
+     *     Reporter Pipeline Name. Name of this reporter pipeline.
      * @param reporterRefId
-     *     Reporter. TODO.
+     *     Reporter. Reporter which is used by this pipeline. The reporter's unique identifier is required.
      * @param id
-     *     Reporter Pipeline Identifier. TODO.
+     *     Reporter Pipeline Identifier. Identifier of this reporter pipeline. Must be unique.
      */
     public ReporterPipelinesVulnlogSchema(String id, Lifetime lifetime, String name, String reporterRefId) {
         super();
@@ -88,7 +88,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter Pipeline Identifier
      * <p>
-     * TODO
+     * Identifier of this reporter pipeline. Must be unique.
      * 
      */
     @JsonProperty("id")
@@ -99,7 +99,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter Pipeline Identifier
      * <p>
-     * TODO
+     * Identifier of this reporter pipeline. Must be unique.
      * 
      */
     @JsonProperty("id")
@@ -110,7 +110,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Pipeline Lifetime
      * <p>
-     * TODO
+     * From when until when this pipeline is active.
      * 
      */
     @JsonProperty("lifetime")
@@ -121,7 +121,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Pipeline Lifetime
      * <p>
-     * TODO
+     * From when until when this pipeline is active.
      * 
      */
     @JsonProperty("lifetime")
@@ -132,7 +132,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter Pipeline Name
      * <p>
-     * TODO
+     * Name of this reporter pipeline.
      * 
      */
     @JsonProperty("name")
@@ -143,7 +143,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter Pipeline Name
      * <p>
-     * TODO
+     * Name of this reporter pipeline.
      * 
      */
     @JsonProperty("name")
@@ -154,7 +154,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter
      * <p>
-     * TODO
+     * Reporter which is used by this pipeline. The reporter's unique identifier is required.
      * 
      */
     @JsonProperty("reporter-ref-id")
@@ -165,7 +165,7 @@ public class ReporterPipelinesVulnlogSchema {
     /**
      * Reporter
      * <p>
-     * TODO
+     * Reporter which is used by this pipeline. The reporter's unique identifier is required.
      * 
      */
     @JsonProperty("reporter-ref-id")

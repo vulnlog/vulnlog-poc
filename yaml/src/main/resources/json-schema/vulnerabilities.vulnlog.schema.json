@@ -7,30 +7,30 @@
     "type": "object",
     "properties": {
       "analysis": {
-        "title": "Analysis",
-        "description": "TODO",
+        "title": "Vulnerability Analysis",
+        "description": "Analysis of the vulnerability and assessment of whether and, if so, how problematic the vulnerability is for the product.",
         "$ref": "#/$defs/analysis"
       },
       "cwe": {
         "title": "Common Weakness Enumeration",
-        "description": "TODO",
+        "description": "The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.",
         "type": "integer",
         "minimum": 11
       },
       "desc": {
         "title": "Vulnerability Description",
-        "description": "TODO",
+        "description": "A short summary of the vulnerability and its impact on the product.",
         "type": "string",
         "minLength": 3
       },
       "reports": {
-        "title": "Reports",
-        "description": "TODO",
+        "title": "Vulnerability Reports",
+        "description": "A list of vulnerability reports, each issues by a reporter.",
         "$ref": "#/$defs/reports"
       },
       "resolutions": {
-        "title": "Resolutions",
-        "description": "TODO",
+        "title": "Vulnerability Resolutions",
+        "description": "A list of resolutions describing how the vulnerability may be resolved.",
         "$ref": "#/$defs/resolutions"
       }
     },

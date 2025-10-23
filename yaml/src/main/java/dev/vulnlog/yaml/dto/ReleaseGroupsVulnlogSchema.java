@@ -24,29 +24,29 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Release Group Identifier
      * <p>
-     * TODO
+     * Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.
      * 
      */
     @JsonProperty("id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.")
     private String id;
     /**
      * Name of the Release Group
      * <p>
-     * TODO
+     * Name of the release group.
      * 
      */
     @JsonProperty("name")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Name of the release group.")
     private String name;
     /**
      * Release Identifier
      * <p>
-     * TODO
+     * Release identifiers that belong to this release group.
      * 
      */
     @JsonProperty("ref-ids")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Release identifiers that belong to this release group.")
     private List<String> refIds = new ArrayList<String>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -61,11 +61,11 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * 
      * @param refIds
-     *     Release Identifier. TODO.
+     *     Release Identifier. Release identifiers that belong to this release group.
      * @param name
-     *     Name of the Release Group. TODO.
+     *     Name of the Release Group. Name of the release group.
      * @param id
-     *     Release Group Identifier. TODO.
+     *     Release Group Identifier. Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.
      */
     public ReleaseGroupsVulnlogSchema(String id, String name, List<String> refIds) {
         super();
@@ -77,7 +77,7 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Release Group Identifier
      * <p>
-     * TODO
+     * Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.
      * 
      */
     @JsonProperty("id")
@@ -88,7 +88,7 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Release Group Identifier
      * <p>
-     * TODO
+     * Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.
      * 
      */
     @JsonProperty("id")
@@ -99,7 +99,7 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Name of the Release Group
      * <p>
-     * TODO
+     * Name of the release group.
      * 
      */
     @JsonProperty("name")
@@ -110,7 +110,7 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Name of the Release Group
      * <p>
-     * TODO
+     * Name of the release group.
      * 
      */
     @JsonProperty("name")
@@ -121,7 +121,7 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Release Identifier
      * <p>
-     * TODO
+     * Release identifiers that belong to this release group.
      * 
      */
     @JsonProperty("ref-ids")
@@ -132,7 +132,7 @@ public class ReleaseGroupsVulnlogSchema {
     /**
      * Release Identifier
      * <p>
-     * TODO
+     * Release identifiers that belong to this release group.
      * 
      */
     @JsonProperty("ref-ids")

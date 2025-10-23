@@ -6,7 +6,7 @@
   "properties": {
     "vex": {
       "title": "VEX Justification",
-      "description": "TODO",
+      "description": "The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.",
       "enum": [
         "Component not present",
         "Inline mitigations already exist",

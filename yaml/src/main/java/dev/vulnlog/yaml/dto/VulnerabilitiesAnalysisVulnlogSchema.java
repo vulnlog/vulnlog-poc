@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "at",
+    "on-id",
     "reasoning",
     "verdict"
 })
@@ -29,13 +30,22 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     @JsonPropertyDescription("Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD")
     private String at;
     /**
+     * Analysis for Release
+     * <p>
+     * This analysis applies for these releases. If left empty, the analysis applies for all releases.
+     * 
+     */
+    @JsonProperty("on-id")
+    @JsonPropertyDescription("This analysis applies for these releases. If left empty, the analysis applies for all releases.")
+    private Object onId;
+    /**
      * Reasoning
      * <p>
-     * TODO
+     * Description of the reasoning behind this analysis.
      * 
      */
     @JsonProperty("reasoning")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Description of the reasoning behind this analysis.")
     private String reasoning;
     /**
      * Vulnlog Vulnerability Analysis Verdict Schema
@@ -60,13 +70,16 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
      * @param at
      *     Analysis Date. Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD.
      * @param reasoning
-     *     Reasoning. TODO.
+     *     Reasoning. Description of the reasoning behind this analysis.
      * @param verdict
-     *     Verdict. TODO.
+     *     Verdict. Either affected or not affected.
+     * @param onId
+     *     Analysis for Release. This analysis applies for these releases. If left empty, the analysis applies for all releases.
      */
-    public VulnerabilitiesAnalysisVulnlogSchema(String at, String reasoning, VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
+    public VulnerabilitiesAnalysisVulnlogSchema(String at, Object onId, String reasoning, VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
         super();
         this.at = at;
+        this.onId = onId;
         this.reasoning = reasoning;
         this.verdict = verdict;
     }
@@ -94,9 +107,31 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     }
 
     /**
+     * Analysis for Release
+     * <p>
+     * This analysis applies for these releases. If left empty, the analysis applies for all releases.
+     * 
+     */
+    @JsonProperty("on-id")
+    public Object getOnId() {
+        return onId;
+    }
+
+    /**
+     * Analysis for Release
+     * <p>
+     * This analysis applies for these releases. If left empty, the analysis applies for all releases.
+     * 
+     */
+    @JsonProperty("on-id")
+    public void setOnId(Object onId) {
+        this.onId = onId;
+    }
+
+    /**
      * Reasoning
      * <p>
-     * TODO
+     * Description of the reasoning behind this analysis.
      * 
      */
     @JsonProperty("reasoning")
@@ -107,7 +142,7 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     /**
      * Reasoning
      * <p>
-     * TODO
+     * Description of the reasoning behind this analysis.
      * 
      */
     @JsonProperty("reasoning")

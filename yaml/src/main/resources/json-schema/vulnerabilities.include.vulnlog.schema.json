@@ -6,17 +6,17 @@
   "properties": {
     "releases": {
       "title": "Include Releases",
-      "description": "TODO",
+      "description": "When releases are defined in another file, they can be included here.",
       "type": "object",
       "properties": {
         "file": {
           "title": "File to include",
-          "description": "TODO",
+          "description": "File containing the releases to be included.",
           "type": "string"
         },
         "ref-ids": {
           "title": "Release IDs to Reference from",
-          "description": "TODO",
+          "description": "Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.",
           "type": "array",
           "items": {
             "type": "string"
@@ -26,17 +26,17 @@
     },
     "reporters": {
       "title": "Include Reporters",
-      "description": "TODO",
+      "description": "When reporters are defined in another file, they can be included here.",
       "type": "object",
       "properties": {
         "file": {
           "title": "File to include",
-          "description": "TODO",
+          "description": "File containing the reporter to be included.",
           "type": "string"
         },
         "pipeline-ref-ids": {
           "title": "Reporter Pipeline References",
-          "description": "TODO",
+          "description": "Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.",
           "type": "array",
           "items": {
             "type": "string"
@@ -44,7 +44,7 @@
         },
         "reporter-ref-ids": {
           "title": "Reporter References",
-          "description": "TODO",
+          "description": "Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.",
           "type": "array",
           "items": {
             "type": "string"

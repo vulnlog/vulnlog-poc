@@ -6,32 +6,32 @@
   "properties": {
     "include": {
       "title": "Include Files",
-      "description": "TODO",
+      "description": "Include other Vulnlog files in this Vulnlog file.",
       "$ref": "#/$defs/include"
     },
     "release-groups": {
       "title": "Release Groups",
-      "description": "TODO",
+      "description": "Defines the release groups of the product.",
       "$ref": "#/$defs/release-groups"
     },
     "releases": {
       "title": "Releases",
-      "description": "TODO",
+      "description": "Defines the releases of the product.",
       "$ref": "#/$defs/releases"
     },
     "reporter-pipelines": {
       "title": "Reporter Pipelines",
-      "description": "TODO",
+      "description": "Defines the reporter pipelines scanning this product.",
       "$ref": "#/$defs/reporter-pipelines"
     },
     "reporters": {
       "title": "Reporters",
-      "description": "TODO",
+      "description": "Defines the reporters of vulnerabilities on the product.",
       "$ref": "#/$defs/reporters"
     },
     "vulnerabilities": {
       "title": "Vulnerabilities",
-      "description": "TODO",
+      "description": "Defines the vulnerabilities of the product.",
       "$ref": "#/$defs/vulnerabilities"
     }
   },
@@ -46,17 +46,17 @@
         "properties": {
           "id": {
             "title": "Release Group Identifier",
-            "description": "TODO",
+            "description": "Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.",
             "type": "string"
           },
           "name": {
             "title": "Name of the Release Group",
-            "description": "TODO",
+            "description": "Name of the release group.",
             "type": "string"
           },
           "ref-ids": {
             "title": "Release Identifier",
-            "description": "TODO",
+            "description": "Release identifiers that belong to this release group.",
             "type": "array",
             "items": {
               "type": "string"
@@ -74,25 +74,25 @@
         "properties": {
           "id": {
             "title": "Release Identifier",
-            "description": "TODO",
+            "description": "Identifier of the release. Must be unique.",
             "type": "string"
           },
           "name": {
             "title": "Release Name",
-            "description": "TODO",
+            "description": "Printable name of the release.",
             "examples": [ "Product 1.0.0" ],
             "type": "string"
           },
           "release-date": {
             "title": "Release Date",
-            "description": "TODO",
+            "description": "Date of the release. Format: YYYY-MM-DD.",
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "format": "date"
           },
           "version": {
             "title": "Release Version",
-            "description": "TODO",
+            "description": "Version of the release. For example in the semantic version format: X.Y.Z.",
             "examples": [ "1.0.0" ],
             "type": "string"
           }
@@ -108,24 +108,24 @@
         "properties": {
           "id": {
             "title": "Reporter Pipeline Identifier",
-            "description": "TODO",
+            "description": "Identifier of this reporter pipeline. Must be unique.",
             "type": "string"
           },
           "lifetime": {
             "title": "Pipeline Lifetime",
-            "description": "TODO",
+            "description": "From when until when this pipeline is active.",
             "type": "object",
             "properties": {
               "end": {
                 "title": "End date of this pipeline",
-                "description": "TODO",
+                "description": "Date when this pipeline is no longer active. Format: YYYY-MM-DD",
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
                 "format": "date"
               },
               "start": {
                 "title": "Start date of this pipeline",
-                "description": "TODO",
+                "description": "Date from when this pipeline is active. Format: YYYY-MM-DD",
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
                 "format": "date"
@@ -134,12 +134,12 @@
           },
           "name": {
             "title": "Reporter Pipeline Name",
-            "description": "TODO",
+            "description": "Name of this reporter pipeline.",
             "type": "string"
           },
           "reporter-ref-id": {
             "title": "Reporter",
-            "description": "TODO",
+            "description": "Reporter which is used by this pipeline. The reporter's unique identifier is required.",
             "type": "string"
           }
         }
@@ -154,17 +154,17 @@
         "properties": {
           "id": {
             "title": "Reporter Identifier",
-            "description": "TODO",
+            "description": "Identifier of the reporter. Must be unique. Example: \"trivy\".",
             "type": "string"
           },
           "name": {
             "title": "Reporter Name",
-            "description": "TODO",
+            "description": "Printable name of the reporter. Example: \"OWASP Dependency Check\".",
             "type": "string"
           },
           "product": {
             "title": "Reporter Product",
-            "description": "TODO",
+            "description": "WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.",
             "type": "string"
           }
         }
@@ -177,7 +177,7 @@
       "properties": {
         "severity": {
           "title": "Severity",
-          "description": "TODO",
+          "description": "The severity of the impact of this vulnerability on the product.",
           "enum": [ "Critical", "High", "Medium", "Low" ]
         }
       }
@@ -189,7 +189,7 @@
       "properties": {
         "vex": {
           "title": "VEX Justification",
-          "description": "TODO",
+          "description": "The VEX (Vulnerability Exploitability eXchange) justification describes why a component is not affected by a vulnerability. This helps explain the security posture and reasoning behind a 'not affected' verdict.",
           "enum": [
             "Component not present",
             "Inline mitigations already exist",
@@ -207,12 +207,12 @@
       "properties": {
         "not-affected": {
           "title": "Not Affected",
-          "description": "TODO",
+          "description": "The reported vulnerability does not affects the product.",
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json/$defs/not-affected"
         },
         "affected": {
           "title": "Affected",
-          "description": "TODO",
+          "description": "The reported vulnerability affects the product.",
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json/$defs/affected"
         }
       },
@@ -239,15 +239,30 @@
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "format": "date"
           },
+          "on-id": {
+            "title": "Analysis for Release",
+            "description": "This analysis applies for these releases. If left empty, the analysis applies for all releases.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
           "reasoning": {
             "title": "Reasoning",
-            "description": "TODO",
+            "description": "Description of the reasoning behind this analysis.",
             "type": "string",
             "minLength": 2
           },
           "verdict": {
             "title": "Verdict",
-            "description": "TODO",
+            "description": "Either affected or not affected.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.vulnlog.schema.json/$defs/verdict",
             "type": "object"
           }
@@ -266,17 +281,17 @@
       "properties": {
         "releases": {
           "title": "Include Releases",
-          "description": "TODO",
+          "description": "When releases are defined in another file, they can be included here.",
           "type": "object",
           "properties": {
             "file": {
               "title": "File to include",
-              "description": "TODO",
+              "description": "File containing the releases to be included.",
               "type": "string"
             },
             "ref-ids": {
               "title": "Release IDs to Reference from",
-              "description": "TODO",
+              "description": "Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.",
               "type": "array",
               "items": {
                 "type": "string"
@@ -286,17 +301,17 @@
         },
         "reporters": {
           "title": "Include Reporters",
-          "description": "TODO",
+          "description": "When reporters are defined in another file, they can be included here.",
           "type": "object",
           "properties": {
             "file": {
               "title": "File to include",
-              "description": "TODO",
+              "description": "File containing the reporter to be included.",
               "type": "string"
             },
             "pipeline-ref-ids": {
               "title": "Reporter Pipeline References",
-              "description": "TODO",
+              "description": "Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.",
               "type": "array",
               "items": {
                 "type": "string"
@@ -304,7 +319,7 @@
             },
             "reporter-ref-ids": {
               "title": "Reporter References",
-              "description": "TODO",
+              "description": "Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.",
               "type": "array",
               "items": {
                 "type": "string"
@@ -323,7 +338,7 @@
         "properties": {
           "on": {
             "title": "Suppress on Releases",
-            "description": "TODO",
+            "description": "Releases on which this suppression should be applied.",
             "oneOf": [
               {
                 "type": "string"
@@ -338,7 +353,7 @@
           },
           "until": {
             "title": "Suppress Until",
-            "description": "TODO",
+            "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
             "examples": [ "1970-01-01" ],
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
@@ -356,14 +371,14 @@
         "properties": {
           "at": {
             "title": "Reported at Date",
-            "description": "TODO",
+            "description": "Date on which this report was created. Format: YYYY-MM-DD",
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "format": "date"
           },
           "on-id": {
             "title": "Reported Release",
-            "description": "TODO",
+            "description": "Releases on which this vulnerability report applies to.",
             "oneOf": [
               {
                 "type": "string"
@@ -378,17 +393,17 @@
           },
           "reporter-id": {
             "title": "Reporter",
-            "description": "TODO",
+            "description": "Reporter of this vulnerability report.",
             "type": "string"
           },
           "suppression": {
-            "title": "Suppress this Report",
-            "description": "TODO",
+            "title": "Suppress Report",
+            "description": "Whether this report should be suppressed.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/suppression"
           },
           "vuln-id": {
             "title": "Vulnerability ID",
-            "description": "TODO",
+            "description": "Identifier of the vulnerability. Can be a CVE or a Snyk ID.",
             "examples": [ "CVE-2021-44228" ],
             "oneOf": [
               {
@@ -416,13 +431,13 @@
       "type": "object",
       "properties": {
         "note": {
-          "title": "Note",
-          "description": "TODO",
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
           "type": "string"
         },
         "on-id": {
           "title": "Accept on Release",
-          "description": "TODO",
+          "description": "Accept the potential risk of the vulnerability on the given release.",
           "oneOf": [
             {
               "type": "string"
@@ -443,13 +458,13 @@
       "type": "object",
       "properties": {
         "note": {
-          "title": "Note",
-          "description": "TODO",
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
           "type": "string"
         },
         "on-id": {
           "title": "Fix on Release",
-          "description": "TODO",
+          "description": "The releases on which this vulnerability should be fixed.",
           "oneOf": [
             {
               "type": "string"
@@ -461,6 +476,13 @@
               }
             }
           ]
+        },
+        "resolved-at": {
+          "title": "Resolved at Date",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
         }
       }
     },
@@ -470,13 +492,13 @@
       "type": "object",
       "properties": {
         "note": {
-          "title": "Note",
-          "description": "TODO",
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
           "type": "string"
         },
         "on-id": {
           "title": "Rebuild on Release",
-          "description": "TODO",
+          "description": "The releases which should be rebuild.",
           "oneOf": [
             {
               "type": "string"
@@ -488,6 +510,13 @@
               }
             }
           ]
+        },
+        "resolved-at": {
+          "title": "Resolved at Date",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
         }
       }
     },
@@ -497,14 +526,21 @@
       "type": "object",
       "properties": {
         "note": {
-          "title": "Note",
-          "description": "TODO",
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
           "type": "string"
         },
         "on": {
           "title": "Remove on Release",
-          "description": "TODO",
+          "description": "The release on which a dependency should be removed.",
           "type": "string"
+        },
+        "resolved-at": {
+          "title": "Resolved at Date",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
         }
       }
     },
@@ -547,8 +583,8 @@
           "pattern": "^.*:.*:.*$"
         },
         "note": {
-          "title": "Note",
-          "description": "TODO",
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
           "type": "string"
         },
         "npm-dependency": {
@@ -560,7 +596,7 @@
         },
         "on-id": {
           "title": "Update on Release",
-          "description": "TODO",
+          "description": "The releases a dependency should be updated on.",
           "oneOf": [
             {
               "type": "string"
@@ -575,14 +611,14 @@
         },
         "resolved-at": {
           "title": "Resolved at Date",
-          "description": "TODO",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
           "type": "string",
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
           "format": "date"
         },
         "to": {
           "title": "To Version",
-          "description": "TODO",
+          "description": "The version to which the dependency should be updated.",
           "type": "string"
         }
       }
@@ -596,7 +632,7 @@
         "properties": {
           "accept": {
             "title": "Accept",
-            "description": "Accept a vulnerability.",
+            "description": "The potential risk the vulnerability poses to the product is considered acceptable. No further actions are planned. However, the vulnerability might be resolved through another or a future resolution.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.vulnlog.schema.json/$defs/accept",
             "type": "object"
           },
@@ -652,30 +688,30 @@
         "type": "object",
         "properties": {
           "analysis": {
-            "title": "Analysis",
-            "description": "TODO",
+            "title": "Vulnerability Analysis",
+            "description": "Analysis of the vulnerability and assessment of whether and, if so, how problematic the vulnerability is for the product.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json/$defs/analysis"
           },
           "cwe": {
             "title": "Common Weakness Enumeration",
-            "description": "TODO",
+            "description": "The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.",
             "type": "integer",
             "minimum": 11
           },
           "desc": {
             "title": "Vulnerability Description",
-            "description": "TODO",
+            "description": "A short summary of the vulnerability and its impact on the product.",
             "type": "string",
             "minLength": 3
           },
           "reports": {
-            "title": "Reports",
-            "description": "TODO",
+            "title": "Vulnerability Reports",
+            "description": "A list of vulnerability reports, each issues by a reporter.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json/$defs/reports"
           },
           "resolutions": {
-            "title": "Resolutions",
-            "description": "TODO",
+            "title": "Vulnerability Resolutions",
+            "description": "A list of resolutions describing how the vulnerability may be resolved.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json/$defs/resolutions"
           }
         },

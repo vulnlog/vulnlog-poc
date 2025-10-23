@@ -8,24 +8,24 @@
     "properties": {
       "id": {
         "title": "Reporter Pipeline Identifier",
-        "description": "TODO",
+        "description": "Identifier of this reporter pipeline. Must be unique.",
         "type": "string"
       },
       "lifetime": {
         "title": "Pipeline Lifetime",
-        "description": "TODO",
+        "description": "From when until when this pipeline is active.",
         "type": "object",
         "properties": {
           "end": {
             "title": "End date of this pipeline",
-            "description": "TODO",
+            "description": "Date when this pipeline is no longer active. Format: YYYY-MM-DD",
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "format": "date"
           },
           "start": {
             "title": "Start date of this pipeline",
-            "description": "TODO",
+            "description": "Date from when this pipeline is active. Format: YYYY-MM-DD",
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "format": "date"
@@ -34,12 +34,12 @@
       },
       "name": {
         "title": "Reporter Pipeline Name",
-        "description": "TODO",
+        "description": "Name of this reporter pipeline.",
         "type": "string"
       },
       "reporter-ref-id": {
         "title": "Reporter",
-        "description": "TODO",
+        "description": "Reporter which is used by this pipeline. The reporter's unique identifier is required.",
         "type": "string"
       }
     }

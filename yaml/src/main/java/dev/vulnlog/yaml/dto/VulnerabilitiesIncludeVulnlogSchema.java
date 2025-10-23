@@ -28,20 +28,20 @@ public class VulnerabilitiesIncludeVulnlogSchema {
     /**
      * Include Releases
      * <p>
-     * TODO
+     * When releases are defined in another file, they can be included here.
      * 
      */
     @JsonProperty("releases")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("When releases are defined in another file, they can be included here.")
     private Releases releases;
     /**
      * Include Reporters
      * <p>
-     * TODO
+     * When reporters are defined in another file, they can be included here.
      * 
      */
     @JsonProperty("reporters")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("When reporters are defined in another file, they can be included here.")
     private Reporters reporters;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -56,9 +56,9 @@ public class VulnerabilitiesIncludeVulnlogSchema {
     /**
      * 
      * @param reporters
-     *     Include Reporters. TODO.
+     *     Include Reporters. When reporters are defined in another file, they can be included here.
      * @param releases
-     *     Include Releases. TODO.
+     *     Include Releases. When releases are defined in another file, they can be included here.
      */
     public VulnerabilitiesIncludeVulnlogSchema(Releases releases, Reporters reporters) {
         super();
@@ -69,7 +69,7 @@ public class VulnerabilitiesIncludeVulnlogSchema {
     /**
      * Include Releases
      * <p>
-     * TODO
+     * When releases are defined in another file, they can be included here.
      * 
      */
     @JsonProperty("releases")
@@ -80,7 +80,7 @@ public class VulnerabilitiesIncludeVulnlogSchema {
     /**
      * Include Releases
      * <p>
-     * TODO
+     * When releases are defined in another file, they can be included here.
      * 
      */
     @JsonProperty("releases")
@@ -91,7 +91,7 @@ public class VulnerabilitiesIncludeVulnlogSchema {
     /**
      * Include Reporters
      * <p>
-     * TODO
+     * When reporters are defined in another file, they can be included here.
      * 
      */
     @JsonProperty("reporters")
@@ -102,7 +102,7 @@ public class VulnerabilitiesIncludeVulnlogSchema {
     /**
      * Include Reporters
      * <p>
-     * TODO
+     * When reporters are defined in another file, they can be included here.
      * 
      */
     @JsonProperty("reporters")

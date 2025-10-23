@@ -21,28 +21,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "note",
-    "on-id"
+    "on-id",
+    "resolved-at"
 })
 public class VulnerabilitiesResolutionsFixVulnlogSchema {
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Gives additional insight why this resolution was chosen.")
     private String note;
     /**
      * Fix on Release
      * <p>
-     * TODO
+     * The releases on which this vulnerability should be fixed.
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The releases on which this vulnerability should be fixed.")
     private Object onId;
+    /**
+     * Resolved at Date
+     * <p>
+     * The date on which this resolution is applied. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("resolved-at")
+    @JsonPropertyDescription("The date on which this resolution is applied. Format: YYYY-MM-DD")
+    private String resolvedAt;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -56,20 +66,23 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     /**
      * 
      * @param note
-     *     Note. TODO.
+     *     Note on this Resolution. Gives additional insight why this resolution was chosen.
+     * @param resolvedAt
+     *     Resolved at Date. The date on which this resolution is applied. Format: YYYY-MM-DD.
      * @param onId
-     *     Fix on Release. TODO.
+     *     Fix on Release. The releases on which this vulnerability should be fixed.
      */
-    public VulnerabilitiesResolutionsFixVulnlogSchema(String note, Object onId) {
+    public VulnerabilitiesResolutionsFixVulnlogSchema(String note, Object onId, String resolvedAt) {
         super();
         this.note = note;
         this.onId = onId;
+        this.resolvedAt = resolvedAt;
     }
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
@@ -78,9 +91,9 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     }
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
@@ -91,7 +104,7 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     /**
      * Fix on Release
      * <p>
-     * TODO
+     * The releases on which this vulnerability should be fixed.
      * 
      */
     @JsonProperty("on-id")
@@ -102,12 +115,34 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     /**
      * Fix on Release
      * <p>
-     * TODO
+     * The releases on which this vulnerability should be fixed.
      * 
      */
     @JsonProperty("on-id")
     public void setOnId(Object onId) {
         this.onId = onId;
+    }
+
+    /**
+     * Resolved at Date
+     * <p>
+     * The date on which this resolution is applied. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("resolved-at")
+    public String getResolvedAt() {
+        return resolvedAt;
+    }
+
+    /**
+     * Resolved at Date
+     * <p>
+     * The date on which this resolution is applied. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("resolved-at")
+    public void setResolvedAt(String resolvedAt) {
+        this.resolvedAt = resolvedAt;
     }
 
     @JsonAnyGetter

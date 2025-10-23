@@ -53,9 +53,9 @@ public class VulnerabilitiesAnalysisVerdictVulnlogSchema {
     /**
      * 
      * @param notAffected
-     *     Not Affected. TODO.
+     *     Not Affected. The reported vulnerability does not affects the product.
      * @param affected
-     *     Affected. TODO.
+     *     Affected. The reported vulnerability affects the product.
      */
     public VulnerabilitiesAnalysisVerdictVulnlogSchema(VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema notAffected, VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema affected) {
         super();

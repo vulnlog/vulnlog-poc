@@ -59,13 +59,13 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     @JsonPropertyDescription("The maven dependency in the form of groupId:artifactId:version that should be updated.")
     private String mavenDependency;
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Gives additional insight why this resolution was chosen.")
     private String note;
     /**
      * NPM Dependency
@@ -79,29 +79,29 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * Update on Release
      * <p>
-     * TODO
+     * The releases a dependency should be updated on.
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The releases a dependency should be updated on.")
     private Object onId;
     /**
      * Resolved at Date
      * <p>
-     * TODO
+     * The date on which this resolution is applied. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("resolved-at")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The date on which this resolution is applied. Format: YYYY-MM-DD")
     private String resolvedAt;
     /**
      * To Version
      * <p>
-     * TODO
+     * The version to which the dependency should be updated.
      * 
      */
     @JsonProperty("to")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("The version to which the dependency should be updated.")
     private String to;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -118,19 +118,19 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
      * @param mavenDependency
      *     Maven Dependency. The maven dependency in the form of groupId:artifactId:version that should be updated.
      * @param note
-     *     Note. TODO.
+     *     Note on this Resolution. Gives additional insight why this resolution was chosen.
      * @param npmDependency
      *     NPM Dependency. The NPM dependency in the form of name@version that should be updated.
      * @param resolvedAt
-     *     Resolved at Date. TODO.
+     *     Resolved at Date. The date on which this resolution is applied. Format: YYYY-MM-DD.
      * @param dependency
      *     Generic Dependency. Define a generic dependency what should be updated. Use this, if the more specific options such as Maven or NPM are not applicable.
      * @param to
-     *     To Version. TODO.
+     *     To Version. The version to which the dependency should be updated.
      * @param containerDependency
      *     Container Dependency. The maven dependency in the form of groupId:artifactId:version that should be updated.
      * @param onId
-     *     Update on Release. TODO.
+     *     Update on Release. The releases a dependency should be updated on.
      */
     public VulnerabilitiesResolutionsUpdateVulnlogSchema(String containerDependency, String dependency, String mavenDependency, String note, String npmDependency, Object onId, String resolvedAt, String to) {
         super();
@@ -211,9 +211,9 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     }
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
@@ -222,9 +222,9 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     }
 
     /**
-     * Note
+     * Note on this Resolution
      * <p>
-     * TODO
+     * Gives additional insight why this resolution was chosen.
      * 
      */
     @JsonProperty("note")
@@ -257,7 +257,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * Update on Release
      * <p>
-     * TODO
+     * The releases a dependency should be updated on.
      * 
      */
     @JsonProperty("on-id")
@@ -268,7 +268,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * Update on Release
      * <p>
-     * TODO
+     * The releases a dependency should be updated on.
      * 
      */
     @JsonProperty("on-id")
@@ -279,7 +279,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * Resolved at Date
      * <p>
-     * TODO
+     * The date on which this resolution is applied. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("resolved-at")
@@ -290,7 +290,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * Resolved at Date
      * <p>
-     * TODO
+     * The date on which this resolution is applied. Format: YYYY-MM-DD
      * 
      */
     @JsonProperty("resolved-at")
@@ -301,7 +301,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * To Version
      * <p>
-     * TODO
+     * The version to which the dependency should be updated.
      * 
      */
     @JsonProperty("to")
@@ -312,7 +312,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     /**
      * To Version
      * <p>
-     * TODO
+     * The version to which the dependency should be updated.
      * 
      */
     @JsonProperty("to")

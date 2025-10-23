@@ -38,8 +38,8 @@
       "pattern": "^.*:.*:.*$"
     },
     "note": {
-      "title": "Note",
-      "description": "TODO",
+      "title": "Note on this Resolution",
+      "description": "Gives additional insight why this resolution was chosen.",
       "type": "string"
     },
     "npm-dependency": {
@@ -51,7 +51,7 @@
     },
     "on-id": {
       "title": "Update on Release",
-      "description": "TODO",
+      "description": "The releases a dependency should be updated on.",
       "oneOf": [
         {
           "type": "string"
@@ -66,14 +66,14 @@
     },
     "resolved-at": {
       "title": "Resolved at Date",
-      "description": "TODO",
+      "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
       "format": "date"
     },
     "to": {
       "title": "To Version",
-      "description": "TODO",
+      "description": "The version to which the dependency should be updated.",
       "type": "string"
     }
   }

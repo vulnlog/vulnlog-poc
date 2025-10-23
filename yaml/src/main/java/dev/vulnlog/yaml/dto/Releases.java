@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * Include Releases
  * <p>
- * TODO
+ * When releases are defined in another file, they can be included here.
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -30,20 +30,20 @@ public class Releases {
     /**
      * File to include
      * <p>
-     * TODO
+     * File containing the releases to be included.
      * 
      */
     @JsonProperty("file")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("File containing the releases to be included.")
     private String file;
     /**
      * Release IDs to Reference from
      * <p>
-     * TODO
+     * Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("ref-ids")
-    @JsonPropertyDescription("TODO")
+    @JsonPropertyDescription("Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.")
     private List<String> refIds = new ArrayList<String>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -58,9 +58,9 @@ public class Releases {
     /**
      * 
      * @param refIds
-     *     Release IDs to Reference from. TODO.
+     *     Release IDs to Reference from. Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.
      * @param file
-     *     File to include. TODO.
+     *     File to include. File containing the releases to be included.
      */
     public Releases(String file, List<String> refIds) {
         super();
@@ -71,7 +71,7 @@ public class Releases {
     /**
      * File to include
      * <p>
-     * TODO
+     * File containing the releases to be included.
      * 
      */
     @JsonProperty("file")
@@ -82,7 +82,7 @@ public class Releases {
     /**
      * File to include
      * <p>
-     * TODO
+     * File containing the releases to be included.
      * 
      */
     @JsonProperty("file")
@@ -93,7 +93,7 @@ public class Releases {
     /**
      * Release IDs to Reference from
      * <p>
-     * TODO
+     * Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("ref-ids")
@@ -104,7 +104,7 @@ public class Releases {
     /**
      * Release IDs to Reference from
      * <p>
-     * TODO
+     * Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.
      * 
      */
     @JsonProperty("ref-ids")
