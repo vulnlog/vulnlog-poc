@@ -21,6 +21,21 @@
           }
         ]
       },
+      "owasp": {
+        "title": "OWASP Dependency Check Suppression",
+        "description": "Setups a OWASP Dependency Check suppression.",
+        "$ref": "#/$defs/owasp"
+      },
+      "snyk": {
+        "title": "Snyk Open Source Suppression",
+        "description": "Setups a Snyk Open Source suppression.",
+        "$ref": "#/$defs/snyk"
+      },
+      "trivy": {
+        "title": "Trivy Suppression",
+        "description": "Setups a Trivy suppression.",
+        "$ref": "#/$defs/trivy"
+      },
       "until": {
         "title": "Suppress Until",
         "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
@@ -29,6 +44,17 @@
         "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
         "format": "date"
       }
+    }
+  },
+  "$defs": {
+    "owasp": {
+      "$ref": "vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
+    },
+    "snyk": {
+      "$ref": "vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
+    },
+    "trivy": {
+      "$ref": "vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
     }
   }
 }

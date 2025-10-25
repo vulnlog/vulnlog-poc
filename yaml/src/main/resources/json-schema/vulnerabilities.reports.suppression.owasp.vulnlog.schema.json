@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.reports.suppression.owasp.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Report Suppression OWASP Dependency Check Schema",
+  "type": "object",
+  "properties": {
+    "cpe": {
+      "title": "",
+      "description": "The suppression only applies to artifacts matching these common platform enumerations.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "cpe"
+      }
+    },
+    "paths": {
+      "title": "Paths",
+      "description": "The suppression only applies to files matching these paths.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "path"
+      }
+    },
+    "purls": {
+      "title": "Package URL",
+      "description": "The suppression only applies to packages matching these PURLs.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+        "format": "purl"
+      }
+    }
+  }
+}

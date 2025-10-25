@@ -1,11 +1,9 @@
 ---
 reporters:
   - id: &trivy trivy
-    name: Trivy
-    product: aquasec/trivy
+    vendor: Aqua Security Trivy
   - id: &owasp owasp
-    name: OWASP Dependency Check
-    product: owasp/dependency-check
+    vendor: OWASP Dependency Check
 
 reporter-pipelines:
   - id: trivy-pipeline

@@ -162,10 +162,14 @@
             "description": "Printable name of the reporter. Example: \"OWASP Dependency Check\".",
             "type": "string"
           },
-          "product": {
-            "title": "Reporter Product",
-            "description": "WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.",
-            "type": "string"
+          "vendor": {
+            "title": "Reporter Vendor",
+            "description": "An identifier describing the reporter vendor. This identifier should be used later to match predefined templates for suppression files for example.",
+            "enum": [
+              "Aqua Security Trivy",
+              "OWASP Dependency Check",
+              "Snyk Open Source"
+            ]
           }
         }
       }
@@ -329,6 +333,83 @@
         }
       }
     },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.owasp.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression OWASP Dependency Check Schema",
+      "type": "object",
+      "properties": {
+        "cpe": {
+          "title": "",
+          "description": "The suppression only applies to artifacts matching these common platform enumerations.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "cpe"
+          }
+        },
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "path"
+          }
+        },
+        "purls": {
+          "title": "Package URL",
+          "description": "The suppression only applies to packages matching these PURLs.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+            "format": "purl"
+          }
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.snyk.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression Snyk Open Source Schema",
+      "type": "object",
+      "properties": {
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "examples": [ "*", "configstore > dot-prop", "snyk > configstore > dot-prop" ],
+            "type": "string"
+          }
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.trivy.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression Trivy Schema",
+      "type": "object",
+      "properties": {
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "path"
+          }
+        },
+        "purls": {
+          "title": "Package URL",
+          "description": "The suppression only applies to packages matching these PURLs.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+            "format": "purl"
+          }
+        }
+      }
+    },
     "https://vulnlog.dev/vulnerabilities.reports.suppression.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Vulnlog Vulnerability Report Suppression Schema",
@@ -351,6 +432,21 @@
               }
             ]
           },
+          "owasp": {
+            "title": "OWASP Dependency Check Suppression",
+            "description": "Setups a OWASP Dependency Check suppression.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/owasp"
+          },
+          "snyk": {
+            "title": "Snyk Open Source Suppression",
+            "description": "Setups a Snyk Open Source suppression.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/snyk"
+          },
+          "trivy": {
+            "title": "Trivy Suppression",
+            "description": "Setups a Trivy suppression.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/trivy"
+          },
           "until": {
             "title": "Suppress Until",
             "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
@@ -359,6 +455,17 @@
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
             "format": "date"
           }
+        }
+      },
+      "$defs": {
+        "owasp": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
+        },
+        "snyk": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
+        },
+        "trivy": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
         }
       }
     },

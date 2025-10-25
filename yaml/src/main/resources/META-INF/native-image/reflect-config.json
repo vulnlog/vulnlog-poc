@@ -117,6 +117,33 @@
     "allPublicFields": true
   },
   {
+    "name": "dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionOwaspVulnlogSchema",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "allPublicFields": true
+  },
+  {
+    "name": "dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionSnykVulnlogSchema",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "allPublicFields": true
+  },
+  {
+    "name": "dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionTrivyVulnlogSchema",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "allPublicFields": true
+  },
+  {
     "name": "dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,

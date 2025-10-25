@@ -4,12 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.yaml.YAMLAnchorReplayingFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.exists
+import kotlin.jvm.java
 
 class Parser {
     private val yamlFactory = YAMLAnchorReplayingFactory()
@@ -25,6 +27,10 @@ class Parser {
             .addDeserializer(
                 VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema.Severity::class.java,
                 SeverityDeserializer()
+            )
+            .addDeserializer(
+                ReportersVulnlogSchema.Vendor::class.java,
+                VendorDeserializer()
             )
         registerModule(module)
     }

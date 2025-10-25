@@ -3,29 +3,41 @@ include:
   releases:
     file: releases.vl.yml
     ref-ids:
-      - &p803 product803
-      - &p804 product804
+      - &p7712 product7712
+      - &p805 product805
+      - &p814 product814
+      - &p832 product832
+      - &p841 product841
+      - &p850 product850
+      - &p860 product860
   reporters:
     file: reporters.vl.yml
     pipeline-ref-ids:
       - &trivy trivy-pipeline
       - &owasp owasp-pipeline
+      - &oracleCpu oracleCpu
 
 vulnerabilities:
+
   - desc: Information leak via uninitialized stack contents in the rsync daemon.
     cwe: 908
     reports:
       - vuln-id: CVE-2024-12085
         reporter-id: *trivy
         at: 2024-12-18
-        on-id: [ *p803, *p804 ]
+        on-id: [ *p805, *p832 ]
         suppression:
-          - on-id: [ *p803, *p804 ]
+          - on-id: [ *p805, *p832 ]
             until: 2026-01-01
+            trivy:
+              paths:
+                - /usr/bin/rsync
+              purls:
+                - pkg:deb/debian/libssl1.1
       - vuln-id: [ CVE-2024-12086, CVE-2024-12087 ]
         reporter-id: *owasp
         at: 2024-12-18
-        on-id: *p804
+        on-id: *p805
     analysis:
       - at: 2024-12-18
         verdict:
@@ -45,5 +57,49 @@ vulnerabilities:
           note: This is another test note.
           maven-dependency: foo:bar:1.2.3
           to: 1.2.4
-          on-id: *p804
+          on-id: *p832
           resolved-at: 2025-04-29
+
+  - reports:
+      - vuln-id: CVE-2025-31257
+        on-id: [ *p7712, *p814, *p832, *p841, *p850, *p860 ]
+        reporter-id: *oracleCpu
+        at: 2025-10-23
+    analysis:
+      - verdict:
+          not-affected:
+            vex: Component not present
+        reasoning: Product does not use JavaFX and therefore does not have this vulnerability.
+
+  - reports:
+      - vuln-id: CVE-2025-53066
+        on-id: [ *p7712, *p814, *p832, *p841, *p850, *p860 ]
+        reporter-id: *oracleCpu
+        at: 2025-10-23
+
+  - reports:
+      - vuln-id: CVE-2025-53057
+        on-id: [ *p7712, *p814, *p832, *p841, *p850, *p860 ]
+        reporter-id: *oracleCpu
+        at: 2025-10-23
+
+  - cwe: 862
+    desc: Successful attacks of this vulnerability can result in unauthorized read access to a subset of Oracle GraalVM for JDK accessible data.
+    reports:
+      - vuln-id: CVE-2025-61755
+        on-id: [ *p7712, *p814, *p832, *p841, *p850, *p860 ]
+        reporter-id: *oracleCpu
+        at: 2025-10-23
+    analysis:
+      - verdict:
+          not-affected:
+            vex: Component not present
+        reasoning: Product does not use GraalVM and therefore does not have this vulnerability.
+
+
+
+  - reports:
+      - vuln-id: CVE-2025-61748
+        on-id: [ *p832, *p841, *p850, *p860 ]
+        reporter-id: *oracleCpu
+        at: 2025-10-23

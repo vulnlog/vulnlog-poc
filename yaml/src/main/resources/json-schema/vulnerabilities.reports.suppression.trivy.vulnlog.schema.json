@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.reports.suppression.trivy.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Report Suppression Trivy Schema",
+  "type": "object",
+  "properties": {
+    "paths": {
+      "title": "Paths",
+      "description": "The suppression only applies to files matching these paths.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "path"
+      }
+    },
+    "purls": {
+      "title": "Package URL",
+      "description": "The suppression only applies to packages matching these PURLs.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+        "format": "purl"
+      }
+    }
+  }
+}

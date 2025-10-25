@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vulnlog.dev/vulnerabilities.reports.suppression.snyk.vulnlog.schema.json",
+  "title": "Vulnlog Vulnerability Report Suppression Snyk Open Source Schema",
+  "type": "object",
+  "properties": {
+    "paths": {
+      "title": "Paths",
+      "description": "The suppression only applies to files matching these paths.",
+      "type": "array",
+      "items": {
+        "examples": [
+          "*",
+          "configstore > dot-prop",
+          "snyk > configstore > dot-prop"
+        ],
+        "type": "string"
+      }
+    }
+  }
+}

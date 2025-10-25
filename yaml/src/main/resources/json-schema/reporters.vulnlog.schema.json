@@ -16,10 +16,14 @@
         "description": "Printable name of the reporter. Example: \"OWASP Dependency Check\".",
         "type": "string"
       },
-      "product": {
-        "title": "Reporter Product",
-        "description": "WIP: An identifier describing the product. This identifier should be used later to match predefined templates for suppression files for example.",
-        "type": "string"
+      "vendor": {
+        "title": "Reporter Vendor",
+        "description": "An identifier describing the reporter vendor. This identifier should be used later to match predefined templates for suppression files for example.",
+        "enum": [
+          "Aqua Security Trivy",
+          "OWASP Dependency Check",
+          "Snyk Open Source"
+        ]
       }
     }
   }
