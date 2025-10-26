@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "vulnlog",
     "include",
     "release-groups",
     "releases",
@@ -25,6 +27,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class VulnlogSchema {
 
+    /**
+     * Vulnlog Vulnlog Schema
+     * <p>
+     * Validates Vulnlog Vulnlog YAML files.
+     * 
+     */
+    @JsonProperty("vulnlog")
+    @JsonPropertyDescription("Validates Vulnlog Vulnlog YAML files.")
+    private VulnlogVulnlogSchema vulnlog;
     /**
      * Vulnlog Vulnerability Include Schema
      * <p>
@@ -89,6 +100,8 @@ public class VulnlogSchema {
      *     Reporters. Defines the reporters of vulnerabilities on the product.
      * @param reporterPipelines
      *     Reporter Pipelines. Defines the reporter pipelines scanning this product.
+     * @param vulnlog
+     *     Vulnlog General Information. Common information about the Vulnlog file.
      * @param vulnerabilities
      *     Vulnerabilities. Defines the vulnerabilities of the product.
      * @param releaseGroups
@@ -96,14 +109,37 @@ public class VulnlogSchema {
      * @param releases
      *     Releases. Defines the releases of the product.
      */
-    public VulnlogSchema(VulnerabilitiesIncludeVulnlogSchema include, List<ReleaseGroupsVulnlogSchema> releaseGroups, List<ReleasesVulnlogSchema> releases, List<ReporterPipelinesVulnlogSchema> reporterPipelines, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
+    public VulnlogSchema(VulnlogVulnlogSchema vulnlog, VulnerabilitiesIncludeVulnlogSchema include, List<ReleaseGroupsVulnlogSchema> releaseGroups, List<ReleasesVulnlogSchema> releases, List<ReporterPipelinesVulnlogSchema> reporterPipelines, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
         super();
+        this.vulnlog = vulnlog;
         this.include = include;
         this.releaseGroups = releaseGroups;
         this.releases = releases;
         this.reporterPipelines = reporterPipelines;
         this.reporters = reporters;
         this.vulnerabilities = vulnerabilities;
+    }
+
+    /**
+     * Vulnlog Vulnlog Schema
+     * <p>
+     * Validates Vulnlog Vulnlog YAML files.
+     * 
+     */
+    @JsonProperty("vulnlog")
+    public VulnlogVulnlogSchema getVulnlog() {
+        return vulnlog;
+    }
+
+    /**
+     * Vulnlog Vulnlog Schema
+     * <p>
+     * Validates Vulnlog Vulnlog YAML files.
+     * 
+     */
+    @JsonProperty("vulnlog")
+    public void setVulnlog(VulnlogVulnlogSchema vulnlog) {
+        this.vulnlog = vulnlog;
     }
 
     /**

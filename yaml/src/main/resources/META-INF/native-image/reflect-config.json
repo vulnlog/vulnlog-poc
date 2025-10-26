@@ -234,6 +234,15 @@
     "allPublicFields": true
   },
   {
+    "name": "dev.vulnlog.yaml.dto.VulnlogVulnlogSchema",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "allPublicFields": true
+  },
+  {
     "name": "java.util.LinkedHashMap",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,

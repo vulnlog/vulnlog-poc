@@ -1,4 +1,9 @@
 ---
+vulnlog:
+  version: 1.0.0
+  vendor: Company ABC
+  product: Product ABC
+
 include:
   releases:
     file: releases.vl.yml

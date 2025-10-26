@@ -21,6 +21,11 @@ fun main(args: Array<String>) {
         val parser = Parser()
         val result: VulnlogSchema = parser.read(args[0])
 
+        println("version: ${result.vulnlog.version}")
+        println("vendor: ${result.vulnlog.vendor}")
+        println("product: ${result.vulnlog.product}")
+        println()
+
         println("Releases")
         result.releases.filter { it != null }.forEach(::printReleaseEntry)
         println()

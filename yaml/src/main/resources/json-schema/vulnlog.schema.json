@@ -5,6 +5,11 @@
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
   "properties": {
+    "vulnlog": {
+      "title": "Vulnlog General Information",
+      "description": "Common information about the Vulnlog file.",
+      "$ref": "#/$defs/vulnlog"
+    },
     "include": {
       "title": "Include Files",
       "description": "Include other Vulnlog files in this Vulnlog file.",
@@ -55,6 +60,9 @@
     },
     "vulnerabilities": {
       "$ref": "vulnerabilities.vulnlog.schema.json"
+    },
+    "vulnlog": {
+      "$ref": "vulnlog.vulnlog.schema.json"
     }
   }
 }

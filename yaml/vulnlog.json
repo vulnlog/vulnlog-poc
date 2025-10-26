@@ -4,6 +4,11 @@
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
   "properties": {
+    "vulnlog": {
+      "title": "Vulnlog General Information",
+      "description": "Common information about the Vulnlog file.",
+      "$ref": "#/$defs/vulnlog"
+    },
     "include": {
       "title": "Include Files",
       "description": "Include other Vulnlog files in this Vulnlog file.",
@@ -37,154 +42,51 @@
   },
   "additionalProperties": false,
   "$defs": {
-    "https://vulnlog.dev/release-groups.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Release Groups Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Release Group Identifier",
-            "description": "Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.",
-            "type": "string"
-          },
-          "name": {
-            "title": "Name of the Release Group",
-            "description": "Name of the release group.",
-            "type": "string"
-          },
-          "ref-ids": {
-            "title": "Release Identifier",
-            "description": "Release identifiers that belong to this release group.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      }
+    "include": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.include.vulnlog.schema.json"
     },
-    "https://vulnlog.dev/releases.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Releases Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Release Identifier",
-            "description": "Identifier of the release. Must be unique.",
-            "type": "string"
-          },
-          "name": {
-            "title": "Release Name",
-            "description": "Printable name of the release.",
-            "examples": [ "Product 1.0.0" ],
-            "type": "string"
-          },
-          "release-date": {
-            "title": "Release Date",
-            "description": "Date of the release. Format: YYYY-MM-DD.",
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "format": "date"
-          },
-          "version": {
-            "title": "Release Version",
-            "description": "Version of the release. For example in the semantic version format: X.Y.Z.",
-            "examples": [ "1.0.0" ],
-            "type": "string"
-          }
-        }
-      }
+    "release-groups": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1release-groups.vulnlog.schema.json"
     },
-    "https://vulnlog.dev/reporter-pipelines.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Reporter Pipeline Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Reporter Pipeline Identifier",
-            "description": "Identifier of this reporter pipeline. Must be unique.",
-            "type": "string"
-          },
-          "lifetime": {
-            "title": "Pipeline Lifetime",
-            "description": "From when until when this pipeline is active.",
-            "type": "object",
-            "properties": {
-              "end": {
-                "title": "End date of this pipeline",
-                "description": "Date when this pipeline is no longer active. Format: YYYY-MM-DD",
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "format": "date"
-              },
-              "start": {
-                "title": "Start date of this pipeline",
-                "description": "Date from when this pipeline is active. Format: YYYY-MM-DD",
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "format": "date"
-              }
-            }
-          },
-          "name": {
-            "title": "Reporter Pipeline Name",
-            "description": "Name of this reporter pipeline.",
-            "type": "string"
-          },
-          "reporter-ref-id": {
-            "title": "Reporter",
-            "description": "Reporter which is used by this pipeline. The reporter's unique identifier is required.",
-            "type": "string"
-          }
-        }
-      }
+    "releases": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1releases.vulnlog.schema.json"
     },
-    "https://vulnlog.dev/reporters.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Reporters Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Reporter Identifier",
-            "description": "Identifier of the reporter. Must be unique. Example: \"trivy\".",
-            "type": "string"
-          },
-          "name": {
-            "title": "Reporter Name",
-            "description": "Printable name of the reporter. Example: \"OWASP Dependency Check\".",
-            "type": "string"
-          },
-          "vendor": {
-            "title": "Reporter Vendor",
-            "description": "An identifier describing the reporter vendor. This identifier should be used later to match predefined templates for suppression files for example.",
-            "enum": [
-              "Aqua Security Trivy",
-              "OWASP Dependency Check",
-              "Snyk Open Source"
-            ]
-          }
-        }
-      }
+    "reporter-pipelines": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1reporter-pipelines.vulnlog.schema.json"
     },
-    "https://vulnlog.dev/vulnerabilities.analysis.verdict.affected.vulnlog.schema.json": {
+    "reporters": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1reporters.vulnlog.schema.json"
+    },
+    "vulnerabilities": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json"
+    },
+    "vulnlog": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnlog.vulnlog.schema.json"
+    },
+    "https://vulnlog.dev/vulnlog.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Analysis Verdict Affected Schema",
+      "title": "Vulnlog Vulnlog Schema",
+      "description": "Validates Vulnlog Vulnlog YAML files.",
       "type": "object",
       "properties": {
-        "severity": {
-          "title": "Severity",
-          "description": "The severity of the impact of this vulnerability on the product.",
-          "enum": [ "Critical", "High", "Medium", "Low" ]
+        "version": {
+          "title": "Version",
+          "description": "The version of the Vulnlog file.",
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "vendor": {
+          "title": "Vendor",
+          "description": "The vendor of the product.",
+          "type": "string"
+        },
+        "product": {
+          "title": "Product",
+          "description": "The product this Vulnlog files covers.",
+          "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "https://vulnlog.dev/vulnerabilities.analysis.verdict.notaffected.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -201,6 +103,18 @@
             "Vulnerable code not in execute path",
             "Vulnerable code not present"
           ]
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.analysis.verdict.affected.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Analysis Verdict Affected Schema",
+      "type": "object",
+      "properties": {
+        "severity": {
+          "title": "Severity",
+          "description": "The severity of the impact of this vulnerability on the product.",
+          "enum": [ "Critical", "High", "Medium", "Low" ]
         }
       }
     },
@@ -226,428 +140,6 @@
         },
         "affected": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.affected.vulnlog.schema.json"
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.analysis.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Analysis Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "at": {
-            "title": "Analysis Date",
-            "description": "Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD",
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "format": "date"
-          },
-          "on-id": {
-            "title": "Analysis for Release",
-            "description": "This analysis applies for these releases. If left empty, the analysis applies for all releases.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          },
-          "reasoning": {
-            "title": "Reasoning",
-            "description": "Description of the reasoning behind this analysis.",
-            "type": "string",
-            "minLength": 2
-          },
-          "verdict": {
-            "title": "Verdict",
-            "description": "Either affected or not affected.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.vulnlog.schema.json/$defs/verdict",
-            "type": "object"
-          }
-        }
-      },
-      "$defs": {
-        "verdict": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json"
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.include.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Include Schema",
-      "type": "object",
-      "properties": {
-        "releases": {
-          "title": "Include Releases",
-          "description": "When releases are defined in another file, they can be included here.",
-          "type": "object",
-          "properties": {
-            "file": {
-              "title": "File to include",
-              "description": "File containing the releases to be included.",
-              "type": "string"
-            },
-            "ref-ids": {
-              "title": "Release IDs to Reference from",
-              "description": "Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "reporters": {
-          "title": "Include Reporters",
-          "description": "When reporters are defined in another file, they can be included here.",
-          "type": "object",
-          "properties": {
-            "file": {
-              "title": "File to include",
-              "description": "File containing the reporter to be included.",
-              "type": "string"
-            },
-            "pipeline-ref-ids": {
-              "title": "Reporter Pipeline References",
-              "description": "Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "reporter-ref-ids": {
-              "title": "Reporter References",
-              "description": "Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.suppression.owasp.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Report Suppression OWASP Dependency Check Schema",
-      "type": "object",
-      "properties": {
-        "cpe": {
-          "title": "",
-          "description": "The suppression only applies to artifacts matching these common platform enumerations.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "cpe"
-          }
-        },
-        "paths": {
-          "title": "Paths",
-          "description": "The suppression only applies to files matching these paths.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "path"
-          }
-        },
-        "purls": {
-          "title": "Package URL",
-          "description": "The suppression only applies to packages matching these PURLs.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
-            "format": "purl"
-          }
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.suppression.snyk.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Report Suppression Snyk Open Source Schema",
-      "type": "object",
-      "properties": {
-        "paths": {
-          "title": "Paths",
-          "description": "The suppression only applies to files matching these paths.",
-          "type": "array",
-          "items": {
-            "examples": [ "*", "configstore > dot-prop", "snyk > configstore > dot-prop" ],
-            "type": "string"
-          }
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.suppression.trivy.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Report Suppression Trivy Schema",
-      "type": "object",
-      "properties": {
-        "paths": {
-          "title": "Paths",
-          "description": "The suppression only applies to files matching these paths.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "path"
-          }
-        },
-        "purls": {
-          "title": "Package URL",
-          "description": "The suppression only applies to packages matching these PURLs.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
-            "format": "purl"
-          }
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.suppression.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Report Suppression Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "on": {
-            "title": "Suppress on Releases",
-            "description": "Releases on which this suppression should be applied.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          },
-          "owasp": {
-            "title": "OWASP Dependency Check Suppression",
-            "description": "Setups a OWASP Dependency Check suppression.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/owasp"
-          },
-          "snyk": {
-            "title": "Snyk Open Source Suppression",
-            "description": "Setups a Snyk Open Source suppression.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/snyk"
-          },
-          "trivy": {
-            "title": "Trivy Suppression",
-            "description": "Setups a Trivy suppression.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/trivy"
-          },
-          "until": {
-            "title": "Suppress Until",
-            "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
-            "examples": [ "1970-01-01" ],
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "format": "date"
-          }
-        }
-      },
-      "$defs": {
-        "owasp": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
-        },
-        "snyk": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
-        },
-        "trivy": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Reports Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "at": {
-            "title": "Reported at Date",
-            "description": "Date on which this report was created. Format: YYYY-MM-DD",
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "format": "date"
-          },
-          "on-id": {
-            "title": "Reported Release",
-            "description": "Releases on which this vulnerability report applies to.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          },
-          "reporter-id": {
-            "title": "Reporter",
-            "description": "Reporter of this vulnerability report.",
-            "type": "string"
-          },
-          "suppression": {
-            "title": "Suppress Report",
-            "description": "Whether this report should be suppressed.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/suppression"
-          },
-          "vuln-id": {
-            "title": "Vulnerability ID",
-            "description": "Identifier of the vulnerability. Can be a CVE or a Snyk ID.",
-            "examples": [ "CVE-2021-44228" ],
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          }
-        }
-      },
-      "$defs": {
-        "suppression": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json"
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.resolutions.accept.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Resolutions Accept Schema",
-      "type": "object",
-      "properties": {
-        "note": {
-          "title": "Note on this Resolution",
-          "description": "Gives additional insight why this resolution was chosen.",
-          "type": "string"
-        },
-        "on-id": {
-          "title": "Accept on Release",
-          "description": "Accept the potential risk of the vulnerability on the given release.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.resolutions.fix.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Resolutions Fxi Schema",
-      "type": "object",
-      "properties": {
-        "note": {
-          "title": "Note on this Resolution",
-          "description": "Gives additional insight why this resolution was chosen.",
-          "type": "string"
-        },
-        "on-id": {
-          "title": "Fix on Release",
-          "description": "The releases on which this vulnerability should be fixed.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        "resolved-at": {
-          "title": "Resolved at Date",
-          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-          "format": "date"
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.resolutions.rebuild.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Resolutions Rebuild Schema",
-      "type": "object",
-      "properties": {
-        "note": {
-          "title": "Note on this Resolution",
-          "description": "Gives additional insight why this resolution was chosen.",
-          "type": "string"
-        },
-        "on-id": {
-          "title": "Rebuild on Release",
-          "description": "The releases which should be rebuild.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        "resolved-at": {
-          "title": "Resolved at Date",
-          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-          "format": "date"
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.resolutions.remove.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Resolutions Remove Schema",
-      "type": "object",
-      "properties": {
-        "note": {
-          "title": "Note on this Resolution",
-          "description": "Gives additional insight why this resolution was chosen.",
-          "type": "string"
-        },
-        "on": {
-          "title": "Remove on Release",
-          "description": "The release on which a dependency should be removed.",
-          "type": "string"
-        },
-        "resolved-at": {
-          "title": "Resolved at Date",
-          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-          "format": "date"
         }
       }
     },
@@ -730,6 +222,261 @@
         }
       }
     },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.trivy.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression Trivy Schema",
+      "type": "object",
+      "properties": {
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "path"
+          }
+        },
+        "purls": {
+          "title": "Package URL",
+          "description": "The suppression only applies to packages matching these PURLs.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+            "format": "purl"
+          }
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.snyk.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression Snyk Open Source Schema",
+      "type": "object",
+      "properties": {
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "examples": [ "*", "configstore > dot-prop", "snyk > configstore > dot-prop" ],
+            "type": "string"
+          }
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.owasp.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression OWASP Dependency Check Schema",
+      "type": "object",
+      "properties": {
+        "cpe": {
+          "title": "",
+          "description": "The suppression only applies to artifacts matching these common platform enumerations.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "cpe"
+          }
+        },
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "path"
+          }
+        },
+        "purls": {
+          "title": "Package URL",
+          "description": "The suppression only applies to packages matching these PURLs.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+            "format": "purl"
+          }
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "on": {
+            "title": "Suppress on Releases",
+            "description": "Releases on which this suppression should be applied.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "owasp": {
+            "title": "OWASP Dependency Check Suppression",
+            "description": "Setups a OWASP Dependency Check suppression.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/owasp"
+          },
+          "snyk": {
+            "title": "Snyk Open Source Suppression",
+            "description": "Setups a Snyk Open Source suppression.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/snyk"
+          },
+          "trivy": {
+            "title": "Trivy Suppression",
+            "description": "Setups a Trivy suppression.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/trivy"
+          },
+          "until": {
+            "title": "Suppress Until",
+            "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
+            "examples": [ "1970-01-01" ],
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "format": "date"
+          }
+        }
+      },
+      "$defs": {
+        "owasp": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
+        },
+        "snyk": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
+        },
+        "trivy": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.resolutions.remove.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Resolutions Remove Schema",
+      "type": "object",
+      "properties": {
+        "note": {
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
+          "type": "string"
+        },
+        "on": {
+          "title": "Remove on Release",
+          "description": "The release on which a dependency should be removed.",
+          "type": "string"
+        },
+        "resolved-at": {
+          "title": "Resolved at Date",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.resolutions.rebuild.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Resolutions Rebuild Schema",
+      "type": "object",
+      "properties": {
+        "note": {
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
+          "type": "string"
+        },
+        "on-id": {
+          "title": "Rebuild on Release",
+          "description": "The releases which should be rebuild.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "resolved-at": {
+          "title": "Resolved at Date",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.resolutions.fix.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Resolutions Fxi Schema",
+      "type": "object",
+      "properties": {
+        "note": {
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
+          "type": "string"
+        },
+        "on-id": {
+          "title": "Fix on Release",
+          "description": "The releases on which this vulnerability should be fixed.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "resolved-at": {
+          "title": "Resolved at Date",
+          "description": "The date on which this resolution is applied. Format: YYYY-MM-DD",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.resolutions.accept.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Resolutions Accept Schema",
+      "type": "object",
+      "properties": {
+        "note": {
+          "title": "Note on this Resolution",
+          "description": "Gives additional insight why this resolution was chosen.",
+          "type": "string"
+        },
+        "on-id": {
+          "title": "Accept on Release",
+          "description": "Accept the potential risk of the vulnerability on the given release.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
     "https://vulnlog.dev/vulnerabilities.resolutions.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Vulnlog Vulnerability Resolutions Schema",
@@ -787,6 +534,118 @@
         }
       }
     },
+    "https://vulnlog.dev/vulnerabilities.reports.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Reports Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "at": {
+            "title": "Reported at Date",
+            "description": "Date on which this report was created. Format: YYYY-MM-DD",
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "format": "date"
+          },
+          "on-id": {
+            "title": "Reported Release",
+            "description": "Releases on which this vulnerability report applies to.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "reporter-id": {
+            "title": "Reporter",
+            "description": "Reporter of this vulnerability report.",
+            "type": "string"
+          },
+          "suppression": {
+            "title": "Suppress Report",
+            "description": "Whether this report should be suppressed.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/suppression"
+          },
+          "vuln-id": {
+            "title": "Vulnerability ID",
+            "description": "Identifier of the vulnerability. Can be a CVE or a Snyk ID.",
+            "examples": [ "CVE-2021-44228" ],
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "$defs": {
+        "suppression": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json"
+        }
+      }
+    },
+    "https://vulnlog.dev/vulnerabilities.analysis.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Analysis Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "at": {
+            "title": "Analysis Date",
+            "description": "Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD",
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "format": "date"
+          },
+          "on-id": {
+            "title": "Analysis for Release",
+            "description": "This analysis applies for these releases. If left empty, the analysis applies for all releases.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "reasoning": {
+            "title": "Reasoning",
+            "description": "Description of the reasoning behind this analysis.",
+            "type": "string",
+            "minLength": 2
+          },
+          "verdict": {
+            "title": "Verdict",
+            "description": "Either affected or not affected.",
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.vulnlog.schema.json/$defs/verdict",
+            "type": "object"
+          }
+        }
+      },
+      "$defs": {
+        "verdict": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json"
+        }
+      }
+    },
     "https://vulnlog.dev/vulnerabilities.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Vulnlog Vulnerability Schema",
@@ -836,23 +695,197 @@
         }
       }
     },
-    "include": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.include.vulnlog.schema.json"
+    "https://vulnlog.dev/reporters.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Reporters Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Reporter Identifier",
+            "description": "Identifier of the reporter. Must be unique. Example: \"trivy\".",
+            "type": "string"
+          },
+          "name": {
+            "title": "Reporter Name",
+            "description": "Printable name of the reporter. Example: \"OWASP Dependency Check\".",
+            "type": "string"
+          },
+          "vendor": {
+            "title": "Reporter Vendor",
+            "description": "An identifier describing the reporter vendor. This identifier should be used later to match predefined templates for suppression files for example.",
+            "enum": [
+              "Aqua Security Trivy",
+              "OWASP Dependency Check",
+              "Snyk Open Source"
+            ]
+          }
+        }
+      }
     },
-    "release-groups": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1release-groups.vulnlog.schema.json"
+    "https://vulnlog.dev/reporter-pipelines.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Reporter Pipeline Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Reporter Pipeline Identifier",
+            "description": "Identifier of this reporter pipeline. Must be unique.",
+            "type": "string"
+          },
+          "lifetime": {
+            "title": "Pipeline Lifetime",
+            "description": "From when until when this pipeline is active.",
+            "type": "object",
+            "properties": {
+              "end": {
+                "title": "End date of this pipeline",
+                "description": "Date when this pipeline is no longer active. Format: YYYY-MM-DD",
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "format": "date"
+              },
+              "start": {
+                "title": "Start date of this pipeline",
+                "description": "Date from when this pipeline is active. Format: YYYY-MM-DD",
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "format": "date"
+              }
+            }
+          },
+          "name": {
+            "title": "Reporter Pipeline Name",
+            "description": "Name of this reporter pipeline.",
+            "type": "string"
+          },
+          "reporter-ref-id": {
+            "title": "Reporter",
+            "description": "Reporter which is used by this pipeline. The reporter's unique identifier is required.",
+            "type": "string"
+          }
+        }
+      }
     },
-    "releases": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1releases.vulnlog.schema.json"
+    "https://vulnlog.dev/releases.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Releases Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Release Identifier",
+            "description": "Identifier of the release. Must be unique.",
+            "type": "string"
+          },
+          "name": {
+            "title": "Release Name",
+            "description": "Printable name of the release.",
+            "examples": [ "Product 1.0.0" ],
+            "type": "string"
+          },
+          "release-date": {
+            "title": "Release Date",
+            "description": "Date of the release. Format: YYYY-MM-DD.",
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "format": "date"
+          },
+          "version": {
+            "title": "Release Version",
+            "description": "Version of the release. For example in the semantic version format: X.Y.Z.",
+            "examples": [ "1.0.0" ],
+            "type": "string"
+          }
+        }
+      }
     },
-    "reporter-pipelines": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1reporter-pipelines.vulnlog.schema.json"
+    "https://vulnlog.dev/release-groups.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Release Groups Schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Release Group Identifier",
+            "description": "Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name of the Release Group",
+            "description": "Name of the release group.",
+            "type": "string"
+          },
+          "ref-ids": {
+            "title": "Release Identifier",
+            "description": "Release identifiers that belong to this release group.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
     },
-    "reporters": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1reporters.vulnlog.schema.json"
-    },
-    "vulnerabilities": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json"
+    "https://vulnlog.dev/vulnerabilities.include.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Include Schema",
+      "type": "object",
+      "properties": {
+        "releases": {
+          "title": "Include Releases",
+          "description": "When releases are defined in another file, they can be included here.",
+          "type": "object",
+          "properties": {
+            "file": {
+              "title": "File to include",
+              "description": "File containing the releases to be included.",
+              "type": "string"
+            },
+            "ref-ids": {
+              "title": "Release IDs to Reference from",
+              "description": "Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "reporters": {
+          "title": "Include Reporters",
+          "description": "When reporters are defined in another file, they can be included here.",
+          "type": "object",
+          "properties": {
+            "file": {
+              "title": "File to include",
+              "description": "File containing the reporter to be included.",
+              "type": "string"
+            },
+            "pipeline-ref-ids": {
+              "title": "Reporter Pipeline References",
+              "description": "Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reporter-ref-ids": {
+              "title": "Reporter References",
+              "description": "Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
