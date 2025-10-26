@@ -140,9 +140,9 @@ jobs:
       - name: Rename binaries with platform identifiers
         run: |
           mv build/native/linux/vl-yaml build/native/linux/vl-yaml-linux-x64
-          mv build/native/macos/vl-yaml build/native/macos/vl-yaml-macos-x64
+          mv build/native/macos/vl-yaml build/native/macos/vl-yaml-macos-arm64
           chmod +x build/native/linux/vl-yaml-linux-x64
-          chmod +x build/native/macos/vl-yaml-macos-x64
+          chmod +x build/native/macos/vl-yaml-macos-arm64
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
@@ -158,7 +158,7 @@ jobs:
             build/json-schema/vulnlog.json
             build/jvm/yaml.zip
             build/native/linux/vl-yaml-linux-x64
-            build/native/macos/vl-yaml-macos-x64
+            build/native/macos/vl-yaml-macos-arm64
       - name: Create a new GitHub discussion
         id: create-discussion
         uses: abirismyname/create-discussion@main
