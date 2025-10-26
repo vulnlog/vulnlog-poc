@@ -1,20 +1,30 @@
 package dev.vulnlog.yaml
 
+import com.fasterxml.jackson.core.ObjectCodec
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.yaml.YAMLAnchorReplayingFactory
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactoryBuilder
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
+import org.yaml.snakeyaml.LoaderOptions
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.exists
 import kotlin.jvm.java
 
 class Parser {
-    private val yamlFactory = YAMLAnchorReplayingFactory()
+
+    private val factory: YAMLFactory = YAMLFactory.builder()
+        .loaderOptions(LoaderOptions().apply {
+            codePointLimit = 100 * 1024 * 1024 // 100MB
+        }).build()
+    private val yamlFactory = YAMLAnchorReplayingFactory(factory, YAMLMapper())
     private val mapper = ObjectMapper(yamlFactory).apply {
         registerKotlinModule()
 
