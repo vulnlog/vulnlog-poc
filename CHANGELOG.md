@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2025-10-31
+
+### Changed
+- Use dump plugin in snapcraft task by @ryru
+- Simplify Snapcraft build and publishing workflow with updated actions by @ryru
+- Move snapcraft.yaml to repo root because CI pipeline does not see it otherwise by @ryru
+- Fix file upload filename by @ryru
+- Reset GraalVM version back to 24 because of CI pipeline issues by @ryru
+- Add Snapcraft packaging and publishing to the CD workflow by @ryru
+- Add --version flag by @ryru
+- Update to Java 25 in CD workflow and optimize build with -O2 flag by @ryru
+- Move JSON schema files out of the Kotlin resources directory to not have them copied into the compiled JAR by @ryru
+- Dont print empty groups by @ryru
+- Support for multiple cwe per vulnerability by @ryru
+- Support for multiple reporter-id per vulnerability report by @ryru
+- Bump jsonschema to version 12.0.0 by @ryru
+- Improve and update the project README.md and add single-file example.vl.yml by @ryru
+- Update for refs/tags/v0.3.1 by @github-actions[bot]
+
 ## [0.3.1] - 2025-10-26
 
 ### Changed
@@ -73,6 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Contributors
 * @ryru made their first contribution
 
+[0.4.1]: https://github.com/vulnlog/vulnlog-poc/compare/v0.3.1...v0.4.1
 [0.3.1]: https://github.com/vulnlog/vulnlog-poc/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/vulnlog/vulnlog-poc/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/vulnlog/vulnlog-poc/compare/v0.1.1...v0.2.0
