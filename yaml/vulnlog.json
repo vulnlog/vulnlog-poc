@@ -566,7 +566,17 @@
           "reporter-id": {
             "title": "Reporter",
             "description": "Reporter of this vulnerability report.",
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
           },
           "suppression": {
             "title": "Suppress Report",

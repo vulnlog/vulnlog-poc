@@ -100,7 +100,14 @@ private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogS
                 .joinToString(", ")
         )
     }
-    vulnReportEntry.reporterId?.let { println("  reporter id: $it") }
+    when (vulnReportEntry.reporterId) {
+        is String -> println("  reporter ID: ${vulnReportEntry.reporterId}")
+        is Collection<*> -> println(
+            "  reporter IDs: " + (vulnReportEntry.reporterId as Collection<*>).joinToString(
+                ", "
+            )
+        )
+    }
     vulnReportEntry.at?.let { println("  at: $it") }
     when (vulnReportEntry.onId) {
         is String -> println("  on id: ${vulnReportEntry.onId}")

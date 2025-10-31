@@ -49,7 +49,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      */
     @JsonProperty("reporter-id")
     @JsonPropertyDescription("Reporter of this vulnerability report.")
-    private String reporterId;
+    private Object reporterId;
     /**
      * Vulnlog Vulnerability Report Suppression Schema
      * <p>
@@ -90,7 +90,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * @param onId
      *     Reported Release. Releases on which this vulnerability report applies to.
      */
-    public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, String reporterId, List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression, Object vulnId) {
+    public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, Object reporterId, List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression, Object vulnId) {
         super();
         this.at = at;
         this.onId = onId;
@@ -150,7 +150,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * 
      */
     @JsonProperty("reporter-id")
-    public String getReporterId() {
+    public Object getReporterId() {
         return reporterId;
     }
 
@@ -161,7 +161,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * 
      */
     @JsonProperty("reporter-id")
-    public void setReporterId(String reporterId) {
+    public void setReporterId(Object reporterId) {
         this.reporterId = reporterId;
     }
 
