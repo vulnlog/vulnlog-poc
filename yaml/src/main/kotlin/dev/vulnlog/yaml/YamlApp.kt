@@ -12,6 +12,12 @@ fun main(args: Array<String>) {
         exitProcess(0)
     }
 
+    if (args.contains("--version") || args.contains("-v")) {
+        val cliVersion: String = object {}.javaClass.`package`.implementationVersion ?: "dev"
+        println("vl-yaml version $cliVersion")
+        exitProcess(0)
+    }
+
 
     println("Hello YAML/JSON-Schema Vulnlog!")
     println("This is a PoC to experiment with YAML and JSON-Schema as an alternative to the existing Kotlin custom scripting DSL.")

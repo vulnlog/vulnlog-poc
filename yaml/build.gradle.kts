@@ -1,9 +1,25 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     id("buildsrc.convention.kotlin-jvm")
     application
     id("org.jsonschema2pojo") version "1.2.2"
     id("org.graalvm.buildtools.native") version "0.11.1"
 }
+
+val gitHash: String by lazy {
+    try {
+        "git rev-parse --short HEAD".runCommand(project.rootDir).trim()
+    } catch (e: Exception) {
+        "unknown"
+    }
+}
+
+val snapshotVersion = "SNAPSHOT-${SimpleDateFormat("yyyyMMdd-HHmmss").format(Date())}+$gitHash"
+val appVersion: String = project.findProperty("appVersion")?.toString() ?: snapshotVersion
+
+version = appVersion
 
 val jacksonVersion = "2.20.0"
 
@@ -15,6 +31,12 @@ dependencies {
 
 application {
     mainClass = "dev.vulnlog.yaml.YamlAppKt"
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Implementation-Version"] = version
+    }
 }
 
 jsonSchema2Pojo {
@@ -169,4 +191,12 @@ tasks.check {
     dependsOn(lintJsonSchema)
     dependsOn(formatJsonSchema)
     dependsOn(validateJsonSchema)
+}
+
+private fun String.runCommand(workingDir: File): String {
+    return ProcessBuilder(*split(" ").toTypedArray())
+        .directory(workingDir)
+        .redirectErrorStream(true)
+        .start()
+        .inputStream.bufferedReader().readText()
 }

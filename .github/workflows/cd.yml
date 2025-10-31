@@ -75,7 +75,10 @@ jobs:
       - uses: gradle/actions/setup-gradle@v3
       - uses: sourcemeta/jsonschema@v12.0.0
       - name: Clean build and zip distribution
-        run: ./gradlew clean build distZip
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          ./gradlew clean build distZip -PappVersion="$VERSION"
       - name: Upload JVM build
         uses: actions/upload-artifact@v4
         with:
@@ -98,7 +101,10 @@ jobs:
           distribution: 'graalvm'
           native-image-job-reports: 'true'
       - name: Build native image
-        run: ./gradlew clean nativeCompile
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          ./gradlew clean nativeCompile -PappVersion="$VERSION"
       - name: Upload native binaries
         uses: actions/upload-artifact@v4
         with:
