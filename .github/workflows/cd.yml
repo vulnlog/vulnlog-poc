@@ -176,3 +176,22 @@ jobs:
             For a full description of changes, take a look at our [release notes](https://github.com/vulnlog/vulnlog/releases/tag/${{ github.ref_name }}).
           category-name: Announcements
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-snap:
+    needs: [ build-native, publish-release ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Linux native binary
+        uses: actions/download-artifact@v4
+        with:
+          name: vulnlog-yaml-poc-binary-ubuntu-latest
+          path: .
+      - name: Install Snapcraft
+        run: sudo snap install snapcraft --classic
+      - run: snapcraft
+      - name: Publish to Snapcraft
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+        run: |
+          snapcraft upload --release=stable *.snap

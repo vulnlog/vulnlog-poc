@@ -1,0 +1,29 @@
+name: vl-yaml
+base: core22
+version: git
+summary: Vulnlog YAML parser and validator
+description: |
+  A YAML-based Vulnlog definition language with a simple CLI that
+  deserializes YAML files into Java/Kotlin objects and prints parsed
+  content to console.
+
+grade: stable
+confinement: strict
+
+apps:
+  vl-yaml:
+    command: bin/vl-yaml
+    plugs:
+      - home
+
+parts:
+  vl-yaml:
+    plugin: dump
+    source: .
+    stage:
+      - vl-yaml
+    override-build: |
+      # Copy the native binary from GitHub Actions artifact
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      cp $SNAPCRAFT_PART_SRC/vl-yaml $SNAPCRAFT_PART_INSTALL/bin/vl-yaml
+      chmod +x $SNAPCRAFT_PART_INSTALL/bin/vl-yaml
