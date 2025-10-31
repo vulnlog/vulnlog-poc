@@ -94,7 +94,7 @@ jobs:
       - uses: sourcemeta/jsonschema@v12.0.0
       - uses: graalvm/setup-graalvm@v1
         with:
-          java-version: '24'
+          java-version: '25'
           distribution: 'graalvm'
           native-image-job-reports: 'true'
       - name: Build native image

@@ -50,7 +50,7 @@ graalvmNative {
             imageName.set("vl-yaml")
             buildArgs.addAll(
                 listOf(
-                    "-Os",
+                    "-O2", // good performance at a reasonable file size
                     "--emit build-report"
                 )
             )
