@@ -1,79 +1,116 @@
 # Vulnlog Proof of Concepts
 
-## YAML and JSON Schema PoC
+Experimental repository for testing new Vulnlog ideas, approaches, and technologies.
 
-- [yaml](yaml) contains the JSON Schema and a simple CLI that parses Vulnlog YAML files.
-  The [README](yaml/README.md) contains information to build and run the CLI and some learnings.
-- [yaml-data](yaml-data) contains minimalistic Vulnlog YAML files.
+## Background: YAML and JSON Schema PoC
 
-### Quick Start
+### Why This PoC Exists
 
-1. Download the latest release from [Releases](https://github.com/vulnlog/vulnlog-poc/releases).
-2. Unzip the release.
-3. Run the CLI: `./vulnlog-yaml-poc-0.1.0-linux/vl-yaml vulnlog-poc/yaml-data/product.vl.yml`
+The current Kotlin custom scripting DSL has limitations that need addressing:
 
-The output should be:
+- Flaky DSL detection in IDEs
+- Missing Kotlin K2 support (
+  see [State of Kotlin Scripting 2024](https://blog.jetbrains.com/kotlin/2024/11/state-of-kotlin-scripting-2024/))
+
+### Design Goals
+
+- Easy to learn, write, and read for software and security engineers
+- Future-proof and maintainable
+
+### What This PoC Does
+
+Provides a YAML-based Vulnlog definition language with a simple CLI that:
+
+- Deserializes YAML files into Java/Kotlin objects
+- Prints parsed content to console
+
+**Note:** This PoC does not validate beyond parsing or generate output files. It's designed for
+experimentation with the vulnerability definition language.
+
+## Project Structure
+
+- **[yaml](yaml)** - JSON Schema and CLI parser ([README](yaml/README.md) includes build
+  instructions and learnings)
+- **[yaml-data](yaml-data)** - Example Vulnlog YAML files
+
+## Quick Start
+
+### Installation
+
+Choose one of the following:
+
+**Option 1: Download binaries**  
+Get the latest release from [Releases](https://github.com/vulnlog/vulnlog-poc/releases) (Linux,
+macOS, Windows with Java)
+
+**Option 2: Homebrew (macOS)**
+
+```shell
+brew install vulnlog/vulnlog/vl-yaml
+```
+
+**Option 3: Build from source**
+
+```shell
+./gradlew installDist
+```
+
+Binaries will be in `yaml/build/install/yaml/bin`.
+
+## Usage
+
+```shell
+vl-yaml yaml-data/single-file-example/example.vl.yml
+```
+
+**Output:**
 
 ```console
 Hello YAML/JSON-Schema Vulnlog!
 
+version: 1.0.0
+vendor: Example Inc
+product: Example Product
+
 Releases
-id: product803
-name: Product 8.0.3
-version: 8.0.3
-release date: 2024-10-05
-id: product804
-name: Product 8.0.4
-version: 8.0.4
-release date: 2024-12-09
+id: v100
+version: 1.0.0
+release date: 2021-10-31
+id: v101
+version: 1.0.1
+release date: 2021-12-12
+
 
 Release Groups
-id: product80
-name: Product 8.0
-refId: product803, product804
+
 
 Reporters
 id: trivy
-name: Trivy
-product: aquasec/trivy
-id: owasp
-name: OWASP Dependency Check
-product: owasp/dependency-check
+vendor: Aqua Security Trivy
+
 
 Reporter Pipelines
 id: trivy-pipeline
 name: Trivy Pipeline
-id: owasp-pipeline
-name: OWASP Dependency Check Pipeline
-reporter: owasp
-lifetime start: 2021-03-01
-lifetime end: 2025-09-30
+reporter: trivy
+
 
 Vulnerabilities
-desc: Information leak via uninitialized stack contents in the rsync daemon.
-cwe: 908
+desc: Remote code execution (RCE) vulnerability in Log4j's JNDI features.
+cwe: 917
 reports:
-  vulnerability id: CVE-2024-12085
-  reporter id: trivy-pipeline
-  at: 2024-12-18
-  on-ids: product803, product804
-  suppression:
-    until: 2026-01-01
-  vulnerability id: CVE-2024-12086, CVE-2024-12087
-  reporter id: owasp-pipeline
-  at: 2024-12-18
-  on id: product804
+  vulnerability id: CVE-2021-44228
+  reporter id: trivy
+  at: 2021-12-10
+  on id: v100
 analysis:
-  at: 2024-12-18
-  verdict not affected:
-    vex: Component not present
-  reasoning: In a typical environment the ports necessary for rsync are not exposed to the internet. Furthermore, the above vulnerability only occurs in the rsync daemon, which by default does not run on the product Docker container. Therefore, product is not affected. This vulnerability was reported in product 8.0.8, the latest publicly available version of the product 8.0 branch. The newest version of this branch, product 8.0.10, was released on 2025-05-07, and no longer reports this vulnerability.
+  verdict affected:
+    severity: Critical
+  reasoning: Example product uses Log4j in a vulnerable version and therefore is affected.
 resolutions:
-  accept
-    note: This is a test note.
   update
-    note: This is another test note.
-    maven dependency: foo:bar:1.2.3
-    to version: 1.2.4
-    resolved at: 2025-04-29
+    maven dependency: org.apache.logging.log4j:log4j-core:2.12.4
+    to version: 2.13.0
+    resolved at: 2021-12-12
+
 ```
