@@ -173,7 +173,7 @@ jobs:
           title: Vulnlog PoC ${{ github.ref_name }} is released
           body: |
             Vulnlog PoC ${{ github.ref_name }} is released!
-            
+
             For a full description of changes, take a look at our [release notes](https://github.com/vulnlog/vulnlog/releases/tag/${{ github.ref_name }}).
           category-name: Announcements
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -182,11 +182,27 @@ jobs:
     needs: [ build-native, publish-release ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Download Linux native binary
+        uses: actions/download-artifact@v4
         with:
           name: vulnlog-yaml-poc-binary-ubuntu-latest
           path: .
+      - name: Prepare version
+        id: version
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"  # Remove 'v' prefix if present
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      - name: Update snapcraft.yaml version
+        run: |
+          sed -i "s/^version: .*/version: '${{ steps.version.outputs.version }}'/" snapcraft.yaml
+          cat snapcraft.yaml
+      - name: Verify binary exists
+        run: |
+          ls -lah vl-yaml
+          chmod +x vl-yaml
       - name: Build snap
         uses: snapcore/action-build@v1
         id: build-snap
