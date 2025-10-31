@@ -54,7 +54,7 @@ jobs:
 
       - run: |
           mkdir -p build/json-schema
-          jsonschema bundle yaml/src/main/resources/json-schema/vulnlog.schema.json --resolve yaml/src/main/resources/json-schema --extension schema.json -w > build/json-schema/vulnlog.json
+          jsonschema bundle yaml/src/main/json-schema/vulnlog.schema.json --resolve yaml/src/main/json-schema --extension schema.json -w > build/json-schema/vulnlog.json
 
       - name: Upload schema
         uses: actions/upload-artifact@v4
