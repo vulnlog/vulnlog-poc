@@ -671,8 +671,19 @@
           "cwe": {
             "title": "Common Weakness Enumeration",
             "description": "The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.",
-            "type": "integer",
-            "minimum": 11
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 11
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 11
+                }
+              }
+            ]
           },
           "desc": {
             "title": "Vulnerability Description",

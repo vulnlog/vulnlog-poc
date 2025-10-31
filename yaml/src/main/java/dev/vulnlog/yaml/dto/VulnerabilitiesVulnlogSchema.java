@@ -34,7 +34,7 @@ public class VulnerabilitiesVulnlogSchema {
      */
     @JsonProperty("cwe")
     @JsonPropertyDescription("The Common Weakness Enumeration (CWE) identifier that represents the type of vulnerability. CWE is a community-developed list of software and hardware weakness types.")
-    private int cwe;
+    private Object cwe;
     /**
      * Vulnerability Description
      * <p>
@@ -81,7 +81,7 @@ public class VulnerabilitiesVulnlogSchema {
      * @param desc
      *     Vulnerability Description. A short summary of the vulnerability and its impact on the product.
      */
-    public VulnerabilitiesVulnlogSchema(List<VulnerabilitiesAnalysisVulnlogSchema> analysis, int cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports, List<VulnerabilitiesResolutionsVulnlogSchema> resolutions) {
+    public VulnerabilitiesVulnlogSchema(List<VulnerabilitiesAnalysisVulnlogSchema> analysis, Object cwe, String desc, List<VulnerabilitiesReportsVulnlogSchema> reports, List<VulnerabilitiesResolutionsVulnlogSchema> resolutions) {
         super();
         this.analysis = analysis;
         this.cwe = cwe;
@@ -119,7 +119,7 @@ public class VulnerabilitiesVulnlogSchema {
      * 
      */
     @JsonProperty("cwe")
-    public int getCwe() {
+    public Object getCwe() {
         return cwe;
     }
 
@@ -130,7 +130,7 @@ public class VulnerabilitiesVulnlogSchema {
      * 
      */
     @JsonProperty("cwe")
-    public void setCwe(int cwe) {
+    public void setCwe(Object cwe) {
         this.cwe = cwe;
     }
 

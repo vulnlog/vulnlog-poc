@@ -76,7 +76,10 @@ private fun printReporterPipelineEntry(reporterPipelineEntry: ReporterPipelinesV
 
 private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {
     vulnEntry.desc?.let { println("desc: $it") }
-    if (vulnEntry.cwe != 0) println("cwe: ${vulnEntry.cwe}")
+    when (vulnEntry.cwe) {
+        is String -> println("cwe: ${vulnEntry.cwe}")
+        is Collection<*> -> println("cwe: " + (vulnEntry.cwe as Collection<*>).joinToString(", "))
+    }
     if (vulnEntry.reports != null && vulnEntry.reports.isNotEmpty()) {
         println("reports:")
         vulnEntry.reports.filter { it != null }.forEach(::printVulnReportEntry)
