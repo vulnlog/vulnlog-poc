@@ -2,6 +2,8 @@
 
 Experimental repository for testing new Vulnlog ideas, approaches, and technologies.
 
+[![Get it from the Snap Store](https://snapcraft.io/en/dark/install.svg)](https://snapcraft.io/vl-yaml)
+
 ## Background: YAML and JSON Schema PoC
 
 ### Why This PoC Exists
@@ -43,7 +45,13 @@ Choose one of the following:
 Get the latest release from [Releases](https://github.com/vulnlog/vulnlog-poc/releases) (Linux,
 macOS, Windows with Java)
 
-**Option 2: Homebrew (macOS)**
+**Option 2: Ubuntu Snap**
+
+```shell
+sudo snap install vl-yaml
+```
+
+**Option 3: Homebrew (macOS)**
 
 ```shell
 brew install vulnlog/vulnlog/vl-yaml
@@ -58,6 +66,10 @@ brew install vulnlog/vulnlog/vl-yaml
 Binaries will be in `yaml/build/install/yaml/bin`.
 
 ## Usage
+
+```shell
+vl-yaml --version
+```
 
 ```shell
 vl-yaml yaml-data/single-file-example/example.vl.yml
