@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vulnlog-yaml-poc-jvm
-          path: yaml/build/distributions/yaml.zip
+          path: "yaml/build/distributions/yaml-*.zip"
 
   build-native:
     name: Build native on ${{ matrix.os }}
@@ -145,6 +145,7 @@ jobs:
           path: build/native/macos
       - name: Rename binaries with platform identifiers
         run: |
+          mv build/jvm/yaml-*.zip build/jvm/yaml.zip
           mv build/native/linux/vl-yaml build/native/linux/vl-yaml-linux-x64
           mv build/native/macos/vl-yaml build/native/macos/vl-yaml-macos-arm64
           chmod +x build/native/linux/vl-yaml-linux-x64
