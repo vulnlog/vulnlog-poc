@@ -183,16 +183,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download Linux native binary
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: vulnlog-yaml-poc-binary-ubuntu-latest
           path: .
-      - name: Install Snapcraft
-        run: sudo snap install snapcraft --classic
-      - run: snapcraft
+      - name: Build snap
+        uses: snapcore/action-build@v1
+        id: build-snap
       - name: Publish to Snapcraft
+        uses: snapcore/action-publish@v1
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-        run: |
-          snapcraft upload --release=stable *.snap
+        with:
+          snap: ${{ steps.build-snap.outputs.snap }}
+          release: stable
