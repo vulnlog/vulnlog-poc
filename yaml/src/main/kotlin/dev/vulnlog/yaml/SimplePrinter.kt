@@ -20,28 +20,38 @@ class SimplePrinter(val result: VulnlogSchema) {
         println("product: ${result.vulnlog.product}")
         println()
 
-        println("Releases")
-        result.releases.filter { it != null }.forEach(::printReleaseEntry)
-        println()
-        println()
+        if (result.releases != null && result.releases.isNotEmpty()) {
+            println("Releases")
+            result.releases.filter { it != null }.forEach(::printReleaseEntry)
+            println()
+            println()
+        }
 
-        println("Release Groups")
-        result.releaseGroups.filter { it != null }.forEach(::printReleaseGroupEntry)
-        println()
-        println()
+        if (result.releaseGroups != null && result.releaseGroups.isNotEmpty()) {
+            println("Release Groups")
+            result.releaseGroups.filter { it != null }.forEach(::printReleaseGroupEntry)
+            println()
+            println()
+        }
 
-        println("Reporters")
-        result.reporters.filter { it != null }.forEach(::printReporterEntry)
-        println()
-        println()
+        if (result.reporters != null && result.reporters.isNotEmpty()) {
+            println("Reporters")
+            result.reporters.filter { it != null }.forEach(::printReporterEntry)
+            println()
+            println()
+        }
 
-        println("Reporter Pipelines")
-        result.reporterPipelines.filter { it != null }.forEach(::printReporterPipelineEntry)
-        println()
-        println()
+        if (result.reporterPipelines != null && result.reporterPipelines.isNotEmpty()) {
+            println("Reporter Pipelines")
+            result.reporterPipelines.filter { it != null }.forEach(::printReporterPipelineEntry)
+            println()
+            println()
+        }
 
-        println("Vulnerabilities")
-        result.vulnerabilities.filter { it != null }.forEach(::printVulnEntry)
+        if (result.vulnerabilities != null && result.vulnerabilities.isNotEmpty()) {
+            println("Vulnerabilities")
+            result.vulnerabilities.filter { it != null }.forEach(::printVulnEntry)
+        }
     }
 }
 
