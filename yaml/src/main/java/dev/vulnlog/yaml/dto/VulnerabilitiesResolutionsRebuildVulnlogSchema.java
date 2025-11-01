@@ -36,13 +36,12 @@ public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
     @JsonPropertyDescription("Gives additional insight why this resolution was chosen.")
     private String note;
     /**
-     * Rebuild on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases which should be rebuild.
+     * 
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("The releases which should be rebuild.")
     private Object onId;
     /**
      * Resolved at Date
@@ -102,9 +101,9 @@ public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
     }
 
     /**
-     * Rebuild on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases which should be rebuild.
+     * 
      * 
      */
     @JsonProperty("on-id")
@@ -113,9 +112,9 @@ public class VulnerabilitiesResolutionsRebuildVulnlogSchema {
     }
 
     /**
-     * Rebuild on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases which should be rebuild.
+     * 
      * 
      */
     @JsonProperty("on-id")

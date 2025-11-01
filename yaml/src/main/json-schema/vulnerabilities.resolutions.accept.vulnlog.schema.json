@@ -12,17 +12,12 @@
     "on-id": {
       "title": "Accept on Release",
       "description": "Accept the potential risk of the vulnerability on the given release.",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
+      "$ref": "#/$defs/on"
+    }
+  },
+  "$defs": {
+    "on": {
+      "$ref": "on.vulnlog.schema.json"
     }
   }
 }

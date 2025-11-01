@@ -35,13 +35,12 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     @JsonPropertyDescription("Gives additional insight why this resolution was chosen.")
     private String note;
     /**
-     * Accept on Release
+     * Vulnlog On Schema
      * <p>
-     * Accept the potential risk of the vulnerability on the given release.
+     * 
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("Accept the potential risk of the vulnerability on the given release.")
     private Object onId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
@@ -89,9 +88,9 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     }
 
     /**
-     * Accept on Release
+     * Vulnlog On Schema
      * <p>
-     * Accept the potential risk of the vulnerability on the given release.
+     * 
      * 
      */
     @JsonProperty("on-id")
@@ -100,9 +99,9 @@ public class VulnerabilitiesResolutionsAcceptVulnlogSchema {
     }
 
     /**
-     * Accept on Release
+     * Vulnlog On Schema
      * <p>
-     * Accept the potential risk of the vulnerability on the given release.
+     * 
      * 
      */
     @JsonProperty("on-id")

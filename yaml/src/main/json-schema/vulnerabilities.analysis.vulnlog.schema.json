@@ -16,17 +16,7 @@
       "on-id": {
         "title": "Analysis for Release",
         "description": "This analysis applies for these releases. If left empty, the analysis applies for all releases.",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
+        "$ref": "#/$defs/on"
       },
       "reasoning": {
         "title": "Reasoning",
@@ -45,6 +35,9 @@
   "$defs": {
     "verdict": {
       "$ref": "vulnerabilities.analysis.verdict.vulnlog.schema.json"
+    },
+    "on": {
+      "$ref": "on.vulnlog.schema.json"
     }
   }
 }

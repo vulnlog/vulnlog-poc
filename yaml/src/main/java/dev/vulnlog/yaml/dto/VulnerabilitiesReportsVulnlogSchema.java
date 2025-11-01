@@ -33,13 +33,12 @@ public class VulnerabilitiesReportsVulnlogSchema {
     @JsonPropertyDescription("Date on which this report was created. Format: YYYY-MM-DD")
     private String at;
     /**
-     * Reported Release
+     * Vulnlog On Schema
      * <p>
-     * Releases on which this vulnerability report applies to.
+     * 
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("Releases on which this vulnerability report applies to.")
     private Object onId;
     /**
      * Reporter
@@ -122,9 +121,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
     }
 
     /**
-     * Reported Release
+     * Vulnlog On Schema
      * <p>
-     * Releases on which this vulnerability report applies to.
+     * 
      * 
      */
     @JsonProperty("on-id")
@@ -133,9 +132,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
     }
 
     /**
-     * Reported Release
+     * Vulnlog On Schema
      * <p>
-     * Releases on which this vulnerability report applies to.
+     * 
      * 
      */
     @JsonProperty("on-id")

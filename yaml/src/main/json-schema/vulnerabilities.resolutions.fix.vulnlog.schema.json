@@ -12,17 +12,7 @@
     "on-id": {
       "title": "Fix on Release",
       "description": "The releases on which this vulnerability should be fixed.",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
+      "$ref": "#/$defs/on"
     },
     "resolved-at": {
       "title": "Resolved at Date",
@@ -30,6 +20,11 @@
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
       "format": "date"
+    }
+  },
+  "$defs": {
+    "on": {
+      "$ref": "on.vulnlog.schema.json"
     }
   }
 }

@@ -36,13 +36,12 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     @JsonPropertyDescription("Gives additional insight why this resolution was chosen.")
     private String note;
     /**
-     * Fix on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases on which this vulnerability should be fixed.
+     * 
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("The releases on which this vulnerability should be fixed.")
     private Object onId;
     /**
      * Resolved at Date
@@ -102,9 +101,9 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     }
 
     /**
-     * Fix on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases on which this vulnerability should be fixed.
+     * 
      * 
      */
     @JsonProperty("on-id")
@@ -113,9 +112,9 @@ public class VulnerabilitiesResolutionsFixVulnlogSchema {
     }
 
     /**
-     * Fix on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases on which this vulnerability should be fixed.
+     * 
      * 
      */
     @JsonProperty("on-id")

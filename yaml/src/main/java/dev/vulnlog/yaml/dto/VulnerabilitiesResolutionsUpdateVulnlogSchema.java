@@ -77,13 +77,12 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     @JsonPropertyDescription("The NPM dependency in the form of name@version that should be updated.")
     private String npmDependency;
     /**
-     * Update on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases a dependency should be updated on.
+     * 
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("The releases a dependency should be updated on.")
     private Object onId;
     /**
      * Resolved at Date
@@ -255,9 +254,9 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     }
 
     /**
-     * Update on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases a dependency should be updated on.
+     * 
      * 
      */
     @JsonProperty("on-id")
@@ -266,9 +265,9 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
     }
 
     /**
-     * Update on Release
+     * Vulnlog On Schema
      * <p>
-     * The releases a dependency should be updated on.
+     * 
      * 
      */
     @JsonProperty("on-id")
