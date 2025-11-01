@@ -87,7 +87,7 @@ graalvmNative {
 val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
     val inputFile = project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
-    val outputFile = project.projectDir.resolve("vulnlog.json")
+    val outputFile = project.projectDir.resolve("src/main/resources/jsonschema/vulnlog.json")
 
     inputs.file(inputFile)
     inputs.dir(schemaDir)
@@ -111,6 +111,10 @@ val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
     doFirst {
         outputFile.parentFile.mkdirs()
     }
+}
+
+tasks.processResources {
+    dependsOn(bundleJsonSchema)
 }
 
 tasks.build {
