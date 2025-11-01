@@ -585,12 +585,12 @@
       "title": "Vulnlog On Schema",
       "oneOf": [
         {
-          "enum": ["v100","v101","v102"]
+          "type": "string"
         },
         {
           "type": "array",
           "items": {
-            "enum": ["v100","v101","v102"]
+            "type": "string"
           }
         }
       ]

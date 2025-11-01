@@ -8,7 +8,10 @@ import kotlin.time.measureTimedValue
 
 fun main(args: Array<String>) {
     if (args.isEmpty() || args.contains("--help") || args.contains("-h")) {
-        println("Usage: vl-yaml <path-to-yaml-file> [--benchmark]")
+        println("Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json]")
+        println("Flags")
+        println("  --benchmark:    print the number of vulnerabilities and the time to parse the file")
+        println("  --generate-schema=output.json:    generate a JSON-Schema for the YAML file and save it to output.json")
         exitProcess(0)
     }
 
@@ -25,6 +28,8 @@ fun main(args: Array<String>) {
     println()
 
     val isBenchMark = args.isNotEmpty() && args.contains("--benchmark")
+    val isGenerateSchema = args.isNotEmpty() && args.find{ it.startsWith("--generate-schema=") } != null
+
 
     if (args.isNotEmpty() && args[0].isNotBlank() && Path(args[0]).isRegularFile()) {
 
@@ -34,12 +39,16 @@ fun main(args: Array<String>) {
             result
         }
 
-        if (!isBenchMark) {
-            val printer = SimplePrinter(result)
-            printer.print()
-        } else {
+        if (isBenchMark) {
             println("Number of vulnerabilities: ${result.vulnerabilities.size}")
             println("Time to parse: ${timeToParseInMs.inWholeMilliseconds} ms")
+        } else if (isGenerateSchema) {
+            val outputFilename: String = args.find { it.startsWith("--generate-schema=") }?.substringAfter("=") ?: "output.json"
+            val generator = GenerateCustomJsonSchema(result, outputFilename)
+            generator.generate()
+        } else {
+            val printer = SimplePrinter(result)
+            printer.print()
         }
     } else {
         println("Invalid file path: ${args[0]}")
