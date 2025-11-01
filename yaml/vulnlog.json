@@ -196,17 +196,7 @@
         "on-id": {
           "title": "Update on Release",
           "description": "The releases a dependency should be updated on.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.update.vulnlog.schema.json/$defs/on"
         },
         "resolved-at": {
           "title": "Resolved at Date",
@@ -219,6 +209,11 @@
           "title": "To Version",
           "description": "The version to which the dependency should be updated.",
           "type": "string"
+        }
+      },
+      "$defs": {
+        "on": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
         }
       }
     },
@@ -395,17 +390,7 @@
         "on-id": {
           "title": "Rebuild on Release",
           "description": "The releases which should be rebuild.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.rebuild.vulnlog.schema.json/$defs/on"
         },
         "resolved-at": {
           "title": "Resolved at Date",
@@ -413,6 +398,11 @@
           "type": "string",
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
           "format": "date"
+        }
+      },
+      "$defs": {
+        "on": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
         }
       }
     },
@@ -429,17 +419,7 @@
         "on-id": {
           "title": "Fix on Release",
           "description": "The releases on which this vulnerability should be fixed.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.fix.vulnlog.schema.json/$defs/on"
         },
         "resolved-at": {
           "title": "Resolved at Date",
@@ -447,6 +427,11 @@
           "type": "string",
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
           "format": "date"
+        }
+      },
+      "$defs": {
+        "on": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
         }
       }
     },
@@ -463,17 +448,12 @@
         "on-id": {
           "title": "Accept on Release",
           "description": "Accept the potential risk of the vulnerability on the given release.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.resolutions.accept.vulnlog.schema.json/$defs/on"
+        }
+      },
+      "$defs": {
+        "on": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
         }
       }
     },
@@ -551,17 +531,7 @@
           "on-id": {
             "title": "Reported Release",
             "description": "Releases on which this vulnerability report applies to.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/on"
           },
           "reporter-id": {
             "title": "Reporter",
@@ -604,8 +574,26 @@
       "$defs": {
         "suppression": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json"
+        },
+        "on": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
         }
       }
+    },
+    "https://vulnlog.dev/on.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog On Schema",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
     },
     "https://vulnlog.dev/vulnerabilities.analysis.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -624,17 +612,7 @@
           "on-id": {
             "title": "Analysis for Release",
             "description": "This analysis applies for these releases. If left empty, the analysis applies for all releases.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
+            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.vulnlog.schema.json/$defs/on"
           },
           "reasoning": {
             "title": "Reasoning",
@@ -653,6 +631,9 @@
       "$defs": {
         "verdict": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.analysis.verdict.vulnlog.schema.json"
+        },
+        "on": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
         }
       }
     },

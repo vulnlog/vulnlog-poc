@@ -52,17 +52,7 @@
     "on-id": {
       "title": "Update on Release",
       "description": "The releases a dependency should be updated on.",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
+      "$ref": "#/$defs/on"
     },
     "resolved-at": {
       "title": "Resolved at Date",
@@ -75,6 +65,11 @@
       "title": "To Version",
       "description": "The version to which the dependency should be updated.",
       "type": "string"
+    }
+  },
+  "$defs": {
+    "on": {
+      "$ref": "on.vulnlog.schema.json"
     }
   }
 }

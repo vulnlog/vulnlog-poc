@@ -16,17 +16,7 @@
       "on-id": {
         "title": "Reported Release",
         "description": "Releases on which this vulnerability report applies to.",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
+        "$ref": "#/$defs/on"
       },
       "reporter-id": {
         "title": "Reporter",
@@ -69,6 +59,9 @@
   "$defs": {
     "suppression": {
       "$ref": "vulnerabilities.reports.suppression.vulnlog.schema.json"
+    },
+    "on": {
+      "$ref": "on.vulnlog.schema.json"
     }
   }
 }

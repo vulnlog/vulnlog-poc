@@ -30,13 +30,12 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     @JsonPropertyDescription("Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD")
     private String at;
     /**
-     * Analysis for Release
+     * Vulnlog On Schema
      * <p>
-     * This analysis applies for these releases. If left empty, the analysis applies for all releases.
+     * 
      * 
      */
     @JsonProperty("on-id")
-    @JsonPropertyDescription("This analysis applies for these releases. If left empty, the analysis applies for all releases.")
     private Object onId;
     /**
      * Reasoning
@@ -107,9 +106,9 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     }
 
     /**
-     * Analysis for Release
+     * Vulnlog On Schema
      * <p>
-     * This analysis applies for these releases. If left empty, the analysis applies for all releases.
+     * 
      * 
      */
     @JsonProperty("on-id")
@@ -118,9 +117,9 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
     }
 
     /**
-     * Analysis for Release
+     * Vulnlog On Schema
      * <p>
-     * This analysis applies for these releases. If left empty, the analysis applies for all releases.
+     * 
      * 
      */
     @JsonProperty("on-id")
