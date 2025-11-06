@@ -23,7 +23,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "paths",
-    "purls"
+    "purls",
+    "until"
 })
 public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
 
@@ -45,6 +46,15 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
     @JsonProperty("purls")
     @JsonPropertyDescription("The suppression only applies to packages matching these PURLs.")
     private List<String> purls = new ArrayList<String>();
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    @JsonPropertyDescription("Date until this suppression should be active to. Format: YYYY-MM-DD")
+    private String until;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -61,11 +71,14 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
      *     Package URL. The suppression only applies to packages matching these PURLs.
      * @param paths
      *     Paths. The suppression only applies to files matching these paths.
+     * @param until
+     *     Suppress Until. Date until this suppression should be active to. Format: YYYY-MM-DD.
      */
-    public VulnerabilitiesReportsSuppressionTrivyVulnlogSchema(List<String> paths, List<String> purls) {
+    public VulnerabilitiesReportsSuppressionTrivyVulnlogSchema(List<String> paths, List<String> purls, String until) {
         super();
         this.paths = paths;
         this.purls = purls;
+        this.until = until;
     }
 
     /**
@@ -110,6 +123,28 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
     @JsonProperty("purls")
     public void setPurls(List<String> purls) {
         this.purls = purls;
+    }
+
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    public String getUntil() {
+        return until;
+    }
+
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    public void setUntil(String until) {
+        this.until = until;
     }
 
     @JsonAnyGetter

@@ -22,12 +22,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "until",
     "cpe",
     "paths",
     "purls"
 })
 public class VulnerabilitiesReportsSuppressionOwaspVulnlogSchema {
 
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    @JsonPropertyDescription("Date until this suppression should be active to. Format: YYYY-MM-DD")
+    private String until;
     /**
      * 
      * <p>
@@ -73,12 +83,37 @@ public class VulnerabilitiesReportsSuppressionOwaspVulnlogSchema {
      *     Paths. The suppression only applies to files matching these paths.
      * @param cpe
      *     The suppression only applies to artifacts matching these common platform enumerations.
+     * @param until
+     *     Suppress Until. Date until this suppression should be active to. Format: YYYY-MM-DD.
      */
-    public VulnerabilitiesReportsSuppressionOwaspVulnlogSchema(List<String> cpe, List<String> paths, List<String> purls) {
+    public VulnerabilitiesReportsSuppressionOwaspVulnlogSchema(String until, List<String> cpe, List<String> paths, List<String> purls) {
         super();
+        this.until = until;
         this.cpe = cpe;
         this.paths = paths;
         this.purls = purls;
+    }
+
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    public String getUntil() {
+        return until;
+    }
+
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    public void setUntil(String until) {
+        this.until = until;
     }
 
     /**

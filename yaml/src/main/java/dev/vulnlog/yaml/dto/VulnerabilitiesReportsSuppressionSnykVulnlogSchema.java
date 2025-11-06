@@ -22,10 +22,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "until",
     "paths"
 })
 public class VulnerabilitiesReportsSuppressionSnykVulnlogSchema {
 
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    @JsonPropertyDescription("Date until this suppression should be active to. Format: YYYY-MM-DD")
+    private String until;
     /**
      * Paths
      * <p>
@@ -49,10 +59,35 @@ public class VulnerabilitiesReportsSuppressionSnykVulnlogSchema {
      * 
      * @param paths
      *     Paths. The suppression only applies to files matching these paths.
+     * @param until
+     *     Suppress Until. Date until this suppression should be active to. Format: YYYY-MM-DD.
      */
-    public VulnerabilitiesReportsSuppressionSnykVulnlogSchema(List<String> paths) {
+    public VulnerabilitiesReportsSuppressionSnykVulnlogSchema(String until, List<String> paths) {
         super();
+        this.until = until;
         this.paths = paths;
+    }
+
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    public String getUntil() {
+        return until;
+    }
+
+    /**
+     * Suppress Until
+     * <p>
+     * Date until this suppression should be active to. Format: YYYY-MM-DD
+     * 
+     */
+    @JsonProperty("until")
+    public void setUntil(String until) {
+        this.until = until;
     }
 
     /**

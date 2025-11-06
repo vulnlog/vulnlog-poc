@@ -9,10 +9,6 @@ include:
     file: releases.vl.yml
   reporters:
     file: reporters.vl.yml
-    pipeline-ref-ids:
-      - &trivy trivy-pipeline
-      - &owasp owasp-pipeline
-      - &oracleCpu oracleCpu
 
 vulnerabilities:
 
@@ -20,9 +16,20 @@ vulnerabilities:
     cwe: 1337
     reports:
       - vuln-id: CVE-2025-1234
-        reporter-id: *trivy
         on-id: v100
         at: 2025-10-31
+        reporters:
+          - reporter12: myTrivy
+            suppression:
+              purls:
+                - pkg:deb/debian/libssl1.1
+          - reporter12: mySnyk
+            suppression:
+              paths:
+                - foo/bar/baz1.jar
+                - foo/bar/baz2.jar
+                - foo/bar/baz3.jar
+                - foo/bar/baz4.jar
     analysis:
       - on-id: v100
         at: 2025-11-01

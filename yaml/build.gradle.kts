@@ -6,6 +6,7 @@ plugins {
     application
     id("org.jsonschema2pojo") version "1.2.2"
     id("org.graalvm.buildtools.native") version "0.11.1"
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 val gitHash: String by lazy {
@@ -27,6 +28,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 }
 
 application {

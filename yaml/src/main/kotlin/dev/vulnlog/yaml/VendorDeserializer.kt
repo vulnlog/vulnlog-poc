@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
-import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema
 
 class VendorDeserializer :
     JsonDeserializer<ReportersVulnlogSchema.Vendor>() {

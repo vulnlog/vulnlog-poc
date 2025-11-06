@@ -240,6 +240,14 @@
             "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
             "format": "purl"
           }
+        },
+        "until": {
+          "title": "Suppress Until",
+          "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
+          "examples": [ "1970-01-01" ],
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
         }
       }
     },
@@ -248,6 +256,14 @@
       "title": "Vulnlog Vulnerability Report Suppression Snyk Open Source Schema",
       "type": "object",
       "properties": {
+        "until": {
+          "title": "Suppress Until",
+          "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
+          "examples": [ "1970-01-01" ],
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
+        },
         "paths": {
           "title": "Paths",
           "description": "The suppression only applies to files matching these paths.",
@@ -256,100 +272,6 @@
             "examples": [ "*", "configstore > dot-prop", "snyk > configstore > dot-prop" ],
             "type": "string"
           }
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.suppression.owasp.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Report Suppression OWASP Dependency Check Schema",
-      "type": "object",
-      "properties": {
-        "cpe": {
-          "title": "",
-          "description": "The suppression only applies to artifacts matching these common platform enumerations.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "cpe"
-          }
-        },
-        "paths": {
-          "title": "Paths",
-          "description": "The suppression only applies to files matching these paths.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "path"
-          }
-        },
-        "purls": {
-          "title": "Package URL",
-          "description": "The suppression only applies to packages matching these PURLs.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
-            "format": "purl"
-          }
-        }
-      }
-    },
-    "https://vulnlog.dev/vulnerabilities.reports.suppression.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Report Suppression Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "on": {
-            "title": "Suppress on Releases",
-            "description": "Releases on which this suppression should be applied.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            ]
-          },
-          "owasp": {
-            "title": "OWASP Dependency Check Suppression",
-            "description": "Setups a OWASP Dependency Check suppression.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/owasp"
-          },
-          "snyk": {
-            "title": "Snyk Open Source Suppression",
-            "description": "Setups a Snyk Open Source suppression.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/snyk"
-          },
-          "trivy": {
-            "title": "Trivy Suppression",
-            "description": "Setups a Trivy suppression.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json/$defs/trivy"
-          },
-          "until": {
-            "title": "Suppress Until",
-            "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
-            "examples": [ "1970-01-01" ],
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "format": "date"
-          }
-        }
-      },
-      "$defs": {
-        "owasp": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
-        },
-        "snyk": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
-        },
-        "trivy": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
         }
       }
     },
@@ -514,6 +436,49 @@
         }
       }
     },
+    "https://vulnlog.dev/vulnerabilities.reports.suppression.owasp.vulnlog.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Vulnlog Vulnerability Report Suppression OWASP Dependency Check Schema",
+      "type": "object",
+      "properties": {
+        "until": {
+          "title": "Suppress Until",
+          "description": "Date until this suppression should be active to. Format: YYYY-MM-DD",
+          "examples": [ "1970-01-01" ],
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "format": "date"
+        },
+        "cpe": {
+          "title": "",
+          "description": "The suppression only applies to artifacts matching these common platform enumerations.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "cpe"
+          }
+        },
+        "paths": {
+          "title": "Paths",
+          "description": "The suppression only applies to files matching these paths.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "path"
+          }
+        },
+        "purls": {
+          "title": "Package URL",
+          "description": "The suppression only applies to packages matching these PURLs.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^pkg:[^/]+/[^/]+/[^/]+$",
+            "format": "purl"
+          }
+        }
+      }
+    },
     "https://vulnlog.dev/vulnerabilities.reports.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Vulnlog Vulnerability Reports Schema",
@@ -533,25 +498,31 @@
             "description": "Releases on which this vulnerability report applies to.",
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/on"
           },
-          "reporter-id": {
+          "reporters": {
             "title": "Reporter",
             "description": "Reporter of this vulnerability report.",
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reporter12": {
+                  "title": "My Reporter 12",
+                  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                },
+                "suppression": {}
               }
-            ]
-          },
-          "suppression": {
-            "title": "Suppress Report",
-            "description": "Whether this report should be suppressed.",
-            "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/suppression"
+            }
           },
           "vuln-id": {
             "title": "Vulnerability ID",
@@ -572,11 +543,17 @@
         }
       },
       "$defs": {
-        "suppression": {
-          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.vulnlog.schema.json"
-        },
         "on": {
           "$ref": "#/$defs/https:~1~1vulnlog.dev~1on.vulnlog.schema.json"
+        },
+        "owasp": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
+        },
+        "snyk": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
+        },
+        "trivy": {
+          "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
         }
       }
     },
