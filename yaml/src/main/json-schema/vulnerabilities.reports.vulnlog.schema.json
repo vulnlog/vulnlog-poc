@@ -18,25 +18,31 @@
         "description": "Releases on which this vulnerability report applies to.",
         "$ref": "#/$defs/on"
       },
-      "reporter-id": {
+      "reporters": {
         "title": "Reporter",
         "description": "Reporter of this vulnerability report.",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "reporter12": {
+              "title": "My Reporter 12",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "suppression": {}
           }
-        ]
-      },
-      "suppression": {
-        "title": "Suppress Report",
-        "description": "Whether this report should be suppressed.",
-        "$ref": "#/$defs/suppression"
+        }
       },
       "vuln-id": {
         "title": "Vulnerability ID",
@@ -57,11 +63,17 @@
     }
   },
   "$defs": {
-    "suppression": {
-      "$ref": "vulnerabilities.reports.suppression.vulnlog.schema.json"
-    },
     "on": {
       "$ref": "on.vulnlog.schema.json"
+    },
+    "owasp": {
+      "$ref": "vulnerabilities.reports.suppression.owasp.vulnlog.schema.json"
+    },
+    "snyk": {
+      "$ref": "vulnerabilities.reports.suppression.snyk.vulnlog.schema.json"
+    },
+    "trivy": {
+      "$ref": "vulnerabilities.reports.suppression.trivy.vulnlog.schema.json"
     }
   }
 }

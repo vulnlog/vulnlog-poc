@@ -1,11 +1,9 @@
 package dev.vulnlog.yaml
 
-import com.fasterxml.jackson.core.ObjectCodec
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.yaml.YAMLAnchorReplayingFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactoryBuilder
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema

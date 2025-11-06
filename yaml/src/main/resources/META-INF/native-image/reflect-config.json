@@ -9,15 +9,6 @@
     "allPublicFields": true
   },
   {
-    "name": "dev.vulnlog.yaml.dto.NotAffected",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
     "name": "dev.vulnlog.yaml.dto.ReleaseGroupsVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -37,6 +28,15 @@
   },
   {
     "name": "dev.vulnlog.yaml.dto.ReleasesVulnlogSchema",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "allPublicFields": true
+  },
+  {
+    "name": "dev.vulnlog.yaml.dto.Reporter",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,
@@ -136,15 +136,6 @@
   },
   {
     "name": "dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionTrivyVulnlogSchema",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
-    "name": "dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,

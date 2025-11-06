@@ -1,17 +1,21 @@
 ---
 reporters:
-  - id: &trivy trivy
+  - id: myTrivy
     vendor: Aqua Security Trivy
-  - id: &owasp owasp
+  - id: myOtherTrivy
+    vendor: Aqua Security Trivy
+  - id: myOwasp
     vendor: OWASP Dependency Check
+  - id: mySnyk
+    vendor: Snyk Open Source
 
-reporter-pipelines:
-  - id: trivy-pipeline
-    name: Trivy Pipeline
-    reporter: *trivy
-  - id: owasp-pipeline
-    name: OWASP Dependency Check Pipeline
-    reporter-ref-id: *owasp
-    lifetime:
-      start: 2021-03-01
-      end: 2025-09-30
+#reporter-pipelines:
+#  - id: trivy-pipeline
+#    name: Trivy Pipeline
+#    reporter: trivy
+#  - id: owasp-pipeline
+#    name: OWASP Dependency Check Pipeline
+#    reporter: owasp
+#    lifetime:
+#      start: 2021-03-01
+#      end: 2025-09-30

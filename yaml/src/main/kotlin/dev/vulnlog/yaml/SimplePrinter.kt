@@ -5,7 +5,7 @@ import dev.vulnlog.yaml.dto.ReleasesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReporterPipelinesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVulnlogSchema
-import dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionVulnlogSchema
+import dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionTrivyVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsUpdateVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsVulnlogSchema
@@ -113,14 +113,27 @@ private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogS
                 .joinToString(", ")
         )
     }
-    when (vulnReportEntry.reporterId) {
-        is String -> println("  reporter ID: ${vulnReportEntry.reporterId}")
-        is Collection<*> -> println(
-            "  reporter IDs: " + (vulnReportEntry.reporterId as Collection<*>).joinToString(
-                ", "
-            )
-        )
+
+    if (!vulnReportEntry.reporters.isNullOrEmpty()) {
+        vulnReportEntry.reporters.map { reporter -> reporter.reporter12 }
     }
+
+    if (!vulnReportEntry.reporters.isNullOrEmpty()) {
+        for (reporter in vulnReportEntry.reporters) {
+            println("  reporter: ${reporter.reporter12}")
+            if (reporter.suppression != null && reporter.suppression is Map<*, *>) {
+                for ((key, value) in reporter.suppression as Map<*, *>) {
+                    when (value) {
+                        is String -> println("    $key: $value")
+                        is Collection<*> -> println(
+                            "    $key: " + value.joinToString(", ")
+                        )
+                    }
+                }
+            }
+        }
+    }
+
     vulnReportEntry.at?.let { println("  at: $it") }
     when (vulnReportEntry.onId) {
         is String -> println("  on id: ${vulnReportEntry.onId}")
@@ -128,51 +141,6 @@ private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogS
             "  on-ids: " + (vulnReportEntry.onId as Collection<*>)
                 .joinToString(", ")
         )
-    }
-    if (vulnReportEntry.suppression != null && vulnReportEntry.suppression.isNotEmpty()) {
-        println("  suppression:")
-        vulnReportEntry.suppression.filter { it != null }.forEach(::printVulnReportSuppressionEntry)
-    }
-}
-
-private fun printVulnReportSuppressionEntry(vulnReportSuppressEntry: VulnerabilitiesReportsSuppressionVulnlogSchema) {
-    when (vulnReportSuppressEntry.on) {
-        is String -> println("    on: ${vulnReportSuppressEntry.on}")
-        is Collection<*> -> (vulnReportSuppressEntry.on as Collection<*>).forEach { println("    on: $it") }
-    }
-    vulnReportSuppressEntry.until?.let { println("    until: $it") }
-    if (vulnReportSuppressEntry.trivy != null) {
-        println("    trivy:")
-        if (vulnReportSuppressEntry.trivy.paths != null && vulnReportSuppressEntry.trivy.paths.isNotEmpty()) {
-            println("      paths:")
-            vulnReportSuppressEntry.trivy.paths.forEach { println("        $it") }
-        }
-        if (vulnReportSuppressEntry.trivy.purls != null && vulnReportSuppressEntry.trivy.purls.isNotEmpty()) {
-            println("      purls:")
-            vulnReportSuppressEntry.trivy.purls.forEach { println("        $it") }
-        }
-    }
-    if (vulnReportSuppressEntry.owasp != null) {
-        println("    owasp:")
-        if (vulnReportSuppressEntry.owasp.paths != null && vulnReportSuppressEntry.owasp.paths.isNotEmpty()) {
-            println("      paths:")
-            vulnReportSuppressEntry.owasp.paths.forEach { println("        $it") }
-        }
-        if (vulnReportSuppressEntry.owasp.purls != null && vulnReportSuppressEntry.owasp.purls.isNotEmpty()) {
-            println("      purls:")
-            vulnReportSuppressEntry.owasp.purls.forEach { println("        $it") }
-        }
-        if (vulnReportSuppressEntry.owasp.cpe != null && vulnReportSuppressEntry.owasp.cpe.isNotEmpty()) {
-            println("      cpe:")
-            vulnReportSuppressEntry.owasp.cpe.forEach { println("        $it") }
-        }
-    }
-    if (vulnReportSuppressEntry.snyk != null) {
-        println("    snyk:")
-        if (vulnReportSuppressEntry.snyk.paths != null && vulnReportSuppressEntry.snyk.paths.isNotEmpty()) {
-            println("      paths:")
-            vulnReportSuppressEntry.snyk.paths.forEach { println("        $it") }
-        }
     }
 }
 

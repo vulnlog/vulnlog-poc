@@ -17,8 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "at",
     "on-id",
-    "reporter-id",
-    "suppression",
+    "reporters",
     "vuln-id"
 })
 public class VulnerabilitiesReportsVulnlogSchema {
@@ -46,17 +45,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * Reporter of this vulnerability report.
      * 
      */
-    @JsonProperty("reporter-id")
+    @JsonProperty("reporters")
     @JsonPropertyDescription("Reporter of this vulnerability report.")
-    private Object reporterId;
-    /**
-     * Vulnlog Vulnerability Report Suppression Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("suppression")
-    private List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression = new ArrayList<VulnerabilitiesReportsSuppressionVulnlogSchema>();
+    private List<Reporter> reporters = new ArrayList<Reporter>();
     /**
      * Vulnerability ID
      * <p>
@@ -78,23 +69,20 @@ public class VulnerabilitiesReportsVulnlogSchema {
 
     /**
      * 
+     * @param reporters
+     *     Reporter. Reporter of this vulnerability report.
      * @param at
      *     Reported at Date. Date on which this report was created. Format: YYYY-MM-DD.
      * @param vulnId
      *     Vulnerability ID. Identifier of the vulnerability. Can be a CVE or a Snyk ID.
-     * @param suppression
-     *     Suppress Report. Whether this report should be suppressed.
-     * @param reporterId
-     *     Reporter. Reporter of this vulnerability report.
      * @param onId
      *     Reported Release. Releases on which this vulnerability report applies to.
      */
-    public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, Object reporterId, List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression, Object vulnId) {
+    public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, List<Reporter> reporters, Object vulnId) {
         super();
         this.at = at;
         this.onId = onId;
-        this.reporterId = reporterId;
-        this.suppression = suppression;
+        this.reporters = reporters;
         this.vulnId = vulnId;
     }
 
@@ -148,9 +136,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * Reporter of this vulnerability report.
      * 
      */
-    @JsonProperty("reporter-id")
-    public Object getReporterId() {
-        return reporterId;
+    @JsonProperty("reporters")
+    public List<Reporter> getReporters() {
+        return reporters;
     }
 
     /**
@@ -159,31 +147,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * Reporter of this vulnerability report.
      * 
      */
-    @JsonProperty("reporter-id")
-    public void setReporterId(Object reporterId) {
-        this.reporterId = reporterId;
-    }
-
-    /**
-     * Vulnlog Vulnerability Report Suppression Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("suppression")
-    public List<VulnerabilitiesReportsSuppressionVulnlogSchema> getSuppression() {
-        return suppression;
-    }
-
-    /**
-     * Vulnlog Vulnerability Report Suppression Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("suppression")
-    public void setSuppression(List<VulnerabilitiesReportsSuppressionVulnlogSchema> suppression) {
-        this.suppression = suppression;
+    @JsonProperty("reporters")
+    public void setReporters(List<Reporter> reporters) {
+        this.reporters = reporters;
     }
 
     /**
