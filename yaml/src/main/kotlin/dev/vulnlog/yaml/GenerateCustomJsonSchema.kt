@@ -14,12 +14,16 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
-import java.io.File
+import java.nio.file.Path
 import kotlin.collections.flatMap
+import kotlin.io.path.Path
+import kotlin.io.path.isDirectory
+import kotlin.io.path.isRegularFile
+import kotlin.io.path.writeText
 
 class GenerateCustomJsonSchema(
     private val result: VulnlogSchema,
-    private val outputFilename: String
+    outputFilename: String
 ) {
     private val jsonSchemaTemplate = javaClass.getResource("/jsonschema/vulnlog.json")?.readText()
         ?: throw IllegalStateException("Could not load JSON schema template")
@@ -30,6 +34,15 @@ class GenerateCustomJsonSchema(
         prettyPrintIndent = "  "
     }
     private var root = json.parseToJsonElement(jsonSchemaTemplate)
+
+    private val output = Path(outputFilename)
+    private val outputFile: Path = if (output.isRegularFile()) {
+        output
+    } else if (output.isDirectory()) {
+        output.resolve("vulnlog.json")
+    } else {
+        error("Invalid output file path: $outputFilename")
+    }
 
     /**
      * Reset the JSON schema to its original state.
@@ -289,7 +302,7 @@ class GenerateCustomJsonSchema(
     }
 
     private fun writeSchemaToFile(replacedReleases: String) {
-        println("Writing JSON schema to file: $outputFilename")
-        File(outputFilename).writeText(replacedReleases)
+        println("Writing JSON schema to file: $outputFile")
+        outputFile.writeText(replacedReleases)
     }
 }
