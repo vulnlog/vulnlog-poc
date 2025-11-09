@@ -1,0 +1,45 @@
+---
+vulnlog:
+  version: 1.0.0
+  vendor: Company ABC
+  product: Product ABC
+
+include:
+  releases:
+    file: releases.vl.yml
+  reporters:
+    file: reporters.vl.yml
+
+vulnerabilities:
+
+  - desc: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    cwe: 1337
+    reports:
+      - vuln-id: CVE-2025-1234
+        on-id: v100
+        at: 2025-10-31
+        reporters:
+          - reporter: myTrivy
+            suppression:
+              purls:
+                - pkg:deb/debian/libssl1.1
+          - reporter: mySnyk
+            suppression:
+              paths:
+                - foo/bar/baz1.jar
+                - foo/bar/baz2.jar
+                - foo/bar/baz3.jar
+                - foo/bar/baz4.jar
+    analysis:
+      - on-id: v100
+        at: 2025-11-01
+        verdict:
+          affected:
+            severity: Critical
+        reasoning: Product is affected.
+    resolutions:
+      - update:
+          on-id: v100
+          maven-dependency: foo:bar:1.2.3
+          to: 1.2.4
+          resolved-at: 2025-11-01

@@ -529,15 +529,15 @@
             "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/on"
           },
           "reporters": {
-            "title": "Reporter",
-            "description": "Reporter of this vulnerability report.",
+            "title": "Reporters",
+            "description": "Reporters of this vulnerability report.",
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "reporter12": {
-                  "title": "My Reporter 12",
-                  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "reporter": {
+                  "title": "Reporter",
+                  "description": "Reporter of this vulnerability report and suppression information.",
                   "oneOf": [
                     {
                       "enum": [
@@ -565,14 +565,14 @@
                 {
                   "if": {
                     "properties": {
-                      "reporter12": {
+                      "reporter": {
                         "const": "myTrivy"
                       }
                     }
                   },
                   "then": {
                     "properties": {
-                      "reporter12": {},
+                      "reporter": {},
                       "suppression": {
                         "title": "Trivy Suppression",
                         "description": "Trivy Lorem ipsum",
@@ -585,14 +585,14 @@
                 {
                   "if": {
                     "properties": {
-                      "reporter12": {
+                      "reporter": {
                         "const": "myOtherTrivy"
                       }
                     }
                   },
                   "then": {
                     "properties": {
-                      "reporter12": {},
+                      "reporter": {},
                       "suppression": {
                         "title": "Trivy Suppression",
                         "description": "Trivy Lorem ipsum",
@@ -605,14 +605,14 @@
                 {
                   "if": {
                     "properties": {
-                      "reporter12": {
+                      "reporter": {
                         "const": "myOwasp"
                       }
                     }
                   },
                   "then": {
                     "properties": {
-                      "reporter12": {},
+                      "reporter": {},
                       "suppression": {
                         "title": "OWASP Suppression",
                         "description": "OWASP Lorem ipsum",
@@ -625,14 +625,14 @@
                 {
                   "if": {
                     "properties": {
-                      "reporter12": {
+                      "reporter": {
                         "const": "mySnyk"
                       }
                     }
                   },
                   "then": {
                     "properties": {
-                      "reporter12": {},
+                      "reporter": {},
                       "suppression": {
                         "title": "Snyk Suppression",
                         "description": "Snyk Lorem ipsum",

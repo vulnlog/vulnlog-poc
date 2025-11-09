@@ -13,20 +13,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "reporter12",
+    "reporter",
     "suppression"
 })
 public class Reporter {
 
     /**
-     * My Reporter 12
+     * Reporter
      * <p>
-     * Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+     * Reporter of this vulnerability report and suppression information.
      * 
      */
-    @JsonProperty("reporter12")
-    @JsonPropertyDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-    private Object reporter12;
+    @JsonProperty("reporter")
+    @JsonPropertyDescription("Reporter of this vulnerability report and suppression information.")
+    private Object reporter;
     @JsonProperty("suppression")
     private Object suppression;
     @JsonIgnore
@@ -41,35 +41,35 @@ public class Reporter {
 
     /**
      * 
-     * @param reporter12
-     *     My Reporter 12. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+     * @param reporter
+     *     Reporter. Reporter of this vulnerability report and suppression information.
      */
-    public Reporter(Object reporter12, Object suppression) {
+    public Reporter(Object reporter, Object suppression) {
         super();
-        this.reporter12 = reporter12;
+        this.reporter = reporter;
         this.suppression = suppression;
     }
 
     /**
-     * My Reporter 12
+     * Reporter
      * <p>
-     * Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+     * Reporter of this vulnerability report and suppression information.
      * 
      */
-    @JsonProperty("reporter12")
-    public Object getReporter12() {
-        return reporter12;
+    @JsonProperty("reporter")
+    public Object getReporter() {
+        return reporter;
     }
 
     /**
-     * My Reporter 12
+     * Reporter
      * <p>
-     * Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+     * Reporter of this vulnerability report and suppression information.
      * 
      */
-    @JsonProperty("reporter12")
-    public void setReporter12(Object reporter12) {
-        this.reporter12 = reporter12;
+    @JsonProperty("reporter")
+    public void setReporter(Object reporter) {
+        this.reporter = reporter;
     }
 
     @JsonProperty("suppression")

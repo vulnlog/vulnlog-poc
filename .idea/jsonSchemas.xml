@@ -3,24 +3,38 @@
   <component name="JsonSchemaMappingsProjectConfiguration">
     <state>
       <map>
-        <entry key="Vulnlog">
+        <entry key="Vulnlog Multi Example">
           <value>
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
-              <option name="name" value="Vulnlog" />
-              <option name="relativePathToSchema" value="yaml/vulnlog.json" />
+              <option name="name" value="Vulnlog Multi Example" />
+              <option name="relativePathToSchema" value="yaml-data/multi-file-example/vulnlog.json" />
               <option name="schemaVersion" value="JSON Schema 202,012" />
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="pattern" value="true" />
-                    <option name="path" value="*.vl.yaml" />
-                    <option name="mappingKind" value="Pattern" />
+                    <option name="directory" value="true" />
+                    <option name="path" value="yaml-data/multi-file-example" />
+                    <option name="mappingKind" value="Directory" />
                   </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
+        <entry key="Vulnlog Single Example">
+          <value>
+            <SchemaInfo>
+              <option name="generatedName" value="New Schema" />
+              <option name="name" value="Vulnlog Single Example" />
+              <option name="relativePathToSchema" value="yaml-data/single-file-example/vulnlog.json" />
+              <option name="schemaVersion" value="JSON Schema 202,012" />
+              <option name="patterns">
+                <list>
                   <Item>
-                    <option name="pattern" value="true" />
-                    <option name="path" value="*.vl.yml" />
-                    <option name="mappingKind" value="Pattern" />
+                    <option name="directory" value="true" />
+                    <option name="path" value="yaml-data/single-file-example" />
+                    <option name="mappingKind" value="Directory" />
                   </Item>
                 </list>
               </option>

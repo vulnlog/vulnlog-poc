@@ -1,0 +1,10 @@
+---
+reporters:
+  - id: myTrivy
+    vendor: Aqua Security Trivy
+  - id: myOtherTrivy
+    vendor: Aqua Security Trivy
+  - id: myOwasp
+    vendor: OWASP Dependency Check
+  - id: mySnyk
+    vendor: Snyk Open Source

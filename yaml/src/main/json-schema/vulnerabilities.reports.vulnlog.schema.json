@@ -19,15 +19,15 @@
         "$ref": "#/$defs/on"
       },
       "reporters": {
-        "title": "Reporter",
-        "description": "Reporter of this vulnerability report.",
+        "title": "Reporters",
+        "description": "Reporters of this vulnerability report.",
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "reporter12": {
-              "title": "My Reporter 12",
-              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "reporter": {
+              "title": "Reporter",
+              "description": "Reporter of this vulnerability report and suppression information.",
               "oneOf": [
                 {
                   "type": "string"

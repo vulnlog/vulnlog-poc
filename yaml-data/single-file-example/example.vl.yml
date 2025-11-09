@@ -5,16 +5,11 @@ vulnlog:
   product: Example Product
 
 reporters:
-  - id: &trivy-scanner trivy
+  - id: trivy
     vendor: Aqua Security Trivy
 
-reporter-pipelines:
-  - id: trivy-pipeline
-    name: Trivy Pipeline
-    reporter-ref-id: *trivy-scanner
-
 releases:
-  - id: &v100 v100
+  - id: v100
     version: 1.0.0
     release-date: 2021-10-31
   - id: v101
@@ -25,8 +20,9 @@ vulnerabilities:
   - desc: Remote code execution (RCE) vulnerability in Log4j's JNDI features.
     reports:
       - vuln-id: CVE-2021-44228
-        reporter-id: *trivy-scanner
-        on-id: *v100
+        reporters:
+          - reporter: trivy
+        on-id: v100
         at: 2021-12-10
     analysis:
       - verdict:
