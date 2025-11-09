@@ -139,3 +139,22 @@ resolutions:
     resolved at: 2021-12-12
 
 ```
+
+### IDE Auto-completion and Validation (JSON Schema)
+
+Generate the custom JSON schema:
+
+```shell
+vl-yaml yaml-data/single-file-example/example.vl.yml --generate-schema=yaml-data/single-file-example/
+```
+
+This provides smart IDE auto-completion for reporters and releases.
+
+![IDE Auto-completion on reporters](assets/autocompletion-reporters.png)
+![IDE Auto-completion on releases](assets/autocompletion-releases.png)
+
+Revert to the default schema:
+
+```shell
+vl-yaml yaml-data/single-file-example/example.vl.yml --reset-schema=yaml-data/single-file-example/
+```
