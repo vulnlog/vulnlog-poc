@@ -8,7 +8,7 @@ import kotlin.time.measureTimedValue
 
 fun main(args: Array<String>) {
     if (args.isEmpty() || args.contains("--help") || args.contains("-h")) {
-        println("Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json]")
+        println("Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json | --reset-schema=output.json]")
         println("Flags")
         println("  --benchmark:                    print the number of vulnerabilities and the time to parse the file")
         println("  --generate-schema=output.json:  generate a JSON-Schema for the YAML file and save it to output.json")

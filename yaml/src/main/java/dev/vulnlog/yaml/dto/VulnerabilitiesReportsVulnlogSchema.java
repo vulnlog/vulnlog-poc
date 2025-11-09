@@ -40,13 +40,13 @@ public class VulnerabilitiesReportsVulnlogSchema {
     @JsonProperty("on-id")
     private Object onId;
     /**
-     * Reporter
+     * Reporters
      * <p>
-     * Reporter of this vulnerability report.
+     * Reporters of this vulnerability report.
      * 
      */
     @JsonProperty("reporters")
-    @JsonPropertyDescription("Reporter of this vulnerability report.")
+    @JsonPropertyDescription("Reporters of this vulnerability report.")
     private List<Reporter> reporters = new ArrayList<Reporter>();
     /**
      * Vulnerability ID
@@ -70,7 +70,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
     /**
      * 
      * @param reporters
-     *     Reporter. Reporter of this vulnerability report.
+     *     Reporters. Reporters of this vulnerability report.
      * @param at
      *     Reported at Date. Date on which this report was created. Format: YYYY-MM-DD.
      * @param vulnId
@@ -131,9 +131,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
     }
 
     /**
-     * Reporter
+     * Reporters
      * <p>
-     * Reporter of this vulnerability report.
+     * Reporters of this vulnerability report.
      * 
      */
     @JsonProperty("reporters")
@@ -142,9 +142,9 @@ public class VulnerabilitiesReportsVulnlogSchema {
     }
 
     /**
-     * Reporter
+     * Reporters
      * <p>
-     * Reporter of this vulnerability report.
+     * Reporters of this vulnerability report.
      * 
      */
     @JsonProperty("reporters")

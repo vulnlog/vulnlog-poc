@@ -39,6 +39,10 @@ tasks.withType<Jar> {
     manifest {
         attributes["Implementation-Version"] = version
     }
+    dependsOn("bundleJsonSchema")
+    from(project.layout.buildDirectory.dir("jsonschema/vulnlog.json")) {
+        into("jsonschema")
+    }
 }
 
 jsonSchema2Pojo {
@@ -89,14 +93,13 @@ graalvmNative {
 val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
     val inputFile = project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
-    val outputFile = project.projectDir.resolve("src/main/resources/jsonschema/vulnlog.json")
+    val outputFile = project.layout.buildDirectory.file("jsonschema/vulnlog.json")
 
     inputs.file(inputFile)
     inputs.dir(schemaDir)
     outputs.file(outputFile)
 
     workingDir(project.rootDir)
-    standardOutput = outputFile.outputStream()
 
     commandLine(
         "jsonschema",
@@ -109,14 +112,9 @@ val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
         "-w"
     )
 
-    // Ensure the output directory exists
     doFirst {
-        outputFile.parentFile.mkdirs()
+        standardOutput = outputFile.get().asFile.outputStream()
     }
-}
-
-tasks.processResources {
-    dependsOn(bundleJsonSchema)
 }
 
 tasks.build {

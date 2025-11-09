@@ -106,7 +106,7 @@ class GenerateCustomJsonSchema(
             "reporters",
             "items",
             "properties",
-            "reporter12",
+            "reporter",
         )
         val reporterNames: List<String> = reporters.values.flatten().toSet().map { it }
         val reporterArray: JsonArray = buildJsonArray {
@@ -166,14 +166,14 @@ class GenerateCustomJsonSchema(
         return buildJsonObject {
             putJsonObject("if") {
                 putJsonObject("properties") {
-                    putJsonObject("reporter12") {
+                    putJsonObject("reporter") {
                         put("const", name)
                     }
                 }
             }
             putJsonObject("then") {
                 putJsonObject("properties") {
-                    putJsonObject("reporter12") {}
+                    putJsonObject("reporter") {}
                     putJsonObject("suppression") {
                         put("title", "OWASP Suppression")
                         put("description", "OWASP Lorem ipsum")
@@ -192,14 +192,14 @@ class GenerateCustomJsonSchema(
         return buildJsonObject {
             putJsonObject("if") {
                 putJsonObject("properties") {
-                    putJsonObject("reporter12") {
+                    putJsonObject("reporter") {
                         put("const", name)
                     }
                 }
             }
             putJsonObject("then") {
                 putJsonObject("properties") {
-                    putJsonObject("reporter12") {}
+                    putJsonObject("reporter") {}
                     putJsonObject("suppression") {
                         put("title", "Snyk Suppression")
                         put("description", "Snyk Lorem ipsum")
@@ -218,14 +218,14 @@ class GenerateCustomJsonSchema(
         return buildJsonObject {
             putJsonObject("if") {
                 putJsonObject("properties") {
-                    putJsonObject("reporter12") {
+                    putJsonObject("reporter") {
                         put("const", name)
                     }
                 }
             }
             putJsonObject("then") {
                 putJsonObject("properties") {
-                    putJsonObject("reporter12") {}
+                    putJsonObject("reporter") {}
                     putJsonObject("suppression") {
                         put("title", "Trivy Suppression")
                         put("description", "Trivy Lorem ipsum")

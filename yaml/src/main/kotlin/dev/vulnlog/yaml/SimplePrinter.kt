@@ -115,12 +115,12 @@ private fun printVulnReportEntry(vulnReportEntry: VulnerabilitiesReportsVulnlogS
     }
 
     if (!vulnReportEntry.reporters.isNullOrEmpty()) {
-        vulnReportEntry.reporters.map { reporter -> reporter.reporter12 }
+        vulnReportEntry.reporters.map { reporter -> reporter.reporter }
     }
 
     if (!vulnReportEntry.reporters.isNullOrEmpty()) {
         for (reporter in vulnReportEntry.reporters) {
-            println("  reporter: ${reporter.reporter12}")
+            println("  reporter: ${reporter.reporter}")
             if (reporter.suppression != null && reporter.suppression is Map<*, *>) {
                 for ((key, value) in reporter.suppression as Map<*, *>) {
                     when (value) {

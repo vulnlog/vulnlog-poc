@@ -67,9 +67,30 @@ Binaries will be in `yaml/build/install/yaml/bin`.
 
 ## Usage
 
+Print the version.
+
 ```shell
 vl-yaml --version
 ```
+
+Print the help message.
+
+```shell
+vl-yaml --help
+```
+
+**Output:**
+
+```console
+Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json | --reset-schema=output.json]
+Flags
+  --benchmark:                    print the number of vulnerabilities and the time to parse the file
+  --generate-schema=output.json:  generate a JSON-Schema for the YAML file and save it to output.json
+  --reset-schema=output.json:     reset to the default JSON-Schema and save it to output.json
+```
+
+Read, parse and print a YAML file [example.vl.yml](yaml-data/single-file-example/example.vl.yml) in
+the [yaml-data](yaml-data) directory.
 
 ```shell
 vl-yaml yaml-data/single-file-example/example.vl.yml
@@ -100,17 +121,11 @@ id: trivy
 vendor: Aqua Security Trivy
 
 
-Reporter Pipelines
-id: trivy-pipeline
-name: Trivy Pipeline
-reporter: trivy
-
-
 Vulnerabilities
 desc: Remote code execution (RCE) vulnerability in Log4j's JNDI features.
 reports:
   vulnerability id: CVE-2021-44228
-  reporter ID: trivy
+  reporter: trivy
   at: 2021-12-10
   on id: v100
 analysis:
