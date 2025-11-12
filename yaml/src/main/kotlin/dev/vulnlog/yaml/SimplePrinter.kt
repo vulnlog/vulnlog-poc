@@ -12,11 +12,16 @@ import dev.vulnlog.yaml.dto.VulnlogSchema
 class SimplePrinter(val result: VulnlogSchema) {
 
     fun print() {
-        println("version: ${result.version}")
-        println("vendor: ${result.metadata.vendor}")
-        println("product: ${result.metadata.product}")
-        println("authors: ${result.metadata.author}")
-        println()
+        result.version?.let { println("version: $it\n") }
+
+        if (result.metadata != null) {
+            println("Metadata")
+            result.metadata.vendor?.let { println("vendor: $it") }
+            result.metadata.product?.let { println("product: $it") }
+            result.metadata.author?.let { println("author: $it") }
+            println()
+            println()
+        }
 
         if (result.releases != null && result.releases.isNotEmpty()) {
             println("Releases")

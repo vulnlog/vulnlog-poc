@@ -30,6 +30,7 @@ public class VulnlogSchema {
      * Version
      * <p>
      * The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
+     * (Required)
      * 
      */
     @JsonProperty("version")
@@ -72,6 +73,7 @@ public class VulnlogSchema {
      * Vulnlog Vulnerability Schema
      * <p>
      * 
+     * (Required)
      * 
      */
     @JsonProperty("vulnerabilities")
@@ -113,6 +115,7 @@ public class VulnlogSchema {
      * Version
      * <p>
      * The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
+     * (Required)
      * 
      */
     @JsonProperty("version")
@@ -124,6 +127,7 @@ public class VulnlogSchema {
      * Version
      * <p>
      * The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
+     * (Required)
      * 
      */
     @JsonProperty("version")
@@ -223,6 +227,7 @@ public class VulnlogSchema {
      * Vulnlog Vulnerability Schema
      * <p>
      * 
+     * (Required)
      * 
      */
     @JsonProperty("vulnerabilities")
@@ -234,6 +239,7 @@ public class VulnlogSchema {
      * Vulnlog Vulnerability Schema
      * <p>
      * 
+     * (Required)
      * 
      */
     @JsonProperty("vulnerabilities")

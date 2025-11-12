@@ -4,6 +4,7 @@
   "title": "Vulnlog Schema",
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
+  "required": [ "version", "vulnerabilities" ],
   "properties": {
     "version": {
       "title": "Version",
