@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "vulnlog",
+    "version",
+    "metadata",
     "include",
     "releases",
     "reporters",
@@ -26,14 +27,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class VulnlogSchema {
 
     /**
-     * Vulnlog Vulnlog Schema
+     * Version
+     * <p>
+     * The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
+     * 
+     */
+    @JsonProperty("version")
+    @JsonPropertyDescription("The Schema version. Must be prefixed with \"vulnlog/v\" and followed by a semantic version number. Example: \"vulnlog/v1.0.0\".")
+    private String version;
+    /**
+     * Vulnlog Metadata Schema
      * <p>
      * Validates Vulnlog Vulnlog YAML files.
      * 
      */
-    @JsonProperty("vulnlog")
+    @JsonProperty("metadata")
     @JsonPropertyDescription("Validates Vulnlog Vulnlog YAML files.")
-    private VulnlogVulnlogSchema vulnlog;
+    private MetadataSchema metadata;
     /**
      * Vulnlog Vulnerability Include Schema
      * <p>
@@ -78,18 +88,21 @@ public class VulnlogSchema {
      * 
      * @param include
      *     Include Files. Include other Vulnlog files in this Vulnlog file.
+     * @param metadata
+     *     Additional Information. Context information around this Vulnlog file. These information help to provide more context in Vulnlog generated artifacts.
      * @param reporters
      *     Reporters. Defines the reporters of vulnerabilities on the product.
-     * @param vulnlog
-     *     Vulnlog General Information. Common information about the Vulnlog file.
      * @param vulnerabilities
      *     Vulnerabilities. Defines the vulnerabilities of the product.
+     * @param version
+     *     Version. The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
      * @param releases
      *     Releases. Defines the releases of the product.
      */
-    public VulnlogSchema(VulnlogVulnlogSchema vulnlog, VulnerabilitiesIncludeVulnlogSchema include, List<ReleasesVulnlogSchema> releases, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
+    public VulnlogSchema(String version, MetadataSchema metadata, VulnerabilitiesIncludeVulnlogSchema include, List<ReleasesVulnlogSchema> releases, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
         super();
-        this.vulnlog = vulnlog;
+        this.version = version;
+        this.metadata = metadata;
         this.include = include;
         this.releases = releases;
         this.reporters = reporters;
@@ -97,25 +110,47 @@ public class VulnlogSchema {
     }
 
     /**
-     * Vulnlog Vulnlog Schema
+     * Version
      * <p>
-     * Validates Vulnlog Vulnlog YAML files.
+     * The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
      * 
      */
-    @JsonProperty("vulnlog")
-    public VulnlogVulnlogSchema getVulnlog() {
-        return vulnlog;
+    @JsonProperty("version")
+    public String getVersion() {
+        return version;
     }
 
     /**
-     * Vulnlog Vulnlog Schema
+     * Version
+     * <p>
+     * The Schema version. Must be prefixed with "vulnlog/v" and followed by a semantic version number. Example: "vulnlog/v1.0.0".
+     * 
+     */
+    @JsonProperty("version")
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    /**
+     * Vulnlog Metadata Schema
      * <p>
      * Validates Vulnlog Vulnlog YAML files.
      * 
      */
-    @JsonProperty("vulnlog")
-    public void setVulnlog(VulnlogVulnlogSchema vulnlog) {
-        this.vulnlog = vulnlog;
+    @JsonProperty("metadata")
+    public MetadataSchema getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Vulnlog Metadata Schema
+     * <p>
+     * Validates Vulnlog Vulnlog YAML files.
+     * 
+     */
+    @JsonProperty("metadata")
+    public void setMetadata(MetadataSchema metadata) {
+        this.metadata = metadata;
     }
 
     /**

@@ -1,8 +1,10 @@
 ---
-vulnlog:
-  version: 1.0.0
-  vendor: Example Inc
-  product: Example Product
+version: vulnlog/v1
+
+metadata:
+  vendor: The Apache Software Foundation
+  product: Apache Log4j
+  author: Apache Security Team
 
 reporters:
   - id: trivy

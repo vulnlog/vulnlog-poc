@@ -1,16 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://vulnlog.dev/vulnlog.vulnlog.schema.json",
-  "title": "Vulnlog Vulnlog Schema",
+  "$id": "https://vulnlog.dev/metadata.schema.json",
+  "title": "Vulnlog Metadata Schema",
   "description": "Validates Vulnlog Vulnlog YAML files.",
   "type": "object",
   "properties": {
-    "version": {
-      "title": "Version",
-      "description": "The version of the Vulnlog file.",
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
-    },
     "vendor": {
       "title": "Vendor",
       "description": "The vendor of the product.",
@@ -19,6 +13,11 @@
     "product": {
       "title": "Product",
       "description": "The product this Vulnlog files covers.",
+      "type": "string"
+    },
+    "author": {
+      "title": "Author",
+      "description": "This Vulnlog file is curated by the authoring person or team.",
       "type": "string"
     }
   },

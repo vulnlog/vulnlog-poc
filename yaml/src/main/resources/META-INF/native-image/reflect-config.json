@@ -1,5 +1,14 @@
 [
   {
+    "name": "dev.vulnlog.yaml.dto.MetadataSchema",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "allPublicFields": true
+  },
+  {
     "name": "dev.vulnlog.yaml.dto.Releases",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
