@@ -1,23 +1,5 @@
 [
   {
-    "name": "dev.vulnlog.yaml.dto.Lifetime",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
-    "name": "dev.vulnlog.yaml.dto.ReleaseGroupsVulnlogSchema",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
     "name": "dev.vulnlog.yaml.dto.Releases",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -37,15 +19,6 @@
   },
   {
     "name": "dev.vulnlog.yaml.dto.Reporter",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
-    "name": "dev.vulnlog.yaml.dto.ReporterPipelinesVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,

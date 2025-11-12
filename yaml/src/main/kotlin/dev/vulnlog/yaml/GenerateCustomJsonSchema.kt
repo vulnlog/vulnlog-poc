@@ -1,6 +1,6 @@
 package dev.vulnlog.yaml
 
-import dev.vulnlog.yaml.dto.ReportersVulnlogSchema.*
+import dev.vulnlog.yaml.dto.ReportersVulnlogSchema.Vendor
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema.Vendor.*
 import dev.vulnlog.yaml.dto.VulnlogSchema
 import kotlinx.serialization.ExperimentalSerializationApi

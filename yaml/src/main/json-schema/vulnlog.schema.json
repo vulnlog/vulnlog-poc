@@ -15,20 +15,10 @@
       "description": "Include other Vulnlog files in this Vulnlog file.",
       "$ref": "#/$defs/include"
     },
-    "release-groups": {
-      "title": "Release Groups",
-      "description": "Defines the release groups of the product.",
-      "$ref": "#/$defs/release-groups"
-    },
     "releases": {
       "title": "Releases",
       "description": "Defines the releases of the product.",
       "$ref": "#/$defs/releases"
-    },
-    "reporter-pipelines": {
-      "title": "Reporter Pipelines",
-      "description": "Defines the reporter pipelines scanning this product.",
-      "$ref": "#/$defs/reporter-pipelines"
     },
     "reporters": {
       "title": "Reporters",
@@ -46,14 +36,8 @@
     "include": {
       "$ref": "vulnerabilities.include.vulnlog.schema.json"
     },
-    "release-groups": {
-      "$ref": "release-groups.vulnlog.schema.json"
-    },
     "releases": {
       "$ref": "releases.vulnlog.schema.json"
-    },
-    "reporter-pipelines": {
-      "$ref": "reporter-pipelines.vulnlog.schema.json"
     },
     "reporters": {
       "$ref": "reporters.vulnlog.schema.json"

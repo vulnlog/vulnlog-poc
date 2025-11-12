@@ -19,9 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "vulnlog",
     "include",
-    "release-groups",
     "releases",
-    "reporter-pipelines",
     "reporters",
     "vulnerabilities"
 })
@@ -45,14 +43,6 @@ public class VulnlogSchema {
     @JsonProperty("include")
     private VulnerabilitiesIncludeVulnlogSchema include;
     /**
-     * Vulnlog Release Groups Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("release-groups")
-    private List<ReleaseGroupsVulnlogSchema> releaseGroups = new ArrayList<ReleaseGroupsVulnlogSchema>();
-    /**
      * Vulnlog Releases Schema
      * <p>
      * 
@@ -60,14 +50,6 @@ public class VulnlogSchema {
      */
     @JsonProperty("releases")
     private List<ReleasesVulnlogSchema> releases = new ArrayList<ReleasesVulnlogSchema>();
-    /**
-     * Vulnlog Reporter Pipeline Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("reporter-pipelines")
-    private List<ReporterPipelinesVulnlogSchema> reporterPipelines = new ArrayList<ReporterPipelinesVulnlogSchema>();
     /**
      * Vulnlog Reporters Schema
      * <p>
@@ -98,24 +80,18 @@ public class VulnlogSchema {
      *     Include Files. Include other Vulnlog files in this Vulnlog file.
      * @param reporters
      *     Reporters. Defines the reporters of vulnerabilities on the product.
-     * @param reporterPipelines
-     *     Reporter Pipelines. Defines the reporter pipelines scanning this product.
      * @param vulnlog
      *     Vulnlog General Information. Common information about the Vulnlog file.
      * @param vulnerabilities
      *     Vulnerabilities. Defines the vulnerabilities of the product.
-     * @param releaseGroups
-     *     Release Groups. Defines the release groups of the product.
      * @param releases
      *     Releases. Defines the releases of the product.
      */
-    public VulnlogSchema(VulnlogVulnlogSchema vulnlog, VulnerabilitiesIncludeVulnlogSchema include, List<ReleaseGroupsVulnlogSchema> releaseGroups, List<ReleasesVulnlogSchema> releases, List<ReporterPipelinesVulnlogSchema> reporterPipelines, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
+    public VulnlogSchema(VulnlogVulnlogSchema vulnlog, VulnerabilitiesIncludeVulnlogSchema include, List<ReleasesVulnlogSchema> releases, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
         super();
         this.vulnlog = vulnlog;
         this.include = include;
-        this.releaseGroups = releaseGroups;
         this.releases = releases;
-        this.reporterPipelines = reporterPipelines;
         this.reporters = reporters;
         this.vulnerabilities = vulnerabilities;
     }
@@ -165,28 +141,6 @@ public class VulnlogSchema {
     }
 
     /**
-     * Vulnlog Release Groups Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("release-groups")
-    public List<ReleaseGroupsVulnlogSchema> getReleaseGroups() {
-        return releaseGroups;
-    }
-
-    /**
-     * Vulnlog Release Groups Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("release-groups")
-    public void setReleaseGroups(List<ReleaseGroupsVulnlogSchema> releaseGroups) {
-        this.releaseGroups = releaseGroups;
-    }
-
-    /**
      * Vulnlog Releases Schema
      * <p>
      * 
@@ -206,28 +160,6 @@ public class VulnlogSchema {
     @JsonProperty("releases")
     public void setReleases(List<ReleasesVulnlogSchema> releases) {
         this.releases = releases;
-    }
-
-    /**
-     * Vulnlog Reporter Pipeline Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("reporter-pipelines")
-    public List<ReporterPipelinesVulnlogSchema> getReporterPipelines() {
-        return reporterPipelines;
-    }
-
-    /**
-     * Vulnlog Reporter Pipeline Schema
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("reporter-pipelines")
-    public void setReporterPipelines(List<ReporterPipelinesVulnlogSchema> reporterPipelines) {
-        this.reporterPipelines = reporterPipelines;
     }
 
     /**
