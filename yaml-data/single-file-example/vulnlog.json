@@ -4,30 +4,26 @@
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
   "properties": {
-    "vulnlog": {
-      "title": "Vulnlog General Information",
-      "description": "Common information about the Vulnlog file.",
-      "$ref": "#/$defs/vulnlog"
+    "version": {
+      "title": "Version",
+      "description": "The Schema version. Must be prefixed with \"vulnlog/v\" and followed by a semantic version number. Example: \"vulnlog/v1.0.0\".",
+      "type": "string",
+      "pattern": "^vulnlog/v[0-9]+(\\.[0-9]+)?(\\.[0-9]+)?$"
+    },
+    "metadata": {
+      "title": "Additional Information",
+      "description": "Context information around this Vulnlog file. These information help to provide more context in Vulnlog generated artifacts.",
+      "$ref": "#/$defs/metadata"
     },
     "include": {
       "title": "Include Files",
       "description": "Include other Vulnlog files in this Vulnlog file.",
       "$ref": "#/$defs/include"
     },
-    "release-groups": {
-      "title": "Release Groups",
-      "description": "Defines the release groups of the product.",
-      "$ref": "#/$defs/release-groups"
-    },
     "releases": {
       "title": "Releases",
       "description": "Defines the releases of the product.",
       "$ref": "#/$defs/releases"
-    },
-    "reporter-pipelines": {
-      "title": "Reporter Pipelines",
-      "description": "Defines the reporter pipelines scanning this product.",
-      "$ref": "#/$defs/reporter-pipelines"
     },
     "reporters": {
       "title": "Reporters",
@@ -45,14 +41,8 @@
     "include": {
       "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.include.vulnlog.schema.json"
     },
-    "release-groups": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1release-groups.vulnlog.schema.json"
-    },
     "releases": {
       "$ref": "#/$defs/https:~1~1vulnlog.dev~1releases.vulnlog.schema.json"
-    },
-    "reporter-pipelines": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1reporter-pipelines.vulnlog.schema.json"
     },
     "reporters": {
       "$ref": "#/$defs/https:~1~1vulnlog.dev~1reporters.vulnlog.schema.json"
@@ -60,33 +50,8 @@
     "vulnerabilities": {
       "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.vulnlog.schema.json"
     },
-    "vulnlog": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnlog.vulnlog.schema.json"
-    },
-    "https://vulnlog.dev/vulnlog.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnlog Schema",
-      "description": "Validates Vulnlog Vulnlog YAML files.",
-      "type": "object",
-      "properties": {
-        "version": {
-          "title": "Version",
-          "description": "The version of the Vulnlog file.",
-          "type": "string",
-          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
-        },
-        "vendor": {
-          "title": "Vendor",
-          "description": "The vendor of the product.",
-          "type": "string"
-        },
-        "product": {
-          "title": "Product",
-          "description": "The product this Vulnlog files covers.",
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
+    "metadata": {
+      "$ref": "#/$defs/https:~1~1vulnlog.dev~1metadata.schema.json"
     },
     "https://vulnlog.dev/vulnerabilities.analysis.verdict.notaffected.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -766,52 +731,6 @@
         }
       }
     },
-    "https://vulnlog.dev/reporter-pipelines.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Reporter Pipeline Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Reporter Pipeline Identifier",
-            "description": "Identifier of this reporter pipeline. Must be unique.",
-            "type": "string"
-          },
-          "lifetime": {
-            "title": "Pipeline Lifetime",
-            "description": "From when until when this pipeline is active.",
-            "type": "object",
-            "properties": {
-              "end": {
-                "title": "End date of this pipeline",
-                "description": "Date when this pipeline is no longer active. Format: YYYY-MM-DD",
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "format": "date"
-              },
-              "start": {
-                "title": "Start date of this pipeline",
-                "description": "Date from when this pipeline is active. Format: YYYY-MM-DD",
-                "type": "string",
-                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "format": "date"
-              }
-            }
-          },
-          "name": {
-            "title": "Reporter Pipeline Name",
-            "description": "Name of this reporter pipeline.",
-            "type": "string"
-          },
-          "reporter-ref-id": {
-            "title": "Reporter",
-            "description": "Reporter which is used by this pipeline. The reporter's unique identifier is required.",
-            "type": "string"
-          }
-        }
-      }
-    },
     "https://vulnlog.dev/releases.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Vulnlog Releases Schema",
@@ -850,33 +769,29 @@
         }
       }
     },
-    "https://vulnlog.dev/release-groups.vulnlog.schema.json": {
+    "https://vulnlog.dev/metadata.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Release Groups Schema",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "Release Group Identifier",
-            "description": "Identifier of the Release Group. A release group contains multiple releases under a single name. This allows filtering by release group.",
-            "type": "string"
-          },
-          "name": {
-            "title": "Name of the Release Group",
-            "description": "Name of the release group.",
-            "type": "string"
-          },
-          "ref-ids": {
-            "title": "Release Identifier",
-            "description": "Release identifiers that belong to this release group.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
+      "title": "Vulnlog Metadata Schema",
+      "description": "Validates Vulnlog Vulnlog YAML files.",
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "title": "Vendor",
+          "description": "The vendor of the product.",
+          "type": "string"
+        },
+        "product": {
+          "title": "Product",
+          "description": "The product this Vulnlog files covers.",
+          "type": "string"
+        },
+        "author": {
+          "title": "Author",
+          "description": "This Vulnlog file is curated by the authoring person or team.",
+          "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "https://vulnlog.dev/vulnerabilities.include.vulnlog.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",

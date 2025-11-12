@@ -1,8 +1,10 @@
 ---
-vulnlog:
-  version: 1.0.0
+version: vulnlog/v1
+
+metadata:
   vendor: Company ABC
   product: Product ABC
+  author: ABC Security Team
 
 include:
   releases:
@@ -11,7 +13,6 @@ include:
     file: reporters.vl.yml
 
 vulnerabilities:
-
   - desc: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     cwe: 1337
     reports:

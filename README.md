@@ -103,9 +103,10 @@ Hello YAML/JSON-Schema Vulnlog!
 This is a PoC to experiment with YAML and JSON-Schema as an alternative to the existing Kotlin custom scripting DSL.
 See https://github.com/vulnlog/vulnlog-poc for more information.
 
-version: 1.0.0
-vendor: Example Inc
-product: Example Product
+version: vulnlog/v1
+vendor: The Apache Software Foundation
+product: Apache Log4j
+authors: Apache Security Team
 
 Releases
 id: v100

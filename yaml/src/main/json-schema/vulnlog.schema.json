@@ -5,10 +5,16 @@
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
   "properties": {
-    "vulnlog": {
-      "title": "Vulnlog General Information",
-      "description": "Common information about the Vulnlog file.",
-      "$ref": "#/$defs/vulnlog"
+    "version": {
+      "title": "Version",
+      "description": "The Schema version. Must be prefixed with \"vulnlog/v\" and followed by a semantic version number. Example: \"vulnlog/v1.0.0\".",
+      "type": "string",
+      "pattern": "^vulnlog/v[0-9]+(\\.[0-9]+)?(\\.[0-9]+)?$"
+    },
+    "metadata": {
+      "title": "Additional Information",
+      "description": "Context information around this Vulnlog file. These information help to provide more context in Vulnlog generated artifacts.",
+      "$ref": "#/$defs/metadata"
     },
     "include": {
       "title": "Include Files",
@@ -45,8 +51,8 @@
     "vulnerabilities": {
       "$ref": "vulnerabilities.vulnlog.schema.json"
     },
-    "vulnlog": {
-      "$ref": "vulnlog.vulnlog.schema.json"
+    "metadata": {
+      "$ref": "metadata.schema.json"
     }
   }
 }

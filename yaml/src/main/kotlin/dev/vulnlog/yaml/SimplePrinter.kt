@@ -12,9 +12,10 @@ import dev.vulnlog.yaml.dto.VulnlogSchema
 class SimplePrinter(val result: VulnlogSchema) {
 
     fun print() {
-        println("version: ${result.vulnlog.version}")
-        println("vendor: ${result.vulnlog.vendor}")
-        println("product: ${result.vulnlog.product}")
+        println("version: ${result.version}")
+        println("vendor: ${result.metadata.vendor}")
+        println("product: ${result.metadata.product}")
+        println("authors: ${result.metadata.author}")
         println()
 
         if (result.releases != null && result.releases.isNotEmpty()) {
