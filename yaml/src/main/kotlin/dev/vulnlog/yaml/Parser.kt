@@ -46,8 +46,8 @@ class Parser {
     /**
      * Read the YAML root file and resolve direct referenced files.
      */
-    fun read(pathToFile: String): VulnlogSchema {
-        val filePath: Path = Path(pathToFile).toAbsolutePath().normalize()
+    fun read(pathToFile: Path): VulnlogSchema {
+        val filePath: Path = pathToFile.toAbsolutePath().normalize()
         val rootSchema = readYamlFile(filePath)
 
         if (rootSchema.include != null) {

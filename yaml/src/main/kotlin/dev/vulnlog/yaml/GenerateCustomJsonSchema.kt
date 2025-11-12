@@ -16,17 +16,18 @@ import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 import java.nio.file.Path
 import kotlin.collections.flatMap
-import kotlin.io.path.Path
+import kotlin.io.path.extension
 import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
 import kotlin.io.path.writeText
 
 class GenerateCustomJsonSchema(
     private val result: VulnlogSchema,
-    outputFilename: String
+    outputFilename: Path
 ) {
-    private val jsonSchemaTemplate = javaClass.getResource("/jsonschema/vulnlog.json")?.readText()
-        ?: throw IllegalStateException("Could not load JSON schema template")
+    private val jsonSchemaTemplate =
+        javaClass.getResource("/jsonschema/vulnlog-schema.json")?.readText()
+            ?: throw IllegalStateException("Could not load JSON schema template")
 
     @OptIn(ExperimentalSerializationApi::class)
     private val json = Json {
@@ -35,11 +36,10 @@ class GenerateCustomJsonSchema(
     }
     private var root = json.parseToJsonElement(jsonSchemaTemplate)
 
-    private val output = Path(outputFilename)
-    private val outputFile: Path = if (output.isRegularFile()) {
-        output
-    } else if (output.isDirectory()) {
-        output.resolve("vulnlog.json")
+    private val outputFile: Path = if (outputFilename.extension == "json") {
+        outputFilename
+    } else if (outputFilename.isDirectory()) {
+        outputFilename.resolve("vulnlog-schema.json")
     } else {
         error("Invalid output file path: $outputFilename")
     }
