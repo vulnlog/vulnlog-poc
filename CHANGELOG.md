@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-11-12
+
+### Changed
+- Replace `vulnlog` field with `version` and `metadata` in schema files by @ryru in [#15](https://github.com/vulnlog/vulnlog-poc/pull/15)
+- Remove release groups and reporter pipelines to simplify Vulnlog files by @ryru in [#14](https://github.com/vulnlog/vulnlog-poc/pull/14)
+- Upgrade Gradle wrapper to version 9.2.0 by @ryru in [#13](https://github.com/vulnlog/vulnlog-poc/pull/13)
+- Document IDE auto-completion and schema reset in README with examples and visuals by @ryru in [#12](https://github.com/vulnlog/vulnlog-poc/pull/12)
+- Restructure schema files and streamline multi-file JSON schema generation by @ryru
+- Use `Path` for output handling and improve file path validation in schema generation by @ryru
+- Support reporter in the custom schema generation CLI by @ryru
+- Support for custom JSON schema generation in CLI by @ryru
+- Extract the release 'on' JSON schema into a separate file and reference it from other locations by @ryru
+- Add Snapcraft installation instructions and badge to README by @ryru
+- Update for refs/tags/v0.4.1 by @github-actions[bot]
+
 ## [0.4.1] - 2025-10-31
 
 ### Changed
@@ -92,6 +107,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Contributors
 * @ryru made their first contribution
 
+[0.5.0]: https://github.com/vulnlog/vulnlog-poc/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/vulnlog/vulnlog-poc/compare/v0.3.1...v0.4.1
 [0.3.1]: https://github.com/vulnlog/vulnlog-poc/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/vulnlog/vulnlog-poc/compare/v0.2.0...v0.3.0
