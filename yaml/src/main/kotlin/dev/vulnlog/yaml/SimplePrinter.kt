@@ -1,11 +1,8 @@
 package dev.vulnlog.yaml
 
-import dev.vulnlog.yaml.dto.ReleaseGroupsVulnlogSchema
 import dev.vulnlog.yaml.dto.ReleasesVulnlogSchema
-import dev.vulnlog.yaml.dto.ReporterPipelinesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVulnlogSchema
-import dev.vulnlog.yaml.dto.VulnerabilitiesReportsSuppressionTrivyVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesReportsVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsUpdateVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesResolutionsVulnlogSchema
@@ -27,23 +24,9 @@ class SimplePrinter(val result: VulnlogSchema) {
             println()
         }
 
-        if (result.releaseGroups != null && result.releaseGroups.isNotEmpty()) {
-            println("Release Groups")
-            result.releaseGroups.filter { it != null }.forEach(::printReleaseGroupEntry)
-            println()
-            println()
-        }
-
         if (result.reporters != null && result.reporters.isNotEmpty()) {
             println("Reporters")
             result.reporters.filter { it != null }.forEach(::printReporterEntry)
-            println()
-            println()
-        }
-
-        if (result.reporterPipelines != null && result.reporterPipelines.isNotEmpty()) {
-            println("Reporter Pipelines")
-            result.reporterPipelines.filter { it != null }.forEach(::printReporterPipelineEntry)
             println()
             println()
         }
@@ -62,26 +45,10 @@ private fun printReleaseEntry(releaseEntry: ReleasesVulnlogSchema) {
     releaseEntry.releaseDate?.let { println("release date: $it") }
 }
 
-private fun printReleaseGroupEntry(releaseGroupEntry: ReleaseGroupsVulnlogSchema) {
-    releaseGroupEntry.id?.let { println("id: $it") }
-    releaseGroupEntry.name?.let { println("name: $it") }
-    println("refId: " + releaseGroupEntry.refIds.joinToString(", "))
-}
-
 private fun printReporterEntry(reporterEntry: ReportersVulnlogSchema) {
     reporterEntry.id?.let { println("id: $it") }
     reporterEntry.name?.let { println("name: $it") }
     reporterEntry.vendor?.let { println("vendor: $it") }
-}
-
-private fun printReporterPipelineEntry(reporterPipelineEntry: ReporterPipelinesVulnlogSchema) {
-    reporterPipelineEntry.id?.let { println("id: $it") }
-    reporterPipelineEntry.name?.let { println("name: $it") }
-    reporterPipelineEntry.reporterRefId?.let { println("reporter: $it") }
-    if (reporterPipelineEntry.lifetime != null) {
-        reporterPipelineEntry.lifetime.start?.let { println("lifetime start: $it") }
-        reporterPipelineEntry.lifetime.end?.let { println("lifetime end: $it") }
-    }
 }
 
 private fun printVulnEntry(vulnEntry: VulnerabilitiesVulnlogSchema) {

@@ -57,14 +57,12 @@ class Parser {
                 val schema: VulnlogSchema = parseYamlFile(parentDir.resolve(releaseFile))
 
                 rootSchema.releases = schema.releases
-                rootSchema.releaseGroups = schema.releaseGroups
             }
 
             rootSchema.include.reporters?.file?.let { reporterFile ->
                 val schema: VulnlogSchema = parseYamlFile(parentDir.resolve(reporterFile))
 
                 rootSchema.reporters = schema.reporters
-                rootSchema.reporterPipelines = schema.reporterPipelines
             }
         }
         return rootSchema
