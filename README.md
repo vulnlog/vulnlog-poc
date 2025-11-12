@@ -65,6 +65,25 @@ brew install vulnlog/vulnlog/vl-yaml
 
 Binaries will be in `yaml/build/install/yaml/bin`.
 
+### Initializing a new Vulnlog project
+
+To initialize a new Vulnlog _test_ project in your current directory simply use the `--init` flag
+with a directory path. The CLI then asks for a project name.
+
+```shell
+vl-yaml --init=./
+```
+
+**Output:**
+
+```console
+...
+project name: test
+Writing JSON schema to file: ~/vulnlog-poc/vulnlog-schema.json
+```
+
+This also creates a minimal Vulnlog test.vl.yml file.
+
 ## Usage
 
 Print the version.
@@ -82,8 +101,9 @@ vl-yaml --help
 **Output:**
 
 ```console
-Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json | --reset-schema=output.json]
+Usage: vl-yaml <path-to-yaml-file> [--init=DIR | --benchmark | --generate-schema=output.json | --reset-schema=output.json]
 Flags
+  --init=DIR:                     initialize a new Vulnlog project with a minimal Vulnlog file and JSON schema
   --benchmark:                    print the number of vulnerabilities and the time to parse the file
   --generate-schema=output.json:  generate a JSON-Schema for the YAML file and save it to output.json
   --reset-schema=output.json:     reset to the default JSON-Schema and save it to output.json

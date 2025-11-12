@@ -40,7 +40,7 @@ tasks.withType<Jar> {
         attributes["Implementation-Version"] = version
     }
     dependsOn("bundleJsonSchema")
-    from(project.layout.buildDirectory.dir("jsonschema/vulnlog.json")) {
+    from(project.layout.buildDirectory.dir("jsonschema/vulnlog-schema.json")) {
         into("jsonschema")
     }
 }
@@ -93,7 +93,7 @@ graalvmNative {
 val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
     val inputFile = project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
-    val outputFile = project.layout.buildDirectory.file("jsonschema/vulnlog.json")
+    val outputFile = project.layout.buildDirectory.file("jsonschema/vulnlog-schema.json")
 
     inputs.file(inputFile)
     inputs.dir(schemaDir)

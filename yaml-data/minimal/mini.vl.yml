@@ -1,4 +1,5 @@
 ---
 version: vulnlog/v1
 
-vulnerabilities: [ ]
+vulnerabilities:
+  - desc: Replace this text with your first vulnerability description.
