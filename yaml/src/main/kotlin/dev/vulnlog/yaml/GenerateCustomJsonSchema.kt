@@ -18,23 +18,17 @@ import java.nio.file.Path
 import kotlin.collections.flatMap
 import kotlin.io.path.extension
 import kotlin.io.path.isDirectory
-import kotlin.io.path.isRegularFile
 import kotlin.io.path.writeText
 
 class GenerateCustomJsonSchema(
     private val result: VulnlogSchema,
     outputFilename: Path
 ) {
-    private val jsonSchemaTemplate =
-        javaClass.getResource("/jsonschema/vulnlog-schema.json")?.readText()
-            ?: throw IllegalStateException("Could not load JSON schema template")
-
     @OptIn(ExperimentalSerializationApi::class)
-    private val json = Json {
+    val json = Json {
         prettyPrint = true
         prettyPrintIndent = "  "
     }
-    private var root = json.parseToJsonElement(jsonSchemaTemplate)
 
     private val outputFile: Path = if (outputFilename.extension == "json") {
         outputFilename
@@ -48,7 +42,8 @@ class GenerateCustomJsonSchema(
      * Reset the JSON schema to its original state.
      */
     fun reset() {
-        val formattedJson = json.encodeToString(JsonElement.serializer(), root)
+        val releaseSchema = loadAndParseReleaseSchema()
+        val formattedJson = json.encodeToString(JsonElement.serializer(), releaseSchema)
         writeSchemaToFile(formattedJson)
     }
 
@@ -56,10 +51,11 @@ class GenerateCustomJsonSchema(
      * Generate and update JSON schema with enriched data from releases and reporters.
      */
     fun generate() {
+        var releaseSchema = loadAndParseReleaseSchema()
         if (!result.releases.isNullOrEmpty()) {
             val releaseIds: Set<String> =
                 result.releases.filterNotNull().mapNotNull { it.id }.toSet()
-            root = replaceGenericReleaseDefinitionWithSpecific(releaseIds, root)
+            releaseSchema = replaceGenericReleaseDefinitionWithSpecific(releaseIds, releaseSchema)
         }
 
         if (!result.reporters.isNullOrEmpty()) {
@@ -67,14 +63,22 @@ class GenerateCustomJsonSchema(
                 result.reporters.groupBy { it.vendor }
                     .mapValues { it -> it.value.mapNotNull { it.id }.toSet() }
 
-            var updated: JsonElement = replaceGenericReporterDefinitionWithSpecific(reporters, root)
+            var updated: JsonElement = replaceGenericReporterDefinitionWithSpecific(reporters, releaseSchema)
             updated = setReporterSpecificConstraints(reporters, updated)
             updated = removeEmptySuppressionElement(updated)
-            root = updated
+            releaseSchema = updated
         }
 
-        val newResult = json.encodeToString(JsonElement.serializer(), root)
+        val newResult = json.encodeToString(JsonElement.serializer(), releaseSchema)
         writeSchemaToFile(newResult)
+    }
+
+    private fun loadAndParseReleaseSchema(): JsonElement {
+        val jsonSchemaTemplate =
+            javaClass.getResource("/jsonschema/vulnlog-schema.json")?.readText()
+                ?: throw IllegalStateException("Could not load JSON schema template")
+        return json.parseToJsonElement(jsonSchemaTemplate)
+
     }
 
     private fun replaceGenericReleaseDefinitionWithSpecific(

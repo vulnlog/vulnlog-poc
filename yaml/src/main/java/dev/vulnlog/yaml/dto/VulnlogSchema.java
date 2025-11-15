@@ -46,13 +46,14 @@ public class VulnlogSchema {
     @JsonPropertyDescription("Validates Vulnlog Vulnlog YAML files.")
     private MetadataSchema metadata;
     /**
-     * Vulnlog Vulnerability Include Schema
+     * Include Vulnlog Files
      * <p>
-     * 
+     * Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.
      * 
      */
     @JsonProperty("include")
-    private VulnerabilitiesIncludeVulnlogSchema include;
+    @JsonPropertyDescription("Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.")
+    private List<String> include = new ArrayList<String>();
     /**
      * Vulnlog Releases Schema
      * <p>
@@ -73,7 +74,6 @@ public class VulnlogSchema {
      * Vulnlog Vulnerability Schema
      * <p>
      * 
-     * (Required)
      * 
      */
     @JsonProperty("vulnerabilities")
@@ -89,7 +89,7 @@ public class VulnlogSchema {
     /**
      * 
      * @param include
-     *     Include Files. Include other Vulnlog files in this Vulnlog file.
+     *     Include Vulnlog Files. Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.
      * @param metadata
      *     Additional Information. Context information around this Vulnlog file. These information help to provide more context in Vulnlog generated artifacts.
      * @param reporters
@@ -101,7 +101,7 @@ public class VulnlogSchema {
      * @param releases
      *     Releases. Defines the releases of the product.
      */
-    public VulnlogSchema(String version, MetadataSchema metadata, VulnerabilitiesIncludeVulnlogSchema include, List<ReleasesVulnlogSchema> releases, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
+    public VulnlogSchema(String version, MetadataSchema metadata, List<String> include, List<ReleasesVulnlogSchema> releases, List<ReportersVulnlogSchema> reporters, List<VulnerabilitiesVulnlogSchema> vulnerabilities) {
         super();
         this.version = version;
         this.metadata = metadata;
@@ -158,24 +158,24 @@ public class VulnlogSchema {
     }
 
     /**
-     * Vulnlog Vulnerability Include Schema
+     * Include Vulnlog Files
      * <p>
-     * 
+     * Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.
      * 
      */
     @JsonProperty("include")
-    public VulnerabilitiesIncludeVulnlogSchema getInclude() {
+    public List<String> getInclude() {
         return include;
     }
 
     /**
-     * Vulnlog Vulnerability Include Schema
+     * Include Vulnlog Files
      * <p>
-     * 
+     * Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.
      * 
      */
     @JsonProperty("include")
-    public void setInclude(VulnerabilitiesIncludeVulnlogSchema include) {
+    public void setInclude(List<String> include) {
         this.include = include;
     }
 
@@ -227,7 +227,6 @@ public class VulnlogSchema {
      * Vulnlog Vulnerability Schema
      * <p>
      * 
-     * (Required)
      * 
      */
     @JsonProperty("vulnerabilities")
@@ -239,7 +238,6 @@ public class VulnlogSchema {
      * Vulnlog Vulnerability Schema
      * <p>
      * 
-     * (Required)
      * 
      */
     @JsonProperty("vulnerabilities")

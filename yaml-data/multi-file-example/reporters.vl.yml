@@ -1,4 +1,6 @@
 ---
+version: vulnlog/v1
+
 reporters:
   - id: myTrivy
     vendor: Aqua Security Trivy

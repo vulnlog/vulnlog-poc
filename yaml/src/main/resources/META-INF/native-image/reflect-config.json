@@ -9,15 +9,6 @@
     "allPublicFields": true
   },
   {
-    "name": "dev.vulnlog.yaml.dto.Releases",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
     "name": "dev.vulnlog.yaml.dto.ReleasesVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -28,15 +19,6 @@
   },
   {
     "name": "dev.vulnlog.yaml.dto.Reporter",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
-    "name": "dev.vulnlog.yaml.dto.Reporters",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,
@@ -82,15 +64,6 @@
   },
   {
     "name": "dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVulnlogSchema",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
-    "name": "dev.vulnlog.yaml.dto.VulnerabilitiesIncludeVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,
@@ -199,15 +172,6 @@
   },
   {
     "name": "dev.vulnlog.yaml.dto.VulnlogSchema",
-    "allDeclaredConstructors": true,
-    "allPublicConstructors": true,
-    "allDeclaredMethods": true,
-    "allPublicMethods": true,
-    "allDeclaredFields": true,
-    "allPublicFields": true
-  },
-  {
-    "name": "dev.vulnlog.yaml.dto.VulnlogVulnlogSchema",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,

@@ -6,13 +6,13 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLAnchorReplayingFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import dev.vulnlog.yaml.dto.ReleasesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictAffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnerabilitiesAnalysisVerdictNotaffectedVulnlogSchema
 import dev.vulnlog.yaml.dto.VulnlogSchema
 import org.yaml.snakeyaml.LoaderOptions
 import java.nio.file.Path
-import kotlin.io.path.Path
 import kotlin.io.path.exists
 import kotlin.jvm.java
 
@@ -50,20 +50,27 @@ class Parser {
         val filePath: Path = pathToFile.toAbsolutePath().normalize()
         val rootSchema = readYamlFile(filePath)
 
-        if (rootSchema.include != null) {
+        if (rootSchema.include.isNotEmpty()) {
             val parentDir: Path = filePath.parent
 
-            rootSchema.include.releases?.file?.let { releaseFile ->
-                val schema: VulnlogSchema = parseYamlFile(parentDir.resolve(releaseFile))
-
-                rootSchema.releases = schema.releases
+            val parts: List<VulnlogSchema> = rootSchema.include.map { include ->
+                parseYamlFile(parentDir.resolve(include))
             }
 
-            rootSchema.include.reporters?.file?.let { reporterFile ->
-                val schema: VulnlogSchema = parseYamlFile(parentDir.resolve(reporterFile))
+            val newReleases: MutableList<ReleasesVulnlogSchema> = rootSchema.releases
+            val newReporters: MutableList<ReportersVulnlogSchema> = rootSchema.reporters
 
-                rootSchema.reporters = schema.reporters
+            parts.forEach { part ->
+                if (!part.releases.isNullOrEmpty()) {
+                    newReleases += part.releases
+                }
+                if (!part.reporters.isNullOrEmpty()) {
+                    newReporters += part.reporters
+                }
             }
+            rootSchema.releases = newReleases
+            rootSchema.reporters = newReporters
+            rootSchema.include = emptyList()
         }
         return rootSchema
     }

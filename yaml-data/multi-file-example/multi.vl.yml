@@ -7,17 +7,16 @@ metadata:
   author: ABC Security Team
 
 include:
-  releases:
-    file: releases.vl.yml
-  reporters:
-    file: reporters.vl.yml
+  - releases-v1.vl.yml
+  - releases-v2.vl.yml
+  - reporters.vl.yml
 
 vulnerabilities:
   - desc: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     cwe: 1337
     reports:
       - vuln-id: CVE-2025-1234
-        on-id: v100
+        on-id: [ v100, v201 ]
         at: 2025-10-31
         reporters:
           - reporter: myTrivy

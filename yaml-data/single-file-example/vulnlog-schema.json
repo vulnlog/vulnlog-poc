@@ -3,6 +3,9 @@
   "title": "Vulnlog Schema",
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
+  "required": [
+    "version"
+  ],
   "properties": {
     "version": {
       "title": "Version",
@@ -16,9 +19,31 @@
       "$ref": "#/$defs/metadata"
     },
     "include": {
-      "title": "Include Files",
-      "description": "Include other Vulnlog files in this Vulnlog file.",
-      "$ref": "#/$defs/include"
+      "title": "Include Vulnlog Files",
+      "description": "Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.",
+      "examples": [
+        [
+          "releases.vl.yml"
+        ],
+        [
+          "releases.vl.yml",
+          "reporters.vl.yml"
+        ],
+        [
+          "releases-v1.vl.yml",
+          "releases-v2.vl.yml",
+          "reporters.vl.yml"
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "description": "Path to another Vulnlog file.",
+        "examples": [
+          "releases.vl.yml",
+          "reporters.vl.yml"
+        ],
+        "type": "string"
+      }
     },
     "releases": {
       "title": "Releases",
@@ -38,9 +63,6 @@
   },
   "additionalProperties": false,
   "$defs": {
-    "include": {
-      "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.include.vulnlog.schema.json"
-    },
     "releases": {
       "$ref": "#/$defs/https:~1~1vulnlog.dev~1releases.vulnlog.schema.json"
     },
@@ -506,20 +528,14 @@
                   "oneOf": [
                     {
                       "enum": [
-                        "myTrivy",
-                        "myOtherTrivy",
-                        "myOwasp",
-                        "mySnyk"
+                        "trivy"
                       ]
                     },
                     {
                       "type": "array",
                       "items": {
                         "enum": [
-                          "myTrivy",
-                          "myOtherTrivy",
-                          "myOwasp",
-                          "mySnyk"
+                          "trivy"
                         ]
                       }
                     }
@@ -531,7 +547,7 @@
                   "if": {
                     "properties": {
                       "reporter": {
-                        "const": "myTrivy"
+                        "const": "trivy"
                       }
                     }
                   },
@@ -542,66 +558,6 @@
                         "title": "Trivy Suppression",
                         "description": "Trivy Lorem ipsum",
                         "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/trivy",
-                        "additionalProperties": false
-                      }
-                    }
-                  }
-                },
-                {
-                  "if": {
-                    "properties": {
-                      "reporter": {
-                        "const": "myOtherTrivy"
-                      }
-                    }
-                  },
-                  "then": {
-                    "properties": {
-                      "reporter": {},
-                      "suppression": {
-                        "title": "Trivy Suppression",
-                        "description": "Trivy Lorem ipsum",
-                        "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/trivy",
-                        "additionalProperties": false
-                      }
-                    }
-                  }
-                },
-                {
-                  "if": {
-                    "properties": {
-                      "reporter": {
-                        "const": "myOwasp"
-                      }
-                    }
-                  },
-                  "then": {
-                    "properties": {
-                      "reporter": {},
-                      "suppression": {
-                        "title": "OWASP Suppression",
-                        "description": "OWASP Lorem ipsum",
-                        "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/owasp",
-                        "additionalProperties": false
-                      }
-                    }
-                  }
-                },
-                {
-                  "if": {
-                    "properties": {
-                      "reporter": {
-                        "const": "mySnyk"
-                      }
-                    }
-                  },
-                  "then": {
-                    "properties": {
-                      "reporter": {},
-                      "suppression": {
-                        "title": "Snyk Suppression",
-                        "description": "Snyk Lorem ipsum",
-                        "$ref": "#/$defs/https:~1~1vulnlog.dev~1vulnerabilities.reports.vulnlog.schema.json/$defs/snyk",
                         "additionalProperties": false
                       }
                     }
@@ -652,8 +608,7 @@
         {
           "enum": [
             "v100",
-            "v101",
-            "v102"
+            "v101"
           ]
         },
         {
@@ -661,8 +616,7 @@
           "items": {
             "enum": [
               "v100",
-              "v101",
-              "v102"
+              "v101"
             ]
           }
         }
@@ -860,61 +814,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "https://vulnlog.dev/vulnerabilities.include.vulnlog.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Vulnlog Vulnerability Include Schema",
-      "type": "object",
-      "properties": {
-        "releases": {
-          "title": "Include Releases",
-          "description": "When releases are defined in another file, they can be included here.",
-          "type": "object",
-          "properties": {
-            "file": {
-              "title": "File to include",
-              "description": "File containing the releases to be included.",
-              "type": "string"
-            },
-            "ref-ids": {
-              "title": "Release IDs to Reference from",
-              "description": "Create a list of references to the release ids defined in the included file. This is useful to create local YAML anchors.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "reporters": {
-          "title": "Include Reporters",
-          "description": "When reporters are defined in another file, they can be included here.",
-          "type": "object",
-          "properties": {
-            "file": {
-              "title": "File to include",
-              "description": "File containing the reporter to be included.",
-              "type": "string"
-            },
-            "pipeline-ref-ids": {
-              "title": "Reporter Pipeline References",
-              "description": "Create a list of references to the reporter pipelines ids defined in the included file. This is useful to create local YAML anchors.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "reporter-ref-ids": {
-              "title": "Reporter References",
-              "description": "Create a list of references to the reporter ids defined in the included file. This is useful to create local YAML anchors.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

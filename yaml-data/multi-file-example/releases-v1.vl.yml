@@ -1,4 +1,6 @@
 ---
+version: vulnlog/v1
+
 releases:
   - id: v100
     name: Product 1.0.0

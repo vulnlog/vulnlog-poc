@@ -8,7 +8,7 @@
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
               <option name="name" value="Vulnlog Mini" />
-              <option name="relativePathToSchema" value="yaml-data/minimal/vulnlog.json" />
+              <option name="relativePathToSchema" value="yaml-data/minimal/vulnlog-schema.json" />
               <option name="schemaVersion" value="JSON Schema 202,012" />
               <option name="patterns">
                 <list>
@@ -25,7 +25,7 @@
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
               <option name="name" value="Vulnlog Multi Example" />
-              <option name="relativePathToSchema" value="yaml-data/multi-file-example/vulnlog.json" />
+              <option name="relativePathToSchema" value="yaml-data/multi-file-example/vulnlog-schema.json" />
               <option name="schemaVersion" value="JSON Schema 202,012" />
               <option name="patterns">
                 <list>
@@ -44,7 +44,7 @@
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
               <option name="name" value="Vulnlog Single Example" />
-              <option name="relativePathToSchema" value="yaml-data/single-file-example/vulnlog.json" />
+              <option name="relativePathToSchema" value="yaml-data/single-file-example/vulnlog-schema.json" />
               <option name="schemaVersion" value="JSON Schema 202,012" />
               <option name="patterns">
                 <list>

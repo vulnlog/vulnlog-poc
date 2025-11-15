@@ -4,7 +4,7 @@
   "title": "Vulnlog Schema",
   "description": "Validates Vulnlog YAML files.",
   "type": "object",
-  "required": [ "version", "vulnerabilities" ],
+  "required": [ "version" ],
   "properties": {
     "version": {
       "title": "Version",
@@ -18,9 +18,19 @@
       "$ref": "#/$defs/metadata"
     },
     "include": {
-      "title": "Include Files",
-      "description": "Include other Vulnlog files in this Vulnlog file.",
-      "$ref": "#/$defs/include"
+      "title": "Include Vulnlog Files",
+      "description": "Specify which other Vulnlog files to include in this Vulnlog file. This keeps the main file smaller and cleaner.",
+      "examples": [
+        [ "releases.vl.yml" ],
+        [ "releases.vl.yml", "reporters.vl.yml" ],
+        [ "releases-v1.vl.yml", "releases-v2.vl.yml", "reporters.vl.yml" ]
+      ],
+      "type": "array",
+      "items": {
+        "description": "Path to another Vulnlog file.",
+        "examples": [ "releases.vl.yml", "reporters.vl.yml" ],
+        "type": "string"
+      }
     },
     "releases": {
       "title": "Releases",
@@ -40,9 +50,6 @@
   },
   "additionalProperties": false,
   "$defs": {
-    "include": {
-      "$ref": "vulnerabilities.include.vulnlog.schema.json"
-    },
     "releases": {
       "$ref": "releases.vulnlog.schema.json"
     },
