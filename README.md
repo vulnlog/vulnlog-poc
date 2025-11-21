@@ -101,12 +101,15 @@ vl-yaml --help
 **Output:**
 
 ```console
-Usage: vl-yaml <path-to-yaml-file> [--init=DIR | --benchmark | --generate-schema=output.json | --reset-schema=output.json]
+Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json | --reset-schema=output.json] | --validate | --version | --help
 Flags
   --init=DIR:                     initialize a new Vulnlog project with a minimal Vulnlog file and JSON schema
   --benchmark:                    print the number of vulnerabilities and the time to parse the file
   --generate-schema=output.json:  generate a JSON-Schema for the YAML file and save it to output.json
   --reset-schema=output.json:     reset to the default JSON-Schema and save it to output.json
+  --validate:                     validate the Vulnlog files
+  --version:                      show the version of the application
+  --help:                         show this help message
 ```
 
 Read, parse and print a YAML file [example.vl.yml](yaml-data/single-file-example/example.vl.yml) in

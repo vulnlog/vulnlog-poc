@@ -1,6 +1,8 @@
 package dev.vulnlog.yaml
 
 import dev.vulnlog.yaml.dto.VulnlogSchema
+import dev.vulnlog.yaml.validate.Severity
+import dev.vulnlog.yaml.validate.ValidationService
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.absolute
@@ -11,12 +13,15 @@ import kotlin.time.measureTimedValue
 
 fun main(args: Array<String>) {
     if (args.isEmpty() || args.contains("--help") || args.contains("-h")) {
-        println("Usage: vl-yaml <path-to-yaml-file> [--init=DIR | --benchmark | --generate-schema=output.json | --reset-schema=output.json]")
+        println("Usage: vl-yaml <path-to-yaml-file> [--benchmark | --generate-schema=output.json | --reset-schema=output.json] | --validate | --version | --help")
         println("Flags")
         println("  --init=DIR:                     initialize a new Vulnlog project with a minimal Vulnlog file and JSON schema")
         println("  --benchmark:                    print the number of vulnerabilities and the time to parse the file")
         println("  --generate-schema=output.json:  generate a JSON-Schema for the YAML file and save it to output.json")
         println("  --reset-schema=output.json:     reset to the default JSON-Schema and save it to output.json")
+        println("  --validate:                     validate the Vulnlog files")
+        println("  --version:                      show the version of the application")
+        println("  --help:                         show this help message")
         exitProcess(0)
     }
 
@@ -61,6 +66,7 @@ fun main(args: Array<String>) {
     val isBenchMark = args.contains("--benchmark")
     val isResetSchema = args.find { it.startsWith("--reset-schema=") } != null
     val isGenerateSchema = args.find { it.startsWith("--generate-schema=") } != null || isInit
+    val isValidate = args.contains("--validate")
 
     val (result, timeToParseInMs) = measureTimedValue {
         val parser = Parser()
@@ -91,8 +97,27 @@ fun main(args: Array<String>) {
         }
         val generator = GenerateCustomJsonSchema(result, outputFilename)
         generator.generate()
+    } else if (isValidate) {
+        handleValidation(result)
+        println("Validation successful")
     } else {
+        handleValidation(result)
         val printer = SimplePrinter(result)
         printer.print()
+    }
+}
+
+private fun handleValidation(result: VulnlogSchema) {
+    val validationService = ValidationService()
+    val validationResults = validationService.validate(result)
+    if (validationResults.isNotEmpty()) {
+        println("Validation failed")
+        validationResults.forEach {
+            println("${it.severity}: ${it.message} (${it.ruleId})")
+            println("  at ${it.location}")
+        }
+        if (validationResults.any { it.severity == Severity.ERROR }) {
+            exitProcess(1)
+        }
     }
 }

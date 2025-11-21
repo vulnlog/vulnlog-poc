@@ -1,5 +1,5 @@
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 plugins {
     id("buildsrc.convention.kotlin-jvm")
@@ -7,6 +7,7 @@ plugins {
     id("org.jsonschema2pojo") version "1.2.2"
     id("org.graalvm.buildtools.native") version "0.11.1"
     kotlin("plugin.serialization") version "2.2.0"
+    id("io.kotest") version "6.0.0"
 }
 
 val gitHash: String by lazy {
@@ -30,10 +31,17 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    testImplementation("io.kotest:kotest-framework-engine:6.0.0")
+    testImplementation("io.kotest:kotest-runner-junit5:6.0.0")
+    testImplementation("io.mockk:mockk:1.14.6")
 }
 
 application {
     mainClass = "dev.vulnlog.yaml.YamlAppKt"
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
 
 tasks.withType<Jar> {
