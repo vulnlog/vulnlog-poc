@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -52,7 +53,7 @@ public class VulnerabilitiesResolutionsRemoveVulnlogSchema {
      */
     @JsonProperty("resolved-at")
     @JsonPropertyDescription("The date on which this resolution is applied. Format: YYYY-MM-DD")
-    private String resolvedAt;
+    private LocalDate resolvedAt;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -72,7 +73,7 @@ public class VulnerabilitiesResolutionsRemoveVulnlogSchema {
      * @param on
      *     Remove on Release. The release on which a dependency should be removed.
      */
-    public VulnerabilitiesResolutionsRemoveVulnlogSchema(String note, String on, String resolvedAt) {
+    public VulnerabilitiesResolutionsRemoveVulnlogSchema(String note, String on, LocalDate resolvedAt) {
         super();
         this.note = note;
         this.on = on;
@@ -130,7 +131,7 @@ public class VulnerabilitiesResolutionsRemoveVulnlogSchema {
      * 
      */
     @JsonProperty("resolved-at")
-    public String getResolvedAt() {
+    public LocalDate getResolvedAt() {
         return resolvedAt;
     }
 
@@ -141,7 +142,7 @@ public class VulnerabilitiesResolutionsRemoveVulnlogSchema {
      * 
      */
     @JsonProperty("resolved-at")
-    public void setResolvedAt(String resolvedAt) {
+    public void setResolvedAt(LocalDate resolvedAt) {
         this.resolvedAt = resolvedAt;
     }
 

@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -28,7 +29,7 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
      */
     @JsonProperty("at")
     @JsonPropertyDescription("Date when this vulnerability report was analyzed. When left empty, the date of the first report is used implicitly. Format: YYYY-MM-DD")
-    private String at;
+    private LocalDate at;
     /**
      * Vulnlog On Schema
      * <p>
@@ -75,7 +76,7 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
      * @param onId
      *     Analysis for Release. This analysis applies for these releases. If left empty, the analysis applies for all releases.
      */
-    public VulnerabilitiesAnalysisVulnlogSchema(String at, Object onId, String reasoning, VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
+    public VulnerabilitiesAnalysisVulnlogSchema(LocalDate at, Object onId, String reasoning, VulnerabilitiesAnalysisVerdictVulnlogSchema verdict) {
         super();
         this.at = at;
         this.onId = onId;
@@ -90,7 +91,7 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
      * 
      */
     @JsonProperty("at")
-    public String getAt() {
+    public LocalDate getAt() {
         return at;
     }
 
@@ -101,7 +102,7 @@ public class VulnerabilitiesAnalysisVulnlogSchema {
      * 
      */
     @JsonProperty("at")
-    public void setAt(String at) {
+    public void setAt(LocalDate at) {
         this.at = at;
     }
 

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.yaml.YAMLAnchorReplayingFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import dev.vulnlog.yaml.dto.ReleasesVulnlogSchema
 import dev.vulnlog.yaml.dto.ReportersVulnlogSchema
@@ -14,7 +15,6 @@ import dev.vulnlog.yaml.dto.VulnlogSchema
 import org.yaml.snakeyaml.LoaderOptions
 import java.nio.file.Path
 import kotlin.io.path.exists
-import kotlin.jvm.java
 
 class Parser {
 
@@ -25,6 +25,7 @@ class Parser {
     private val yamlFactory = YAMLAnchorReplayingFactory(factory, YAMLMapper())
     private val mapper = ObjectMapper(yamlFactory).apply {
         registerKotlinModule()
+        registerModule(JavaTimeModule())
 
         val module = SimpleModule()
         module

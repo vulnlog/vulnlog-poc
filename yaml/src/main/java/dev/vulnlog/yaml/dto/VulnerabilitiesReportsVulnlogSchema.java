@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      */
     @JsonProperty("at")
     @JsonPropertyDescription("Date on which this report was created. Format: YYYY-MM-DD")
-    private String at;
+    private LocalDate at;
     /**
      * Vulnlog On Schema
      * <p>
@@ -78,7 +79,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * @param onId
      *     Reported Release. Releases on which this vulnerability report applies to.
      */
-    public VulnerabilitiesReportsVulnlogSchema(String at, Object onId, List<Reporter> reporters, Object vulnId) {
+    public VulnerabilitiesReportsVulnlogSchema(LocalDate at, Object onId, List<Reporter> reporters, Object vulnId) {
         super();
         this.at = at;
         this.onId = onId;
@@ -93,7 +94,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * 
      */
     @JsonProperty("at")
-    public String getAt() {
+    public LocalDate getAt() {
         return at;
     }
 
@@ -104,7 +105,7 @@ public class VulnerabilitiesReportsVulnlogSchema {
      * 
      */
     @JsonProperty("at")
-    public void setAt(String at) {
+    public void setAt(LocalDate at) {
         this.at = at;
     }
 

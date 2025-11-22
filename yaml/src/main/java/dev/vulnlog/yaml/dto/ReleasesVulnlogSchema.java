@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -46,7 +47,7 @@ public class ReleasesVulnlogSchema {
      */
     @JsonProperty("release-date")
     @JsonPropertyDescription("Date of the release. Format: YYYY-MM-DD.")
-    private String releaseDate;
+    private LocalDate releaseDate;
     /**
      * Release Version
      * <p>
@@ -77,7 +78,7 @@ public class ReleasesVulnlogSchema {
      * @param version
      *     Release Version. Version of the release. For example in the semantic version format: X.Y.Z.
      */
-    public ReleasesVulnlogSchema(String id, String name, String releaseDate, String version) {
+    public ReleasesVulnlogSchema(String id, String name, LocalDate releaseDate, String version) {
         super();
         this.id = id;
         this.name = name;
@@ -136,7 +137,7 @@ public class ReleasesVulnlogSchema {
      * 
      */
     @JsonProperty("release-date")
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
@@ -147,7 +148,7 @@ public class ReleasesVulnlogSchema {
      * 
      */
     @JsonProperty("release-date")
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

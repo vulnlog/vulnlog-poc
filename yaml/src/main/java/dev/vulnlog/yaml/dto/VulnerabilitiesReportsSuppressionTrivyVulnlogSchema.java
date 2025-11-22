@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -54,7 +55,7 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
      */
     @JsonProperty("until")
     @JsonPropertyDescription("Date until this suppression should be active to. Format: YYYY-MM-DD")
-    private String until;
+    private LocalDate until;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -74,7 +75,7 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
      * @param until
      *     Suppress Until. Date until this suppression should be active to. Format: YYYY-MM-DD.
      */
-    public VulnerabilitiesReportsSuppressionTrivyVulnlogSchema(List<String> paths, List<String> purls, String until) {
+    public VulnerabilitiesReportsSuppressionTrivyVulnlogSchema(List<String> paths, List<String> purls, LocalDate until) {
         super();
         this.paths = paths;
         this.purls = purls;
@@ -132,7 +133,7 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
      * 
      */
     @JsonProperty("until")
-    public String getUntil() {
+    public LocalDate getUntil() {
         return until;
     }
 
@@ -143,7 +144,7 @@ public class VulnerabilitiesReportsSuppressionTrivyVulnlogSchema {
      * 
      */
     @JsonProperty("until")
-    public void setUntil(String until) {
+    public void setUntil(LocalDate until) {
         this.until = until;
     }
 

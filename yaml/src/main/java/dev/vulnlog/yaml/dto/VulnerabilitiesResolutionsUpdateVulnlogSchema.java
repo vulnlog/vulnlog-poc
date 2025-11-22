@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -92,7 +93,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
      */
     @JsonProperty("resolved-at")
     @JsonPropertyDescription("The date on which this resolution is applied. Format: YYYY-MM-DD")
-    private String resolvedAt;
+    private LocalDate resolvedAt;
     /**
      * To Version
      * <p>
@@ -131,7 +132,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
      * @param onId
      *     Update on Release. The releases a dependency should be updated on.
      */
-    public VulnerabilitiesResolutionsUpdateVulnlogSchema(String containerDependency, String dependency, String mavenDependency, String note, String npmDependency, Object onId, String resolvedAt, String to) {
+    public VulnerabilitiesResolutionsUpdateVulnlogSchema(String containerDependency, String dependency, String mavenDependency, String note, String npmDependency, Object onId, LocalDate resolvedAt, String to) {
         super();
         this.containerDependency = containerDependency;
         this.dependency = dependency;
@@ -282,7 +283,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
      * 
      */
     @JsonProperty("resolved-at")
-    public String getResolvedAt() {
+    public LocalDate getResolvedAt() {
         return resolvedAt;
     }
 
@@ -293,7 +294,7 @@ public class VulnerabilitiesResolutionsUpdateVulnlogSchema {
      * 
      */
     @JsonProperty("resolved-at")
-    public void setResolvedAt(String resolvedAt) {
+    public void setResolvedAt(LocalDate resolvedAt) {
         this.resolvedAt = resolvedAt;
     }
 

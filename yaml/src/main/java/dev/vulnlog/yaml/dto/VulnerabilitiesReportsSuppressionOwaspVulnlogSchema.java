@@ -1,6 +1,7 @@
 
 package dev.vulnlog.yaml.dto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class VulnerabilitiesReportsSuppressionOwaspVulnlogSchema {
      */
     @JsonProperty("until")
     @JsonPropertyDescription("Date until this suppression should be active to. Format: YYYY-MM-DD")
-    private String until;
+    private LocalDate until;
     /**
      * 
      * <p>
@@ -86,7 +87,7 @@ public class VulnerabilitiesReportsSuppressionOwaspVulnlogSchema {
      * @param until
      *     Suppress Until. Date until this suppression should be active to. Format: YYYY-MM-DD.
      */
-    public VulnerabilitiesReportsSuppressionOwaspVulnlogSchema(String until, List<String> cpe, List<String> paths, List<String> purls) {
+    public VulnerabilitiesReportsSuppressionOwaspVulnlogSchema(LocalDate until, List<String> cpe, List<String> paths, List<String> purls) {
         super();
         this.until = until;
         this.cpe = cpe;
@@ -101,7 +102,7 @@ public class VulnerabilitiesReportsSuppressionOwaspVulnlogSchema {
      * 
      */
     @JsonProperty("until")
-    public String getUntil() {
+    public LocalDate getUntil() {
         return until;
     }
 
@@ -112,7 +113,7 @@ public class VulnerabilitiesReportsSuppressionOwaspVulnlogSchema {
      * 
      */
     @JsonProperty("until")
-    public void setUntil(String until) {
+    public void setUntil(LocalDate until) {
         this.until = until;
     }
 

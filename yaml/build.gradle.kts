@@ -28,6 +28,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 }
 
@@ -62,6 +63,8 @@ jsonSchema2Pojo {
     includeJsr305Annotations = false
     useJodaDates = false
     useJodaLocalDates = false
+
+    dateType = "java.time.LocalDate"
 }
 
 tasks.compileKotlin {
