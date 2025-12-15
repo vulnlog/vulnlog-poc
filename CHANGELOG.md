@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-12-15
+
+### Changed
+- Replace JSON Schema CLI GitHub action with Gradle-managed dependency and tasks by @ryru in [#18](https://github.com/vulnlog/vulnlog-poc/pull/18)
+- Migrate date-related fields to `java.time.LocalDate` and add `JavaTimeModule` to Jackson configuration by @ryru
+- Change `include` to a simple array and allow parsing of multiple release and/or reporter files by @ryru
+- Add `--init` flag to initialize Vulnlog projects with minimal files and schema by @ryru in [#17](https://github.com/vulnlog/vulnlog-poc/pull/17)
+- Add Vulnlog Mini schema and minimal example integration by @ryru
+- Update for refs/tags/v0.5.0 by @github-actions[bot]
+
+### Fixed
+- Correct path for JSON schema artifact upload in CI workflow by @ryru
+- Update paths for JSON schema artifact in CI workflow by @ryru
+- Use correct macOS/Darwin and linux arm64 naming by @ryru
+
 ## [0.5.0] - 2025-11-12
 
 ### Changed
@@ -107,6 +122,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Contributors
 * @ryru made their first contribution
 
+[0.6.0]: https://github.com/vulnlog/vulnlog-poc/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/vulnlog/vulnlog-poc/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/vulnlog/vulnlog-poc/compare/v0.3.1...v0.4.1
 [0.3.1]: https://github.com/vulnlog/vulnlog-poc/compare/v0.3.0...v0.3.1
