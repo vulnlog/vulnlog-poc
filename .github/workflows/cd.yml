@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vulnlog-yaml-poc-json-schema
-          path: build/json-schema/vulnlog-schema.json
+          path: build/jsonschema/vulnlog-schema.json
 
   build-jvm:
     name: Build JVM
@@ -126,7 +126,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: vulnlog-yaml-poc-json-schema
-          path: build/json-schema
+          path: build/jsonschema
       - name: Download JVM build
         uses: actions/download-artifact@v4
         with:
@@ -161,7 +161,7 @@ jobs:
 
             👉 Full Changelog: https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md
           files: |
-            build/json-schema/vulnlog-schema.json
+            build/jsonschema/vulnlog-schema.json
             build/jvm/yaml.zip
             build/native/linux/vl-yaml-linux-x64
             build/native/macos/vl-yaml-macos-arm64
