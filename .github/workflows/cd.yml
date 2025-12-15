@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vulnlog-yaml-poc-json-schema
-          path: build/jsonschema/vulnlog-schema.json
+          path: yaml/build/jsonschema/vulnlog-schema.json
 
   build-jvm:
     name: Build JVM
