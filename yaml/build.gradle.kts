@@ -1,5 +1,5 @@
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 plugins {
     id("buildsrc.convention.kotlin-jvm")
@@ -12,7 +12,7 @@ plugins {
 val gitHash: String by lazy {
     try {
         "git rev-parse --short HEAD".runCommand(project.rootDir).trim()
-    } catch (e: Exception) {
+    } catch (_: Exception) {
         "unknown"
     }
 }
@@ -23,6 +23,7 @@ val appVersion: String = project.findProperty("appVersion")?.toString() ?: snaps
 version = appVersion
 
 val jacksonVersion = "2.20.0"
+val jsonSchemaCliVersion = "12.10.1"
 
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
@@ -93,10 +94,81 @@ graalvmNative {
     }
 }
 
+val downloadJsonSchemaCli = tasks.register<Task>("downloadJsonSchemaCli") {
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val arch = System.getProperty("os.arch")
+
+    val platform = when {
+        os.isLinux && arch.contains("aarch64") -> "linux-aarch64"
+        os.isLinux -> "linux-x86_64"
+        os.isMacOsX && arch.contains("aarch64") -> "macos-arm64"
+        os.isMacOsX -> "macos-x86_64"
+        os.isWindows -> "windows-x86_64"
+        else -> throw GradleException("Unsupported platform: ${os.name} ${arch}")
+    }
+
+    val binaryName = if (os.isWindows) "jsonschema.exe" else "jsonschema"
+    val downloadUrl =
+        "https://github.com/sourcemeta/jsonschema/releases/download/v${jsonSchemaCliVersion}/jsonschema-${jsonSchemaCliVersion}-${platform}.zip"
+    val downloadFile = project.layout.buildDirectory.file("tools/jsonschema-cli.zip").get().asFile
+    val extractDir = project.layout.buildDirectory.dir("tools/extracted").get().asFile
+    val finalBinaryDir = project.layout.buildDirectory.dir("tools").get().asFile
+    val binaryFile = File(finalBinaryDir, binaryName)
+
+    outputs.file(binaryFile)
+
+    doLast {
+        if (!binaryFile.exists()) {
+            extractDir.mkdirs()
+            finalBinaryDir.mkdirs()
+
+            // Download the ZIP file
+            ant.invokeMethod(
+                "get", mapOf(
+                    "src" to downloadUrl,
+                    "dest" to downloadFile
+                )
+            )
+
+            // Extract the ZIP file
+            copy {
+                from(zipTree(downloadFile))
+                into(extractDir)
+            }
+
+            // Find the binary in the bin subdirectory
+            val extractedBinaries = fileTree(extractDir) {
+                include("**/bin/$binaryName")
+            }.files
+
+            if (extractedBinaries.isEmpty()) {
+                throw GradleException("Could not find $binaryName in extracted files")
+            }
+
+            val extractedBinary = extractedBinaries.first()
+
+            // Copy to the final location
+            extractedBinary.copyTo(binaryFile, overwrite = true)
+
+            // Make binary executable (Unix-like systems)
+            binaryFile.setExecutable(true)
+
+            // Clean up
+            downloadFile.delete()
+            extractDir.deleteRecursively()
+        }
+    }
+}
+
 val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
+    dependsOn(downloadJsonSchemaCli)
+
     val inputFile = project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
     val outputFile = project.layout.buildDirectory.file("jsonschema/vulnlog-schema.json")
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val binaryName = if (os.isWindows) "jsonschema.exe" else "jsonschema"
+    val jsonSchemaBinary = project.layout.buildDirectory.file("tools/$binaryName").get().asFile
 
     inputs.file(inputFile)
     inputs.dir(schemaDir)
@@ -105,7 +177,7 @@ val bundleJsonSchema = tasks.register<Exec>("bundleJsonSchema") {
     workingDir(project.rootDir)
 
     commandLine(
-        "jsonschema",
+        jsonSchemaBinary.absolutePath,
         "bundle",
         inputFile.toString(),
         "--resolve",
@@ -125,10 +197,14 @@ tasks.build {
 }
 
 val validateVulnlogYaml = tasks.register<Exec>("validateVulnlogYaml") {
+    dependsOn(downloadJsonSchemaCli)
+
     val yamlFileToValidate = project.rootDir.resolve("yaml-data/product.vl.yml")
-    val schemaFile =
-        project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
+    val schemaFile = project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val binaryName = if (os.isWindows) "jsonschema.exe" else "jsonschema"
+    val jsonSchemaBinary = project.layout.buildDirectory.file("tools/$binaryName").get().asFile
 
     inputs.file(schemaFile)
     inputs.dir(schemaDir)
@@ -136,7 +212,7 @@ val validateVulnlogYaml = tasks.register<Exec>("validateVulnlogYaml") {
     workingDir(project.rootDir)
 
     commandLine(
-        "jsonschema",
+        jsonSchemaBinary.absolutePath,
         "validate",
         schemaFile.toString(),
         yamlFileToValidate.toString(),
@@ -146,9 +222,13 @@ val validateVulnlogYaml = tasks.register<Exec>("validateVulnlogYaml") {
 }
 
 val validateJsonSchema = tasks.register<Exec>("validateJsonSchema") {
-    val schemaFile =
-        project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
+    dependsOn(downloadJsonSchemaCli)
+
+    val schemaFile = project.projectDir.resolve("src/main/json-schema/vulnlog.schema.json")
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val binaryName = if (os.isWindows) "jsonschema.exe" else "jsonschema"
+    val jsonSchemaBinary = project.layout.buildDirectory.file("tools/$binaryName").get().asFile
 
     inputs.file(schemaFile)
     inputs.dir(schemaDir)
@@ -156,7 +236,7 @@ val validateJsonSchema = tasks.register<Exec>("validateJsonSchema") {
     workingDir(project.rootDir)
 
     commandLine(
-        "jsonschema",
+        jsonSchemaBinary.absolutePath,
         "metaschema",
         schemaFile.toString(),
         "--resolve",
@@ -165,14 +245,19 @@ val validateJsonSchema = tasks.register<Exec>("validateJsonSchema") {
 }
 
 val lintJsonSchema = tasks.register<Exec>("lintJsonSchema") {
+    dependsOn(downloadJsonSchemaCli)
+
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val binaryName = if (os.isWindows) "jsonschema.exe" else "jsonschema"
+    val jsonSchemaBinary = project.layout.buildDirectory.file("tools/$binaryName").get().asFile
 
     inputs.dir(schemaDir)
 
     workingDir(project.rootDir)
 
     commandLine(
-        "jsonschema",
+        jsonSchemaBinary.absolutePath,
         "lint",
         schemaDir.toString(),
         "--resolve",
@@ -181,14 +266,19 @@ val lintJsonSchema = tasks.register<Exec>("lintJsonSchema") {
 }
 
 val formatJsonSchema = tasks.register<Exec>("formatJsonSchema") {
+    dependsOn(downloadJsonSchemaCli)
+
     val schemaDir = project.projectDir.resolve("src/main/json-schema")
+    val os = org.gradle.internal.os.OperatingSystem.current()
+    val binaryName = if (os.isWindows) "jsonschema.exe" else "jsonschema"
+    val jsonSchemaBinary = project.layout.buildDirectory.file("tools/$binaryName").get().asFile
 
     inputs.dir(schemaDir)
 
     workingDir(project.rootDir)
 
     commandLine(
-        "jsonschema",
+        jsonSchemaBinary.absolutePath,
         "fmt",
         schemaDir.toString(),
     )

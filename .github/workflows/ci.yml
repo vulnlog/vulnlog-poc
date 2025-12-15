@@ -20,5 +20,4 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: gradle/actions/setup-gradle@v3
-      - uses: sourcemeta/jsonschema@v12.0.0
       - run: ./gradlew check
