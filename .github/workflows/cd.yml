@@ -48,13 +48,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          architecture: x64
+      - uses: gradle/actions/setup-gradle@v3
 
-      - name: Install the JSON Schema CLI
-        uses: sourcemeta/jsonschema@v12.0.0
-
-      - run: |
-          mkdir -p build/json-schema
-          jsonschema bundle yaml/src/main/json-schema/vulnlog.schema.json --resolve yaml/src/main/json-schema --extension schema.json -w > build/json-schema/vulnlog-schema.json
+      - run: ./gradlew bundleJsonSchema
 
       - name: Upload schema
         uses: actions/upload-artifact@v4
@@ -73,7 +74,6 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - uses: gradle/actions/setup-gradle@v3
-      - uses: sourcemeta/jsonschema@v12.0.0
       - name: Clean build and zip distribution
         run: |
           VERSION="${{ github.ref_name }}"
@@ -94,7 +94,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: gradle/actions/setup-gradle@v3
-      - uses: sourcemeta/jsonschema@v12.0.0
       - uses: graalvm/setup-graalvm@v1
         with:
           java-version: '24'

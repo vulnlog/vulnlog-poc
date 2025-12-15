@@ -1,8 +1,5 @@
 # YAML and JSON Schema PoC
 
-This PoC requires [jsonschema](https://github.com/sourcemeta/jsonschema) installed on the system to
-run all the Gradle tasks.
-
 - [vulnlog.json](vulnlog.json) contains the whole Vulnlog schema bundled. It can be used by the IDE
   to get typesafe, autocompletion and documentation. It is generated from the files
   in [json-schema](src/main/json-schema) by the Gradle task `./gradlew bundleJsonSchema`.
