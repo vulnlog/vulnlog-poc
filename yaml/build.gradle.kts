@@ -99,10 +99,10 @@ val downloadJsonSchemaCli = tasks.register<Task>("downloadJsonSchemaCli") {
     val arch = System.getProperty("os.arch")
 
     val platform = when {
-        os.isLinux && arch.contains("aarch64") -> "linux-aarch64"
+        os.isLinux && arch.contains("arm64") -> "linux-arm64"
         os.isLinux -> "linux-x86_64"
-        os.isMacOsX && arch.contains("aarch64") -> "macos-arm64"
-        os.isMacOsX -> "macos-x86_64"
+        os.isMacOsX && arch.contains("arm64") -> "darwin-arm64"
+        os.isMacOsX -> "darwin-x86_64"
         os.isWindows -> "windows-x86_64"
         else -> throw GradleException("Unsupported platform: ${os.name} ${arch}")
     }
