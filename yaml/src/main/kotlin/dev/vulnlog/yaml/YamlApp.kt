@@ -8,6 +8,10 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
 import kotlin.system.exitProcess
 import kotlin.time.measureTimedValue
+import gg.jte.ContentType
+import gg.jte.TemplateEngine
+import gg.jte.output.StringOutput
+import gg.jte.resolve.DirectoryCodeResolver
 
 fun main(args: Array<String>) {
     if (args.isEmpty() || args.contains("--help") || args.contains("-h")) {
@@ -92,7 +96,13 @@ fun main(args: Array<String>) {
         val generator = GenerateCustomJsonSchema(result, outputFilename)
         generator.generate()
     } else {
-        val printer = SimplePrinter(result)
-        printer.print()
+        val path = "/home/pascal/IdeaProjects/vulnlog-poc/yaml/src/main/kotlin/dev/vulnlog/yaml"
+        val codeResolver =
+            DirectoryCodeResolver(Path.of(path))
+        val templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain)
+        templateEngine.setTrimControlStructures(true)
+        val output = StringOutput()
+        templateEngine.render("SimpleOutputTemplate.kte", result, output)
+        println(output)
     }
 }

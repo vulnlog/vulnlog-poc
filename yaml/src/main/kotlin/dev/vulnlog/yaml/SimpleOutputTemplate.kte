@@ -1,0 +1,33 @@
+@import dev.vulnlog.yaml.dto.VulnlogSchema
+@param data: VulnlogSchema
+
+@if(data.getVersion() != null)
+    version: ${data.getVersion()}
+@endif
+
+
+@if(data.getMetadata() != null)
+    Metadata
+    @if(data.getMetadata().vendor != null)
+        vendor: ${data.getMetadata().vendor}
+    @endif
+    @if(data.getMetadata().product != null)
+        product: ${data.getMetadata().product}
+    @endif
+    @if(data.getMetadata().author != null)
+        author: ${data.getMetadata().author}
+    @endif
+@endif
+
+
+@if(data.releases != null && data.releases.isNotEmpty())
+    Releases
+    @for(entry in data.getReleases())
+        @if(entry.getId() != null)
+            - id: ${entry.id}
+        @endif
+        @if(entry.name != null)
+            name: ${entry.name}
+        @endif
+    @endfor
+@endif

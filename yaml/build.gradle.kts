@@ -31,6 +31,9 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+
+    implementation("gg.jte:jte:3.2.2")
+    implementation("gg.jte:jte-kotlin:3.2.2")
 }
 
 application {
